@@ -75,6 +75,7 @@
     <Compile Include="Model\UsersModel.cs" />
     <Compile Include="RelayCommand.cs" />
     <Compile Include="SqlConnectionHandler.cs" />
+    <Compile Include="StringCipher.cs" />
     <Compile Include="ViewModel\ChangePasswordViewModel.cs" />
     <Compile Include="ViewModel\FormAdminPanelViewModel.cs" />
     <Compile Include="ViewModel\LoginPageViewModel.cs" />

@@ -39,7 +39,7 @@ namespace AdminPanelWpf
         {
             MySqlCommand command = new MySqlCommand("SELECT 1 FROM login WHERE username = @username AND password = @password", connection);
             command.Parameters.AddWithValue("username", userName);
-            command.Parameters.AddWithValue("password", password);
+            command.Parameters.AddWithValue("password", StringCipher.Encrypt(password, "Fejsze"));
 
             var loginChek = command.ExecuteScalar();
             return loginChek == null ? false : int.Parse(loginChek?.ToString()) == 1;
@@ -74,10 +74,10 @@ namespace AdminPanelWpf
             return um;
         }
 
-        public void UpdatePassword(string ID, string newPassowrd)
+        public void UpdatePassword(string ID, string newPassoword)
         {
             MySqlCommand comm = new MySqlCommand("UPDATE login SET password = @password WHERE id = @id", connection);
-            comm.Parameters.AddWithValue("password", newPassowrd);
+            comm.Parameters.AddWithValue("password", StringCipher.Encrypt(newPassoword, "Fejsze"));
             comm.Parameters.AddWithValue("id", ID);
             comm.ExecuteNonQuery();
         }
@@ -87,7 +87,7 @@ namespace AdminPanelWpf
             MySqlCommand comm = new MySqlCommand("INSERT INTO login (`generatedid`, `username`, `password`, `created`, `email`, `Reminder`) VALUES (@generatedid, @username, @password, @created, @email, @Reminder);", connection);
             comm.Parameters.AddWithValue("generatedid", IDGenerator());
             comm.Parameters.AddWithValue("username", username);
-            comm.Parameters.AddWithValue("password", password);
+            comm.Parameters.AddWithValue("password", StringCipher.Encrypt(password, "Fejsze"));
             comm.Parameters.AddWithValue("created", DateTime.UtcNow);
             comm.Parameters.AddWithValue("email", email);
             comm.Parameters.AddWithValue("Reminder", reminder);
@@ -96,7 +96,7 @@ namespace AdminPanelWpf
 
         private string IDGenerator()
         {
-            return "asd";
+            return Guid.NewGuid().ToString("N");
         }
     }
 }
