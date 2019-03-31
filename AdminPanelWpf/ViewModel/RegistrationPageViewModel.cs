@@ -25,7 +25,7 @@ namespace AdminPanelWpf.ViewModel
 
         public static void asd()
         {
-            TextBox
+            //TextBox
         }
     }
 }

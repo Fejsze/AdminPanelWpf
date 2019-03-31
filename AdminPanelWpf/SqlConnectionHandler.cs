@@ -37,7 +37,7 @@ namespace AdminPanelWpf
 
         public bool IsUserValid(string userName, string password)
         {
-            MySqlCommand command = new MySqlCommand("SELECT 1 FROM Users WHERE LoginName = @username AND Password = @password AND IsAdministrator = 1", connection);
+            MySqlCommand command = new MySqlCommand("SELECT 1 FROM login WHERE username = @username AND password = @password", connection);
             command.Parameters.AddWithValue("username", userName);
             command.Parameters.AddWithValue("password", password);
 
@@ -47,7 +47,7 @@ namespace AdminPanelWpf
 
         public UsersModel GetUserData(string userName)
         {
-            MySqlCommand command = new MySqlCommand("SELECT * FROM Users WHERE LoginName = @username", connection);
+            MySqlCommand command = new MySqlCommand("SELECT * FROM login WHERE username = @username", connection);
             command.Parameters.AddWithValue("username", userName);
             UsersModel um = null;
             using (MySqlDataReader reader = command.ExecuteReader())
@@ -61,12 +61,14 @@ namespace AdminPanelWpf
                         um.Email = reader.GetString(reader.GetOrdinal("Email"));
                     if (!reader.IsDBNull(reader.GetOrdinal("ID")))
                         um.ID = reader.GetString(reader.GetOrdinal("ID"));
-                    if (!reader.IsDBNull(reader.GetOrdinal("LoginName")))
-                        um.LoginName = reader.GetString(reader.GetOrdinal("LoginName"));
-                    if (!reader.IsDBNull(reader.GetOrdinal("Name")))
-                        um.Name = reader.GetString(reader.GetOrdinal("Name"));
+                    if (!reader.IsDBNull(reader.GetOrdinal("username")))
+                        um.Username = reader.GetString(reader.GetOrdinal("username"));
+                    if (!reader.IsDBNull(reader.GetOrdinal("generatedid")))
+                        um.GeneratedID = reader.GetString(reader.GetOrdinal("generatedid"));
                     if (!reader.IsDBNull(reader.GetOrdinal("Password")))
                         um.Password = reader.GetString(reader.GetOrdinal("Password"));
+                    if (!reader.IsDBNull(reader.GetOrdinal("Reminder")))
+                        um.Reminder = reader.GetString(reader.GetOrdinal("Reminder"));
                 }
             }
             return um;
@@ -74,15 +76,27 @@ namespace AdminPanelWpf
 
         public void UpdatePassword(string ID, string newPassowrd)
         {
-            MySqlCommand comm = new MySqlCommand("UPDATE Users SET Password = @password WHERE ID = @id", connection);
+            MySqlCommand comm = new MySqlCommand("UPDATE login SET password = @password WHERE id = @id", connection);
             comm.Parameters.AddWithValue("password", newPassowrd);
             comm.Parameters.AddWithValue("id", ID);
             comm.ExecuteNonQuery();
         }
 
-        public void InsertUser(/*Insert adatai*/)
+        public void InsertUser(string username, string password, string email, string reminder)
         {
-            //Insert megírása
+            MySqlCommand comm = new MySqlCommand("INSERT INTO login (`generatedid`, `username`, `password`, `created`, `email`, `Reminder`) VALUES (@generatedid, @username, @password, @created, @email, @Reminder);", connection);
+            comm.Parameters.AddWithValue("generatedid", IDGenerator());
+            comm.Parameters.AddWithValue("username", username);
+            comm.Parameters.AddWithValue("password", password);
+            comm.Parameters.AddWithValue("created", DateTime.UtcNow);
+            comm.Parameters.AddWithValue("email", email);
+            comm.Parameters.AddWithValue("Reminder", reminder);
+            comm.ExecuteNonQuery();
+        }
+
+        private string IDGenerator()
+        {
+            return "asd";
         }
     }
 }
