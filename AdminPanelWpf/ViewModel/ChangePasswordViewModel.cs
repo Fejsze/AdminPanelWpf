@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace AdminPanelWpf.ViewModel
+namespace LearningApp.ViewModel
 {
     class ChangePasswordViewModel : BaseViewModel
     {

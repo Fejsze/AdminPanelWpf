@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.271
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdminPanelWpf", "AdminPanelWpf\AdminPanelWpf.csproj", "{581BBB37-4F45-4360-935B-BA8EF498FF90}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LearningApp", "AdminPanelWpf\LearningApp.csproj", "{581BBB37-4F45-4360-935B-BA8EF498FF90}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

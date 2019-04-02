@@ -5,7 +5,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace AdminPanelWpf
+namespace LearningApp
 {
     public static class StringCipher
     {

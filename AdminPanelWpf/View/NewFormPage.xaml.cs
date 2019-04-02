@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace AdminPanelWpf.View
+namespace LearningApp.View
 {
     /// <summary>
     /// Interaction logic for NewFormPage.xaml

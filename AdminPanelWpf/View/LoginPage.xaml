@@ -1,9 +1,9 @@
 ﻿<Page
-    x:Class="AdminPanelWpf.View.LoginPage"
+    x:Class="LearningApp.View.LoginPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:local="clr-namespace:AdminPanelWpf.View"
+    xmlns:local="clr-namespace:LearningApp.View"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="Page1"
     d:DesignHeight="450"

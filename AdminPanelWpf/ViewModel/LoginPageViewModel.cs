@@ -1,4 +1,4 @@
-﻿using AdminPanelWpf.View;
+﻿using LearningApp.View;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +8,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Navigation;
 
-namespace AdminPanelWpf.ViewModel
+namespace LearningApp.ViewModel
 {
     class LoginPageViewModel : BaseViewModel
     {

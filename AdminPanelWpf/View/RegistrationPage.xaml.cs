@@ -1,4 +1,4 @@
-﻿using AdminPanelWpf.ViewModel;
+﻿using LearningApp.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace AdminPanelWpf.View
+namespace LearningApp.View
 {
     /// <summary>
     /// Interaction logic for RegistrationPage.xaml

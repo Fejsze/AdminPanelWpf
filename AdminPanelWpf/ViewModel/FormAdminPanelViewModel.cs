@@ -1,4 +1,4 @@
-﻿using AdminPanelWpf.View;
+﻿using LearningApp.View;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Input;
 
-namespace AdminPanelWpf.ViewModel
+namespace LearningApp.ViewModel
 {
     class FormAdminPanelViewModel : BaseViewModel
     {
