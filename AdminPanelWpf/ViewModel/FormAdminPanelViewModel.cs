@@ -1,4 +1,5 @@
 ﻿using LearningApp.View;
+using LearningApp.View.Task;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,15 +26,25 @@ namespace LearningApp.ViewModel
 
         public ICommand ExitCommand { get; set; }
         public ICommand ChangePasswordCommand { get; set; }
+        public ICommand TestCommand { get; set; }
+
         public FormAdminPanelViewModel()
         {
             ChangePasswordCommand = new RelayCommand(o => ChangePasswordClick(o));
             ExitCommand = new RelayCommand(o => ExitClick(o));
+            TestCommand = new RelayCommand(o => TestClick(o));
         }
 
         private void ChangePasswordClick(object sender)
         {
             this.DisplayPage = new ChangePasswordPage();
+        }
+        private void TestClick(object sender)
+        {
+            PairingWindow pairingWindow = new PairingWindow("asd#fdsa#asd");
+            pairingWindow.Show();
+
+            //pairingWindow.Close();
         }
         private void ExitClick(object sender)
         {

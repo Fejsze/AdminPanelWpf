@@ -8,5 +8,6 @@ namespace LearningApp.Model
 {
     class MainModel
     {
+
     }
 }
