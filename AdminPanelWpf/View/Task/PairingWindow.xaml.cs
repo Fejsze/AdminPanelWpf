@@ -15,75 +15,43 @@ using System.Windows.Shapes;
 namespace LearningApp.View.Task
 {
     /// <summary>
-    /// Interaction logic for Pairing.xaml
+    /// Interaction logic for PairingWindow.xaml
     /// </summary>
     public partial class PairingWindow : Window
     {
-        DockPanel dpNew = new DockPanel();
-        public PairingWindow(string text)
+        public PairingWindow(Dictionary<string, string> iKerdesek, List<string> iValaszok)
         {
             InitializeComponent();
-            Task(text);
-            sp.Children.Add(dpNew);
-        }
-        
-        private void Task(string text)
-        {
-            if (text.Contains("#"))
-            {
 
-                Button button = new Button()
+            DockPanel DockPanel1 = new DockPanel();
+            DockPanel1.VerticalAlignment = VerticalAlignment.Top;
+            DockPanel1.HorizontalAlignment = HorizontalAlignment.Center;
+            np.Children.Add(DockPanel1);
+
+            DockPanel DockPanel2 = new DockPanel();
+            DockPanel2.VerticalAlignment = VerticalAlignment.Center;
+            DockPanel2.HorizontalAlignment = HorizontalAlignment.Center;
+            np.Children.Add(DockPanel2);
+
+            foreach (var x in iKerdesek)
+            {
+                Label l = new Label
                 {
-                    Height = 25
-                    ,Content = "Ellenőrzés",
+                    Content = x.Key,
+                    MaxHeight = 35,
+                    Width = 100,
                 };
-                dpNew.Children.Add(button);
+                DockPanel1.Children.Add(l);
 
-                button.Click += Button_Click;
-
-                int firstIndex = 0;
-                int nextIndex = 0;
-                while (firstIndex != -1)
+                ComboBox cb = new ComboBox
                 {
-                    firstIndex = text.IndexOf('#', 0);
-                    nextIndex = text.IndexOf('#', firstIndex + 1);
-
-                    Label l = new Label
-                    {
-                        Content = text.Substring(0, (firstIndex == -1) ? text.Length : firstIndex - 1),
-                        Height = 25,
-                    };
-                    dpNew.Children.Add(l);
-
-                    if (firstIndex != -1)
-                    {
-
-                        TextBox tb = new TextBox
-                        {
-                            Tag = text.Substring(firstIndex + 1, nextIndex - firstIndex - 1)
-                        };
-                        text = text.Substring(nextIndex + 1);
-                        dpNew.Children.Add(tb);
-                    }
-                }
+                    Name = x.Key,
+                    ItemsSource = new List<string>(iValaszok),
+                    MaxHeight = 20,
+                    Width = 100,
+                };
+                DockPanel2.Children.Add(cb);
             }
-        }
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            bool l = true;
-            foreach (var children in dpNew.Children)
-            {
-                if (children.GetType() == typeof(TextBox))
-                {
-                    var x = (children as TextBox);
-                    if (x.Text != x.Tag.ToString())
-                        l = false;
-                }
-            }
-            if (!l)
-                MessageBox.Show("Nem");
-            else
-                MessageBox.Show("Igen");
         }
     }
 }

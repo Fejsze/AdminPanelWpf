@@ -22,6 +22,7 @@
             <Button Content="Új felhasználó" />
             <Button Command="{Binding ChangePasswordCommand}" Content="Jelszóváltás" />
             <Button Command="{Binding TestCommand}" Content="Test" />
+            <Button Command="{Binding TestCommand2}" Content="Test" />
         </DockPanel>
         <ScrollViewer Grid.Row="1">
             <Frame Content="{Binding DisplayPage, Mode=OneWay}" />
