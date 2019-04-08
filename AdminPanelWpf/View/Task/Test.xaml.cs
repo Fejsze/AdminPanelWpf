@@ -25,56 +25,48 @@ namespace LearningApp.View.Task
 
             Grid DynamicGrid = new Grid();
             DynamicGrid.Width = 400;
-            DynamicGrid.HorizontalAlignment = HorizontalAlignment.Left;
-            DynamicGrid.VerticalAlignment = VerticalAlignment.Top;
+            DynamicGrid.HorizontalAlignment = HorizontalAlignment.Center;
+            DynamicGrid.VerticalAlignment = VerticalAlignment.Center;
             DynamicGrid.ShowGridLines = true;
-            DynamicGrid.Background = new SolidColorBrush(Colors.LightSteelBlue);
+            DynamicGrid.Background = new SolidColorBrush(Colors.BlanchedAlmond);
 
             ColumnDefinition gridCol1 = new ColumnDefinition();
             ColumnDefinition gridCol2 = new ColumnDefinition();
             DynamicGrid.ColumnDefinitions.Add(gridCol1);
             DynamicGrid.ColumnDefinitions.Add(gridCol2);
 
+            RowDefinition gridRow1 = new RowDefinition();
             RowDefinition gridRow2 = new RowDefinition();
             gridRow2.Height = new GridLength(45);
             RowDefinition gridRow3 = new RowDefinition();
             gridRow3.Height = new GridLength(45);
+            DynamicGrid.RowDefinitions.Add(gridRow1);
             DynamicGrid.RowDefinitions.Add(gridRow2);
             DynamicGrid.RowDefinitions.Add(gridRow3);
 
-            // Add first column header
             TextBlock txtBlock1 = new TextBlock();
-            txtBlock1.Text = "Author Name";
-            txtBlock1.FontSize = 14;
-            txtBlock1.FontWeight = FontWeights.Bold;
-            txtBlock1.Foreground = new SolidColorBrush(Colors.Green);
-            txtBlock1.VerticalAlignment = VerticalAlignment.Top;
+            txtBlock1.Text = "asd";
             Grid.SetRow(txtBlock1, 0);
             Grid.SetColumn(txtBlock1, 0);
-
-            // Add second column header
-            TextBlock txtBlock2 = new TextBlock();
-            txtBlock2.Text = "Age";
-            txtBlock2.FontSize = 14;
-            txtBlock2.FontWeight = FontWeights.Bold;
-            txtBlock2.Foreground = new SolidColorBrush(Colors.Green);
-            txtBlock2.VerticalAlignment = VerticalAlignment.Top;
-            Grid.SetRow(txtBlock2, 0);
-            Grid.SetColumn(txtBlock2, 1);
             DynamicGrid.Children.Add(txtBlock1);
+
+            TextBlock txtBlock2 = new TextBlock();
+            txtBlock2.Text = "asd2";
+            Grid.SetRow(txtBlock2, 1);
+            Grid.SetColumn(txtBlock2, 0);
             DynamicGrid.Children.Add(txtBlock2);
+
+            TextBlock txtBlock3 = new TextBlock();
+            txtBlock3.Text = "asd3";
+            Grid.SetRow(txtBlock3, 2);
+            Grid.SetColumn(txtBlock3, 0);
+            DynamicGrid.Children.Add(txtBlock3);
 
             // Create first Row
             TextBlock authorText = new TextBlock();
-            authorText.Text = "Mahesh Chand";
-            authorText.FontSize = 12;
-            authorText.FontWeight = FontWeights.Bold;
             Grid.SetRow(authorText, 1);
             Grid.SetColumn(authorText, 0);
             TextBlock ageText = new TextBlock();
-            ageText.Text = "33";
-            ageText.FontSize = 12;
-            ageText.FontWeight = FontWeights.Bold;
             Grid.SetRow(ageText, 1);
             Grid.SetColumn(ageText, 1);
             
