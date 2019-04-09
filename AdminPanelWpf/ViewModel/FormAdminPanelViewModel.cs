@@ -30,6 +30,7 @@ namespace LearningApp.ViewModel
         public ICommand TestCommand { get; set; }
         //Pairing
         public ICommand TestCommand2 { get; set; }
+        public ICommand TestCommand3 { get; set; }
 
         public FormAdminPanelViewModel()
         {
@@ -37,6 +38,7 @@ namespace LearningApp.ViewModel
             ExitCommand = new RelayCommand(o => ExitClick(o));
             TestCommand = new RelayCommand(o => TestClick1(o));
             TestCommand2 = new RelayCommand(o => TestClick2(o));
+            TestCommand3 = new RelayCommand(o => TestClick3(o));
         }
 
         private void ChangePasswordClick(object sender)
@@ -55,6 +57,11 @@ namespace LearningApp.ViewModel
         {
             PairingWindow pairingWindow = new PairingWindow(new Dictionary<string, string>() { { "kerdes1", "v1" }, { "kerdes2", "v2" }, { "kerdes3", "v3" } }, new List<string>() { "v1", "v2", "v3", "v4", "v5" });
             pairingWindow.Show();
+        }
+        private void TestClick3(object sender)
+        {
+            TrueFalseWindow trueFalseWindow = new TrueFalseWindow("asd", "asd"); 
+            trueFalseWindow.Show();
         }
         private void ExitClick(object sender)
         {

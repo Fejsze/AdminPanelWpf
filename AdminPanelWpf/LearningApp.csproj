@@ -88,15 +88,17 @@
     <Compile Include="BaseViewModel.cs" />
     <Compile Include="Globals.cs" />
     <Compile Include="Model\MainModel.cs" />
+    <Compile Include="Model\Task\TrueFalseModel.cs" />
     <Compile Include="Model\UsersModel.cs" />
     <Compile Include="RelayCommand.cs" />
-    <Compile Include="SqlConnectionHandler.cs" />
+    <Compile Include="SQL\SqlConnectionHandler.cs" />
     <Compile Include="StringCipher.cs" />
     <Compile Include="ViewModel\ChangePasswordViewModel.cs" />
     <Compile Include="ViewModel\FormAdminPanelViewModel.cs" />
     <Compile Include="ViewModel\LoginPageViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\RegistrationPageViewModel.cs" />
+    <Compile Include="ViewModel\Task\TrueFalseWindowViewModel.cs" />
     <Compile Include="View\ChangePasswordPage.xaml.cs">
       <DependentUpon>ChangePasswordPage.xaml</DependentUpon>
     </Compile>
@@ -120,6 +122,9 @@
     </Compile>
     <Compile Include="View\Task\Test.xaml.cs">
       <DependentUpon>Test.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Task\TrueFalseWindow.xaml.cs">
+      <DependentUpon>TrueFalseWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -165,6 +170,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\Task\TrueFalseWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -202,9 +211,6 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Model\Task\" />
-    <Folder Include="ViewModel\Task\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
