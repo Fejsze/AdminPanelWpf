@@ -23,25 +23,36 @@ namespace LearningApp.View.Task
         {
             InitializeComponent();
 
-            DockPanel DockPanel1 = new DockPanel();
-            DockPanel1.VerticalAlignment = VerticalAlignment.Top;
-            DockPanel1.HorizontalAlignment = HorizontalAlignment.Center;
-            np.Children.Add(DockPanel1);
+            Grid DynamicGrid = new Grid();
+            DynamicGrid.Width = 400;
+            DynamicGrid.HorizontalAlignment = HorizontalAlignment.Center;
+            DynamicGrid.VerticalAlignment = VerticalAlignment.Center;
+            DynamicGrid.ShowGridLines = true;
+            DynamicGrid.Background = new SolidColorBrush(Colors.BlanchedAlmond);
 
-            DockPanel DockPanel2 = new DockPanel();
-            DockPanel2.VerticalAlignment = VerticalAlignment.Center;
-            DockPanel2.HorizontalAlignment = HorizontalAlignment.Center;
-            np.Children.Add(DockPanel2);
-
+            ColumnDefinition gridCol1 = new ColumnDefinition();
+            ColumnDefinition gridCol2 = new ColumnDefinition();
+            DynamicGrid.ColumnDefinitions.Add(gridCol1);
+            DynamicGrid.ColumnDefinitions.Add(gridCol2);
+                
+            int s = 0;
             foreach (var x in iKerdesek)
             {
+                RowDefinition gridRow1 = new RowDefinition
+                {
+                    Height = new GridLength(45)
+                };
+                DynamicGrid.RowDefinitions.Add(gridRow1);
+                
                 Label l = new Label
                 {
                     Content = x.Key,
                     MaxHeight = 35,
                     Width = 100,
                 };
-                DockPanel1.Children.Add(l);
+                Grid.SetRow(l, s);
+                Grid.SetColumn(l, 0);
+                DynamicGrid.Children.Add(l);
 
                 ComboBox cb = new ComboBox
                 {
@@ -50,8 +61,14 @@ namespace LearningApp.View.Task
                     MaxHeight = 20,
                     Width = 100,
                 };
-                DockPanel2.Children.Add(cb);
+                Grid.SetRow(cb, s);
+                Grid.SetColumn(cb, 1);
+                DynamicGrid.Children.Add(cb);
+
+                s++;
             }
+            // Display grid into a Window
+            ng.Children.Add(DynamicGrid);
         }
     }
 }
