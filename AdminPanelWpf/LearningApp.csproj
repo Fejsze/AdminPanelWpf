@@ -88,6 +88,7 @@
     <Compile Include="BaseViewModel.cs" />
     <Compile Include="Globals.cs" />
     <Compile Include="Model\MainModel.cs" />
+    <Compile Include="Model\Task\Multiple_choice.cs" />
     <Compile Include="Model\Task\TrueFalseModel.cs" />
     <Compile Include="Model\UsersModel.cs" />
     <Compile Include="RelayCommand.cs" />
@@ -98,6 +99,7 @@
     <Compile Include="ViewModel\LoginPageViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\RegistrationPageViewModel.cs" />
+    <Compile Include="ViewModel\Task\Multiple_choiceWindowViewModel.cs" />
     <Compile Include="ViewModel\Task\TrueFalseWindowViewModel.cs" />
     <Compile Include="View\ChangePasswordPage.xaml.cs">
       <DependentUpon>ChangePasswordPage.xaml</DependentUpon>
@@ -116,6 +118,9 @@
     </Compile>
     <Compile Include="View\Task\Completion.xaml.cs">
       <DependentUpon>Completion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Task\Multiple_choiceWindow.xaml.cs">
+      <DependentUpon>Multiple_choiceWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Task\PairingWindow.xaml.cs">
       <DependentUpon>PairingWindow.xaml</DependentUpon>
@@ -159,6 +164,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Task\Completion.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Task\Multiple_choiceWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

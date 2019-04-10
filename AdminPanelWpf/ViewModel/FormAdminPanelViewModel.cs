@@ -60,8 +60,8 @@ namespace LearningApp.ViewModel
         }
         private void TestClick3(object sender)
         {
-            TrueFalseWindow trueFalseWindow = new TrueFalseWindow("asd", "asd"); 
-            trueFalseWindow.Show();
+            Multiple_choiceWindow multiple_ChoiceWindow = new Multiple_choiceWindow("asd", "asd"); 
+            multiple_ChoiceWindow.Show();
         }
         private void ExitClick(object sender)
         {
