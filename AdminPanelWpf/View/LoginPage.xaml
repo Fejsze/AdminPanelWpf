@@ -16,7 +16,7 @@
         <Label Content="Felhasználónév" />
         <TextBox Name="TextBoxUserName" Text="{Binding UserName}" />
         <Label Content="Jelszó" />
-        <PasswordBox Name="PasswordBox" PasswordChar="*" />
+        <PasswordBox Name="PasswordBox" PasswordChar="*" DataContext="{Binding Password, Mode=TwoWay}" />
         <Button Command="{Binding LoginButtonCommand}" Content="Küldés" />
         <Button Command="{Binding RegistrationButtonCommand}" Content="Regisztráció" />
     </StackPanel>
