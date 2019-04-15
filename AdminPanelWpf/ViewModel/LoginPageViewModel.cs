@@ -65,9 +65,7 @@ namespace LearningApp.ViewModel
             try
             {
                 sql.Open();
-
                 var isValid = sql.IsUserValid(this.UserName, this.Password);
-
 
                 if (isValid)
                 {
