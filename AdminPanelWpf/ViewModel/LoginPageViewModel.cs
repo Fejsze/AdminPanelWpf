@@ -61,19 +61,17 @@ namespace LearningApp.ViewModel
 
         private void SubmitButtonClick(object sender)
         {
-            /*SqlConnectionHandler sql = new SqlConnectionHandler();
+            SqlConnectionHandler sql = new SqlConnectionHandler();
             try
             {
                 sql.Open();
-
                 var isValid = sql.IsUserValid(this.UserName, this.Password);
-
 
                 if (isValid)
                 {
                     Globals.ActualUser = sql.GetUserData(this.UserName);
-                    if (OnEventRaised != null)
-                        OnEventRaised(this, null);
+                    if (OnEventRaisedLog != null)
+                        OnEventRaisedLog(this, null);
                 }
                 else
                     System.Windows.MessageBox.Show("NEM");
@@ -81,9 +79,9 @@ namespace LearningApp.ViewModel
             }
             catch (Exception ex)
             {
-                System.Windows.MessageBox.Show(ex.ToString());
-            }*/
-            OnEventRaisedLog(this, null);
+                System.Windows.MessageBox.Show("Csatlakozási hiba, kérem próbálhja újra!");
+            }
+            //OnEventRaisedLog(this, null);
         }
 
         private void RegistrationButtonClick(object sender)
