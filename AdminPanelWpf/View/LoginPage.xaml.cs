@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -19,12 +20,20 @@ namespace LearningApp.View
     /// <summary>
     /// Interaction logic for Page1.xaml
     /// </summary>
-    public partial class LoginPage : Page
+    public partial class LoginPage : Page, IHavePassword
     {
         public LoginPage()
         {
             InitializeComponent();
             this.DataContext = new LoginPageViewModel();
+        }
+
+        public SecureString Password
+        {
+            get
+            {
+                return PasswordBox.SecurePassword;
+            }
         }
     }
 }

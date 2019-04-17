@@ -74,12 +74,12 @@ namespace LearningApp.ViewModel
                         OnEventRaisedLog(this, null);
                 }
                 else
-                    System.Windows.MessageBox.Show("NEM");
+                    System.Windows.MessageBox.Show("Nem megfelelő felhasználó vagy jelszó!");
 
             }
             catch (Exception ex)
             {
-                System.Windows.MessageBox.Show("Csatlakozási hiba, kérem próbálhja újra!");
+                System.Windows.MessageBox.Show("Hiba, kérem próbálja újra!");
             }
             //OnEventRaisedLog(this, null);
         }
