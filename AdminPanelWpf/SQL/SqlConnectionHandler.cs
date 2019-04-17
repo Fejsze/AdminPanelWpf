@@ -6,6 +6,7 @@ using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace LearningApp
 {
@@ -37,12 +38,12 @@ namespace LearningApp
 
         public bool IsUserValid(string userName, string password)
         {
-            MySqlCommand command = new MySqlCommand("SELECT 1 FROM login WHERE username = @username AND password = @password", connection);
+            MySqlCommand command = new MySqlCommand("SELECT password FROM login WHERE username = @username", connection);
             command.Parameters.AddWithValue("username", userName);
-            command.Parameters.AddWithValue("password", StringCipher.Encrypt(password, "Fejsze"));
 
             var loginChek = command.ExecuteScalar();
-            return loginChek == null ? false : int.Parse(loginChek?.ToString()) == 1;
+            MessageBox.Show(StringCipher.Decrypt(loginChek.ToString(), "Fejsze"));
+            return loginChek == null ? false : StringCipher.Decrypt(loginChek.ToString(), "Fejsze").ToString() == password;
         }
 
         public UsersModel GetUserData(string userName)
