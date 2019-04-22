@@ -12,28 +12,6 @@ namespace LearningApp.ViewModel
 {
     public class MainViewModel : BaseViewModel
     {
-        private string asd;
-        public string Asd
-        {
-            get { return asd; }
-            set
-            {
-                asd = value;
-                NotifyPropertyChanged("Asd");
-            }
-        }
-
-        private string dsa;
-        public string Dsa
-        {
-            get { return dsa; }
-            set
-            {
-                dsa = value;
-                NotifyPropertyChanged("Dsa");
-            }
-        }
-
         private Page _displayPage;
         public Page DisplayPage
         {
