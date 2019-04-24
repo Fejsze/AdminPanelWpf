@@ -42,7 +42,7 @@ namespace LearningApp
             command.Parameters.AddWithValue("username", userName);
 
             var loginChek = command.ExecuteScalar();
-            MessageBox.Show(StringCipher.Decrypt(loginChek.ToString(), "Fejsze"));
+            //MessageBox.Show(StringCipher.Decrypt(loginChek.ToString(), "Fejsze"));
             return loginChek == null ? false : StringCipher.Decrypt(loginChek.ToString(), "Fejsze").ToString() == password;
         }
 
@@ -67,7 +67,7 @@ namespace LearningApp
                     if (!reader.IsDBNull(reader.GetOrdinal("generatedid")))
                         um.GeneratedID = reader.GetString(reader.GetOrdinal("generatedid"));
                     if (!reader.IsDBNull(reader.GetOrdinal("Password")))
-                        um.Password = reader.GetString(reader.GetOrdinal("Password"));
+                        um.Password = StringCipher.Decrypt(reader.GetString(reader.GetOrdinal("Password")), "Fejsze");
                     if (!reader.IsDBNull(reader.GetOrdinal("Reminder")))
                         um.Reminder = reader.GetString(reader.GetOrdinal("Reminder"));
                 }

@@ -20,7 +20,7 @@ namespace LearningApp.View
     /// <summary>
     /// Interaction logic for Page1.xaml
     /// </summary>
-    public partial class LoginPage : Page//, IHavePassword
+    public partial class LoginPage : Page, IHavePassword
     {
         public LoginPage()
         {
@@ -28,12 +28,12 @@ namespace LearningApp.View
             this.DataContext = new LoginPageViewModel();
         }
 
-        //public SecureString Password
-        //{
-        //    get
-        //    {
-        //        return PasswordBox.SecurePassword;
-        //    }
-        //}
+        public SecureString Password
+        {
+            get
+            {
+                return PasswordBox.SecurePassword;
+            }
+        }
     }
 }

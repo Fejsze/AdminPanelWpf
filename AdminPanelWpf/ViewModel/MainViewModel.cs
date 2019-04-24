@@ -56,7 +56,6 @@ namespace LearningApp.ViewModel
         private void MainViewModel_onEventRaised2(object sender, EventArgs e)
         {
             this.DisplayPage = new RegistrationPage();
-            //(this.DisplayPage.DataContext as RegistrationPageViewModel).onEventRaised += MainViewModel_onEventRaised;
         }
     }
 }

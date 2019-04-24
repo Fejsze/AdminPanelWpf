@@ -54,13 +54,20 @@ namespace LearningApp.ViewModel
 
         public LoginPageViewModel()
         {
-            LoginButtonCommand = new RelayCommand(o => SubmitButtonClick(o));
+            LoginButtonCommand = new RelayCommand(SubmitButtonClick);
             RegistrationButtonCommand = new RelayCommand(o => RegistrationButtonClick(o));
 
         }
 
-        private void SubmitButtonClick(object sender)
+        private void SubmitButtonClick(object parameter)
         {
+            var passwordContainer = parameter as IHavePassword;
+            if (passwordContainer != null)
+            {
+                var secureString = passwordContainer.Password;
+                this.Password = ConvertToUnsecureString(secureString);
+                System.Windows.MessageBox.Show(Password);
+            }
             SqlConnectionHandler sql = new SqlConnectionHandler();
             try
             {
@@ -77,14 +84,33 @@ namespace LearningApp.ViewModel
                     System.Windows.MessageBox.Show("Nem megfelelő felhasználó vagy jelszó!");
 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 System.Windows.MessageBox.Show("Hiba, kérem próbálja újra!");
             }
             //OnEventRaisedLog(this, null);
         }
 
-        private void RegistrationButtonClick(object sender)
+        private string ConvertToUnsecureString(System.Security.SecureString securePassword)
+        {
+            if (securePassword == null)
+            {
+                return string.Empty;
+            }
+
+            IntPtr unmanagedString = IntPtr.Zero;
+            try
+            {
+                unmanagedString = System.Runtime.InteropServices.Marshal.SecureStringToGlobalAllocUnicode(securePassword);
+                return System.Runtime.InteropServices.Marshal.PtrToStringUni(unmanagedString);
+            }
+            finally
+            {
+                System.Runtime.InteropServices.Marshal.ZeroFreeGlobalAllocUnicode(unmanagedString);
+            }
+        }
+
+            private void RegistrationButtonClick(object sender)
         {
             OnEventRaisedReg(new RegistrationPageViewModel(), null);
         }

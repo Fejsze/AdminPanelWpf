@@ -58,10 +58,10 @@ namespace LearningApp.ViewModel
                     conn.UpdatePassword(Globals.ActualUser.ID, this.NewPassword);
                 }
                 else
-                    System.Windows.MessageBox.Show("Nem egyezik a pw");
+                    System.Windows.MessageBox.Show("Nem egyezik a jelszó");
             }
             else
-                System.Windows.MessageBox.Show("Nem jó az eddigi pw");
+                System.Windows.MessageBox.Show("Nem jó az eddigi jelszó");
         }
     }
 }
