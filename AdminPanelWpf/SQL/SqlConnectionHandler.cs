@@ -40,18 +40,16 @@ namespace LearningApp
         {
             MySqlCommand command = new MySqlCommand("SELECT password FROM login WHERE username = @username", connection);
             command.Parameters.AddWithValue("username", userName);
-
             var loginChek = command.ExecuteScalar();
-            //MessageBox.Show(StringCipher.Decrypt(loginChek.ToString(), "Fejsze"));
             return loginChek == null ? false : StringCipher.Decrypt(loginChek.ToString(), "Fejsze").ToString() == password;
         }
 
         public UsersModel GetUserData(string userName)
         {
-            MySqlCommand command = new MySqlCommand("SELECT * FROM login WHERE username = @username", connection);
-            command.Parameters.AddWithValue("username", userName);
+            MySqlCommand comm = new MySqlCommand("SELECT * FROM login WHERE username = @username", connection);
+            comm.Parameters.AddWithValue("username", userName);
             UsersModel um = null;
-            using (MySqlDataReader reader = command.ExecuteReader())
+            using (MySqlDataReader reader = comm.ExecuteReader())
             {
                 while (reader.Read())
                 {
@@ -93,6 +91,22 @@ namespace LearningApp
             comm.Parameters.AddWithValue("email", email);
             comm.Parameters.AddWithValue("Reminder", reminder);
             comm.ExecuteNonQuery();
+        }
+
+        public string Select(string columnNames, string tableName, string where)
+        {
+            MySqlCommand comm;
+            if (where!="") comm = new MySqlCommand($"Select {columnNames} From {tableName} Where {where}");
+            else comm = new MySqlCommand($"Select {columnNames} From {tableName}");
+            using (MySqlDataReader reader = comm.ExecuteReader())
+            {
+                string selectValue = "";
+                foreach (var item in reader)
+                {
+                    selectValue += item;
+                }
+                return selectValue;
+            }
         }
 
         private string IDGenerator()

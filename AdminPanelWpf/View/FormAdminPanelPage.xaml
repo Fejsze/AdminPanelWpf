@@ -25,7 +25,7 @@
             <Button Command="{Binding TestCommand3}" Content="Test3" />
         </DockPanel>
         <ScrollViewer Grid.Row="1">
-            <Frame Content="{Binding DisplayPage, Mode=OneWay}" />
+            <Frame Content="{Binding DisplayPage, Mode=OneWay}"/>
         </ScrollViewer>
         <Button
             Grid.Row="2"
