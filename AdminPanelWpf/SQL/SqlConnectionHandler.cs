@@ -92,17 +92,21 @@ namespace LearningApp
         public void InsertUser(string username, string nickname, string password, string email, string reminder)
         {
             UsersModel um = GetUserData(username);
-            if (um.Username != username && um.Email != email)
+            if (um == null)
             {
-                MySqlCommand comm = new MySqlCommand("INSERT INTO login (`generatedid`, `username`,`nickname`, `username` `password`, `created`, `email`, `Reminder`) VALUES (@generatedid, @username, @nickname, @password, @created, @email, @Reminder);", connection);
-                comm.Parameters.AddWithValue("generatedid", IDGenerator());
-                comm.Parameters.AddWithValue("username", username);
-                comm.Parameters.AddWithValue("nickname", nickname);
-                comm.Parameters.AddWithValue("password", StringCipher.Encrypt(password, "Fejsze"));
-                comm.Parameters.AddWithValue("created", DateTime.UtcNow);
-                comm.Parameters.AddWithValue("email", email);
-                comm.Parameters.AddWithValue("Reminder", reminder);
-                comm.ExecuteNonQuery();
+                //User data beszúrása
+                MySqlCommand commUD = new MySqlCommand("INSERT INTO `user_data` (`level`, `nickname`) VALUES ( 0, @nickname );", connection);
+                    commUD.Parameters.AddWithValue("nickname", nickname);
+                    commUD.ExecuteNonQuery();
+                //Login beszúrása
+                MySqlCommand commL = new MySqlCommand("INSERT INTO login (`generatedid`, `username`, `password`, `created`, `email`, `Reminder`) VALUES (@generatedid, @username, @password, @created, @email, @Reminder);", connection);
+                    commL.Parameters.AddWithValue("generatedid", IDGenerator);
+                    commL.Parameters.AddWithValue("username", username);
+                    commL.Parameters.AddWithValue("password", StringCipher.Encrypt(password, "Fejsze"));
+                    commL.Parameters.AddWithValue("created", DateTime.UtcNow);
+                    commL.Parameters.AddWithValue("email", email);
+                    commL.Parameters.AddWithValue("Reminder", reminder);
+                    commL.ExecuteNonQuery();
             }
         }
 
@@ -122,9 +126,6 @@ namespace LearningApp
             }
         }
 
-        private string IDGenerator()
-        {
-            return Guid.NewGuid().ToString("N");
-        }
+        private string IDGenerator => Guid.NewGuid().ToString("N");
     }
 }

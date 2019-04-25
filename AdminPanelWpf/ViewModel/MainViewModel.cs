@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
@@ -12,6 +13,8 @@ namespace LearningApp.ViewModel
 {
     public class MainViewModel : BaseViewModel
     {
+        private string buttonText;
+
         private Page _displayPage;
         public Page DisplayPage
         {
@@ -32,10 +35,11 @@ namespace LearningApp.ViewModel
             }
         }
         
-        public ICommand ButtonCommand { get; set; }
-        
+        public string ButtonText { get => buttonText; }
+
         public MainViewModel()
         {
+            buttonText = "<-";
             this.DisplayPage = new LoginPage();
             (this.DisplayPage.DataContext as LoginPageViewModel).OnEventRaisedLog += MainViewModel_OnEventRaised;
             (this.DisplayPage.DataContext as LoginPageViewModel).OnEventRaisedReg += MainViewModel_onEventRaised2;

@@ -13,14 +13,72 @@ namespace LearningApp.ViewModel
         private string userName;
         private string nickName;
         private string email;
+        private string emailAgain;
         private string password;
+        private string passwordAgain;
         private string reminder;
 
-        public string UserName { get => userName; set => userName = value; }
-        public string NickName { get => nickName; set => nickName = value; }
-        public string Email { get => email; set => email = value; }
-        public string Password { get => password; set => password = value; }
-        public string Reminder { get => reminder; set => reminder = value; }
+        public string UserName
+        {
+            get => userName;
+            set
+            {
+                userName = value;
+                NotifyPropertyChanged("UserName");
+            }
+        }
+        public string NickName
+        {
+            get => nickName;
+            set
+            {
+                nickName = value;
+                NotifyPropertyChanged("NickName");
+            }
+        }
+        public string Email
+        {
+            get => email;
+            set
+            {
+                email = value;
+                NotifyPropertyChanged("Email");
+            }
+        }
+        public string EmailAgain { get => emailAgain;
+            set
+            {
+                email = value;
+                NotifyPropertyChanged("EmailAgain");
+            }
+        }
+        public string PasswordAgain
+        {
+            get => passwordAgain;
+            set
+            {
+                passwordAgain = value;
+                NotifyPropertyChanged("PasswordAgain");
+            }
+        }
+        public string Password
+        {
+            get => password;
+            set
+            {
+                password = value;
+                NotifyPropertyChanged("Password");
+            }
+        }
+        public string Reminder
+        {
+            get => reminder;
+            set
+            {
+                reminder = value;
+                NotifyPropertyChanged("Reminder");
+            }
+        }
 
         public ICommand RegistrationCommand { get; set; }
 
@@ -36,17 +94,27 @@ namespace LearningApp.ViewModel
             {
                 var secureString = passwordContainer.Password;
                 this.Password = Utilities.ConvertToUnsecureString(secureString);
+                var secureString2 = passwordContainer.Password;
+                this.PasswordAgain = Utilities.ConvertToUnsecureString(secureString2);
             }
-            SqlConnectionHandler conn = new SqlConnectionHandler();
-            try
+            if (Password == PasswordAgain)
             {
-                conn.Open();
-                conn.InsertUser(userName, nickName, password, email, Reminder);
-            }
-            catch (Exception)
-            {
-                System.Windows.MessageBox.Show("Hiba, kérem próbálja újra!");
-            }
+                if (Email == EmailAgain)
+                {
+                    SqlConnectionHandler conn = new SqlConnectionHandler();
+                    try
+                    {
+                        conn.Open();
+                        conn.InsertUser(userName, nickName, password, email, Reminder);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Hiba, kérem próbálja újra!");
+                        MessageBox.Show(ex.ToString());
+                    }
+                }
+                else MessageBox.Show("Hiba, az email címek nem egyeznek! Kérem próbálja újra!");
+            } else MessageBox.Show("Hiba, a jelszavak nem egyeznek! Kérem próbálja újra!");
         }
     }
 }

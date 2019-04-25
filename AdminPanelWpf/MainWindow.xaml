@@ -10,6 +10,6 @@
     Height="450"
     mc:Ignorable="d">
     <StackPanel Margin="0,0,-0.4,0">
-        <Frame Content="{Binding Path=DisplayPage, Mode=TwoWay}" NavigationUIVisibility="Hidden" />
+        <Frame Name="frame" Content="{Binding Path=DisplayPage, Mode=TwoWay}" NavigationUIVisibility="Hidden"/>
     </StackPanel>
 </Window>

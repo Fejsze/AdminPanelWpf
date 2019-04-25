@@ -36,5 +36,13 @@ namespace LearningApp.View
                 return PasswordBox.SecurePassword;
             }
         }
+        public SecureString PasswordAgain
+        {
+            get
+            {
+                return PasswordBoxAgain.SecurePassword;
+            }
+        }
+
     }
 }
