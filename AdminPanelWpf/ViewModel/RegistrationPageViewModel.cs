@@ -4,14 +4,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
 
 namespace LearningApp.ViewModel
 {
     class RegistrationPageViewModel : BaseViewModel
     {
-        public static void asd()
+        public ICommand RegistrationCommand { get; set; }
+
+        public RegistrationPageViewModel()
         {
-            //TextBox
+            RegistrationCommand = new RelayCommand(RegistrationCommandClick);
+        }
+
+        private void RegistrationCommandClick(object parameter)
+        {
+            //code
         }
     }
 }

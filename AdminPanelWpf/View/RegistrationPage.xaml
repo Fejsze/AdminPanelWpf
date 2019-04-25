@@ -1,4 +1,5 @@
 ﻿<Page x:Class="LearningApp.View.RegistrationPage"
+      x:Name="This"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -36,12 +37,12 @@
         </DockPanel>
         <DockPanel>
             <Label MinWidth="100" HorizontalAlignment="Center" Content="Jelszó" />
-            <PasswordBox Name="TextBoxPassword" PasswordChar="*"/>
+            <PasswordBox Name="PasswordBox" PasswordChar="*"/>
         </DockPanel>
         <DockPanel>
             <Label MinWidth="100" HorizontalAlignment="Center" Content="Jelszó újra" />
-            <PasswordBox Name="TextBoxPasswordAgain" PasswordChar="*"/>
+            <PasswordBox Name="PasswordBoxAgain" PasswordChar="*"/>
         </DockPanel>
-        <Button Content="Regisztráció" MaxWidth="80" Margin="0,2,0,0"/>
+        <Button Content="Regisztráció" Command="{Binding RegistrationCommand}" CommandParameter="This" MaxWidth="80" Margin="0,2,0,0"/>
     </StackPanel>
 </Page>
