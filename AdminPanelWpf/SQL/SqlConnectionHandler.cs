@@ -33,7 +33,7 @@ namespace LearningApp
             {
                 throw;
             }
-            return false;
+            return IsOpen;
         }
 
         public bool IsUserValid(string userName, string password)
@@ -46,31 +46,39 @@ namespace LearningApp
 
         public UsersModel GetUserData(string userName)
         {
-            MySqlCommand comm = new MySqlCommand("SELECT * FROM login WHERE username = @username", connection);
-            comm.Parameters.AddWithValue("username", userName);
             UsersModel um = null;
-            using (MySqlDataReader reader = comm.ExecuteReader())
+            try
             {
-                while (reader.Read())
+                MySqlCommand comm = new MySqlCommand("SELECT * FROM login WHERE username = @username", connection);
+                comm.Parameters.AddWithValue("username", userName);
+                using (MySqlDataReader reader = comm.ExecuteReader())
                 {
-                    um = new UsersModel();
-                    if (!reader.IsDBNull(reader.GetOrdinal("Created")))
-                        um.Created = reader.GetDateTime(reader.GetOrdinal("Created"));
-                    if (!reader.IsDBNull(reader.GetOrdinal("Email")))
-                        um.Email = reader.GetString(reader.GetOrdinal("Email"));
-                    if (!reader.IsDBNull(reader.GetOrdinal("ID")))
-                        um.ID = reader.GetString(reader.GetOrdinal("ID"));
-                    if (!reader.IsDBNull(reader.GetOrdinal("username")))
-                        um.Username = reader.GetString(reader.GetOrdinal("username"));
-                    if (!reader.IsDBNull(reader.GetOrdinal("generatedid")))
-                        um.GeneratedID = reader.GetString(reader.GetOrdinal("generatedid"));
-                    if (!reader.IsDBNull(reader.GetOrdinal("Password")))
-                        um.Password = StringCipher.Decrypt(reader.GetString(reader.GetOrdinal("Password")), "Fejsze");
-                    if (!reader.IsDBNull(reader.GetOrdinal("Reminder")))
-                        um.Reminder = reader.GetString(reader.GetOrdinal("Reminder"));
+                    while (reader.Read())
+                    {
+                        um = new UsersModel();
+                        if (!reader.IsDBNull(reader.GetOrdinal("Created")))
+                            um.Created = reader.GetDateTime(reader.GetOrdinal("Created"));
+                        if (!reader.IsDBNull(reader.GetOrdinal("Email")))
+                            um.Email = reader.GetString(reader.GetOrdinal("Email"));
+                        if (!reader.IsDBNull(reader.GetOrdinal("ID")))
+                            um.ID = reader.GetString(reader.GetOrdinal("ID"));
+                        if (!reader.IsDBNull(reader.GetOrdinal("username")))
+                            um.Username = reader.GetString(reader.GetOrdinal("username"));
+                        if (!reader.IsDBNull(reader.GetOrdinal("generatedid")))
+                            um.GeneratedID = reader.GetString(reader.GetOrdinal("generatedid"));
+                        if (!reader.IsDBNull(reader.GetOrdinal("Password")))
+                            um.Password = StringCipher.Decrypt(reader.GetString(reader.GetOrdinal("Password")), "Fejsze");
+                        if (!reader.IsDBNull(reader.GetOrdinal("Reminder")))
+                            um.Reminder = reader.GetString(reader.GetOrdinal("Reminder"));
+                    }
                 }
+                return um;
             }
-            return um;
+            catch (Exception)
+            {
+                return um;
+            }
+
         }
 
         public void UpdatePassword(string ID, string newPassoword)
@@ -81,16 +89,21 @@ namespace LearningApp
             comm.ExecuteNonQuery();
         }
 
-        public void InsertUser(string username, string password, string email, string reminder)
+        public void InsertUser(string username, string nickname, string password, string email, string reminder)
         {
-            MySqlCommand comm = new MySqlCommand("INSERT INTO login (`generatedid`, `username`, `password`, `created`, `email`, `Reminder`) VALUES (@generatedid, @username, @password, @created, @email, @Reminder);", connection);
-            comm.Parameters.AddWithValue("generatedid", IDGenerator());
-            comm.Parameters.AddWithValue("username", username);
-            comm.Parameters.AddWithValue("password", StringCipher.Encrypt(password, "Fejsze"));
-            comm.Parameters.AddWithValue("created", DateTime.UtcNow);
-            comm.Parameters.AddWithValue("email", email);
-            comm.Parameters.AddWithValue("Reminder", reminder);
-            comm.ExecuteNonQuery();
+            UsersModel um = GetUserData(username);
+            if (um.Username != username && um.Email != email)
+            {
+                MySqlCommand comm = new MySqlCommand("INSERT INTO login (`generatedid`, `username`,`nickname`, `username` `password`, `created`, `email`, `Reminder`) VALUES (@generatedid, @username, @nickname, @password, @created, @email, @Reminder);", connection);
+                comm.Parameters.AddWithValue("generatedid", IDGenerator());
+                comm.Parameters.AddWithValue("username", username);
+                comm.Parameters.AddWithValue("nickname", nickname);
+                comm.Parameters.AddWithValue("password", StringCipher.Encrypt(password, "Fejsze"));
+                comm.Parameters.AddWithValue("created", DateTime.UtcNow);
+                comm.Parameters.AddWithValue("email", email);
+                comm.Parameters.AddWithValue("Reminder", reminder);
+                comm.ExecuteNonQuery();
+            }
         }
 
         public string Select(string columnNames, string tableName, string where)

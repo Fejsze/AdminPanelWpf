@@ -65,8 +65,7 @@ namespace LearningApp.ViewModel
             if (passwordContainer != null)
             {
                 var secureString = passwordContainer.Password;
-                this.Password = ConvertToUnsecureString(secureString);
-                System.Windows.MessageBox.Show(Password);
+                this.Password = Utilities.ConvertToUnsecureString(secureString);
             }
             SqlConnectionHandler sql = new SqlConnectionHandler();
             try
@@ -90,26 +89,7 @@ namespace LearningApp.ViewModel
             }
             //OnEventRaisedLog(this, null);
         }
-
-        private string ConvertToUnsecureString(System.Security.SecureString securePassword)
-        {
-            if (securePassword == null)
-            {
-                return string.Empty;
-            }
-
-            IntPtr unmanagedString = IntPtr.Zero;
-            try
-            {
-                unmanagedString = System.Runtime.InteropServices.Marshal.SecureStringToGlobalAllocUnicode(securePassword);
-                return System.Runtime.InteropServices.Marshal.PtrToStringUni(unmanagedString);
-            }
-            finally
-            {
-                System.Runtime.InteropServices.Marshal.ZeroFreeGlobalAllocUnicode(unmanagedString);
-            }
-        }
-
+        
             private void RegistrationButtonClick(object sender)
         {
             OnEventRaisedReg(new RegistrationPageViewModel(), null);
