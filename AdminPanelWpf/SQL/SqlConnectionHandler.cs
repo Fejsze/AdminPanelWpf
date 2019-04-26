@@ -112,7 +112,7 @@ namespace LearningApp
             return false;
         }
 
-        public string Select(string columnNames, string tableName, string where)
+        public string DefaultSelect(string columnNames, string tableName, string where)
         {
             MySqlCommand comm;
             if (where!="") comm = new MySqlCommand($"Select {columnNames} From {tableName} Where {where}");
@@ -126,6 +126,21 @@ namespace LearningApp
                 }
                 return selectValue;
             }
+        }
+
+        public string LessonSelect(string topic)
+        {
+            MySqlCommand comm;
+            if (topic != "")
+            {
+                comm = new MySqlCommand($"Select * From lessons Where topic={topic};");
+                using (MySqlDataReader reader = comm.ExecuteReader())
+                {
+                    string selectValue = reader["text"].ToString();
+                    return selectValue;
+                }
+            }
+            return null;
         }
 
         private string IDGenerator => Guid.NewGuid().ToString("N");
