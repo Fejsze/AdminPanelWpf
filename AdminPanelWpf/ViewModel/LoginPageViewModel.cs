@@ -90,7 +90,7 @@ namespace LearningApp.ViewModel
             //OnEventRaisedLog(this, null);
         }
         
-            private void RegistrationButtonClick(object sender)
+        private void RegistrationButtonClick(object sender)
         {
             OnEventRaisedReg(new RegistrationPageViewModel(), null);
         }

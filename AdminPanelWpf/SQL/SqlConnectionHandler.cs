@@ -89,7 +89,7 @@ namespace LearningApp
             comm.ExecuteNonQuery();
         }
 
-        public void InsertUser(string username, string nickname, string password, string email, string reminder)
+        public bool InsertUser(string username, string nickname, string password, string email, string reminder)
         {
             UsersModel um = GetUserData(username);
             if (um == null)
@@ -107,7 +107,9 @@ namespace LearningApp
                     commL.Parameters.AddWithValue("email", email);
                     commL.Parameters.AddWithValue("Reminder", reminder);
                     commL.ExecuteNonQuery();
+                return true;
             }
+            return false;
         }
 
         public string Select(string columnNames, string tableName, string where)

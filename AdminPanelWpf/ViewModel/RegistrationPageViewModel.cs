@@ -17,6 +17,7 @@ namespace LearningApp.ViewModel
         private string password;
         private string passwordAgain;
         private string reminder;
+        private bool isSelected;
 
         public string UserName
         {
@@ -48,7 +49,7 @@ namespace LearningApp.ViewModel
         public string EmailAgain { get => emailAgain;
             set
             {
-                email = value;
+                emailAgain = value;
                 NotifyPropertyChanged("EmailAgain");
             }
         }
@@ -79,6 +80,15 @@ namespace LearningApp.ViewModel
                 NotifyPropertyChanged("Reminder");
             }
         }
+        public bool IsSelected
+        {
+            get => isSelected;
+            set
+            {
+                isSelected = value;
+                NotifyPropertyChanged("IsSelected");
+            }
+        }
 
         public ICommand RegistrationCommand { get; set; }
 
@@ -97,24 +107,29 @@ namespace LearningApp.ViewModel
                 var secureString2 = passwordContainer.Password;
                 this.PasswordAgain = Utilities.ConvertToUnsecureString(secureString2);
             }
-            if (Password == PasswordAgain)
+            if (IsSelected)
             {
-                if (Email == EmailAgain)
+                if (Password == PasswordAgain)
                 {
-                    SqlConnectionHandler conn = new SqlConnectionHandler();
-                    try
+                    if (Email == EmailAgain)
                     {
-                        conn.Open();
-                        conn.InsertUser(userName, nickName, password, email, Reminder);
+                        SqlConnectionHandler conn = new SqlConnectionHandler();
+                        try
+                        {
+                            conn.Open();
+                            if (conn.InsertUser(userName, nickName, password, email, Reminder)) MessageBox.Show("Sikeres regisztráció!");
+                            else MessageBox.Show("Sikertelen regisztráció!");
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Hiba, kérem próbálja újra!");
+                        }
                     }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Hiba, kérem próbálja újra!");
-                        MessageBox.Show(ex.ToString());
-                    }
+                    else MessageBox.Show("Hiba, az email címek nem egyeznek! Kérem próbálja újra!");
                 }
-                else MessageBox.Show("Hiba, az email címek nem egyeznek! Kérem próbálja újra!");
-            } else MessageBox.Show("Hiba, a jelszavak nem egyeznek! Kérem próbálja újra!");
+                else MessageBox.Show("Hiba, a jelszavak nem egyeznek! Kérem próbálja újra!");
+            }
+            else MessageBox.Show("Kérem fogadja el az adatvédelmi nyilatkozatot!");
         }
     }
 }
