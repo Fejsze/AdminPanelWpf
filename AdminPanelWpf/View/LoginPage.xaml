@@ -18,7 +18,7 @@
         <TextBox Name="TextBoxUserName" Text="{Binding UserName}" />
         <Label Content="Jelszó" />
         <PasswordBox x:Name="PasswordBox" PasswordChar="*" />
-        <Button x:Name="Login" Content="Küldés" Command="{Binding LoginButtonCommand}" CommandParameter="{Binding ElementName=This}"/>
+        <Button x:Name="Login" Content="Bejelentkezés" Command="{Binding LoginButtonCommand}" CommandParameter="{Binding ElementName=This}"/>
         <Button Command="{Binding RegistrationButtonCommand}" Content="Regisztráció" />
     </StackPanel>
 </Page>

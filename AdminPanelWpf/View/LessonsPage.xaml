@@ -6,9 +6,10 @@
       xmlns:local="clr-namespace:LearningApp.View"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
+      MinWidth="350"
       Title="LessonsPage">
 
-    <Grid>
-        <Label Content="{Binding LessonText}"/>
+    <Grid >
+        <Label Content="{Binding LessonText}" MinWidth="350"/>
     </Grid>
 </Page>
