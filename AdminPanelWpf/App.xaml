@@ -4,6 +4,10 @@
              xmlns:local="clr-namespace:LearningApp"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+
+        <ControlTemplate x:Key="ButtonControlTemplate" TargetType="{x:Type Button}">
+            <Grid/>
+        </ControlTemplate>
+
     </Application.Resources>
 </Application>

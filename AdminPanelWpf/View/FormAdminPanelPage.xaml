@@ -15,24 +15,36 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <DockPanel Grid.Column="0" Grid.Row="0" Grid.RowSpan="2">
+            <Menu DockPanel.Dock="Left" Margin="2 2 2 2">
+                <MenuItem Header="_Kezdőlap"/>
+                <Separator/>
+                <MenuItem Header="_Jelszóváltoztatás" Command="{Binding ChangePasswordCommand}"/>
+                <MenuItem Header="_Tananyagok">
+                    <MenuItem Header="Bevezetés" Command="{Binding LessonCommand}" CommandParameter="Bevezetés"/>
+                    <MenuItem Header="Változók I." Command="{Binding LessonCommand}" CommandParameter="Változók I"/>
+                    <MenuItem Header="Változók II." Command="{Binding LessonCommand}" CommandParameter="Változók II"/>
+                </MenuItem>
+                <Separator/>
+                <MenuItem Header="_Kijelentkezés" Command="{Binding ExitCommand}"/>
+            </Menu>
+        </DockPanel>
         <DockPanel
             Grid.Row="0"
+            Grid.Column="1"
             HorizontalAlignment="Left"
             FlowDirection="LeftToRight">
-            <Button Command="{Binding ChangePasswordCommand}" Content="Jelszóváltás" />
             <Button Command="{Binding TestCommand}" Content="Grid/Completino" />
             <Button Command="{Binding TestCommand2}" Content="Pairing" />
             <Button Command="{Binding TestCommand3}" Content="Multiple" />
-            <Button Command="{Binding TestCommand4}" Content="Lesson" />
         </DockPanel>
-        <ScrollViewer Grid.Row="1">
-            <Frame Content="{Binding DisplayPage, Mode=OneWay}"/>
+        <ScrollViewer VerticalAlignment="Stretch"  Grid.Row="1" Grid.Column="2">
+            <Frame Content="{Binding DisplayPage, Mode=OneWay}" VerticalAlignment="Stretch" HorizontalAlignment="Center" />
         </ScrollViewer>
-        <Button
-            Grid.Row="2"
-            HorizontalAlignment="Right"
-            VerticalAlignment="Bottom"
-            Command="{Binding ExitCommand}"
-            Content="Kilépés" />
     </Grid>
 </Page>

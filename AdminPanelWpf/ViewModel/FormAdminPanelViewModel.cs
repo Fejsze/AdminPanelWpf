@@ -31,7 +31,7 @@ namespace LearningApp.ViewModel
         //Pairing
         public ICommand TestCommand2 { get; set; }
         public ICommand TestCommand3 { get; set; }
-        public ICommand TestCommand4 { get; set; }
+        public ICommand LessonCommand { get; set; }
 
         public FormAdminPanelViewModel()
         {
@@ -40,7 +40,7 @@ namespace LearningApp.ViewModel
             TestCommand = new RelayCommand(o => TestClick1(o));
             TestCommand2 = new RelayCommand(o => TestClick2(o));
             TestCommand3 = new RelayCommand(o => TestClick3(o));
-            TestCommand4 = new RelayCommand(o => TestClick4(o));
+            LessonCommand = new RelayCommand(o => LessonClick(o));
         }
 
         private void ChangePasswordClick(object sender)
@@ -65,9 +65,9 @@ namespace LearningApp.ViewModel
             Multiple_choiceWindow multiple_ChoiceWindow = new Multiple_choiceWindow("asd", "asd"); 
             multiple_ChoiceWindow.Show();
         }
-        private void TestClick4(object sender)
+        private void LessonClick(object sender)
         {
-            LessonsPage lessonsPage = new LessonsPage("Bevezetés");
+            LessonsPage lessonsPage = new LessonsPage(sender.ToString());
             DisplayPage = lessonsPage;
         }
         private void ExitClick(object sender)
