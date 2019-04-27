@@ -20,9 +20,10 @@
             HorizontalAlignment="Left"
             FlowDirection="LeftToRight">
             <Button Command="{Binding ChangePasswordCommand}" Content="Jelszóváltás" />
-            <Button Command="{Binding TestCommand}" Content="Test" />
-            <Button Command="{Binding TestCommand2}" Content="Test2" />
-            <Button Command="{Binding TestCommand3}" Content="Test3" />
+            <Button Command="{Binding TestCommand}" Content="Grid/Completino" />
+            <Button Command="{Binding TestCommand2}" Content="Pairing" />
+            <Button Command="{Binding TestCommand3}" Content="Multiple" />
+            <Button Command="{Binding TestCommand4}" Content="Lesson" />
         </DockPanel>
         <ScrollViewer Grid.Row="1">
             <Frame Content="{Binding DisplayPage, Mode=OneWay}"/>

@@ -115,7 +115,7 @@ namespace LearningApp
         public string DefaultSelect(string columnNames, string tableName, string where)
         {
             MySqlCommand comm;
-            if (where!="") comm = new MySqlCommand($"Select {columnNames} From {tableName} Where {where}");
+            if (where!="") comm = new MySqlCommand($"Select {columnNames} From {tableName} Where {where}", connection);
             else comm = new MySqlCommand($"Select {columnNames} From {tableName}");
             using (MySqlDataReader reader = comm.ExecuteReader())
             {
@@ -127,16 +127,19 @@ namespace LearningApp
                 return selectValue;
             }
         }
-
-        public string LessonSelect(string topic)
+        public async Task<string> LessonSelect(string topic)
         {
             MySqlCommand comm;
             if (topic != "")
             {
-                comm = new MySqlCommand($"Select * From lessons Where topic={topic};");
-                using (MySqlDataReader reader = comm.ExecuteReader())
+                //comm = new MySqlCommand($"Select * From lessons Where topic={topic};");
+                comm = new MySqlCommand($"Select text From lessons Where topic=@topic;", connection);
+                comm.Parameters.AddWithValue("topic", topic);
+                System.Data.Common.DbDataReader reader = await comm.ExecuteReaderAsync();
+                using (reader)
                 {
                     string selectValue = reader["text"].ToString();
+                    connection.Close();
                     return selectValue;
                 }
             }
