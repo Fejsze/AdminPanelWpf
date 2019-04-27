@@ -138,6 +138,7 @@ namespace LearningApp
                 System.Data.Common.DbDataReader reader = await comm.ExecuteReaderAsync();
                 using (reader)
                 {
+                    reader.Read();
                     string selectValue = reader["text"].ToString();
                     connection.Close();
                     return selectValue;
