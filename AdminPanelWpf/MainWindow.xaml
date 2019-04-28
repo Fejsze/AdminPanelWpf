@@ -7,8 +7,9 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="C#-ot C#-ul"
     WindowState="Maximized"
+    VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
     ResizeMode="NoResize"
-    mc:Ignorable="d">
+    mc:Ignorable="d" Icon="Resource/32px-C_Sharp_wordmark.svg.png">
     <StackPanel Margin="0,0,-0.4,0">
         <Frame Name="frame" Content="{Binding Path=DisplayPage, Mode=TwoWay}" NavigationUIVisibility="Hidden"/>
     </StackPanel>

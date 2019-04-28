@@ -31,6 +31,14 @@ namespace LearningApp.ViewModel.Task
         }
         public MainTaskViewModel()
         {
+            Globals.ActualPionts = 0;
+            if (Globals.ActualTasks != null)
+            {
+                if (Globals.ActualTasks.Count() != 0)
+                {
+                    Globals.ActualTasks = new List<Page>();
+                }
+            }
             this.DisplayPage = PageSelector("Párosítós");
         }
 

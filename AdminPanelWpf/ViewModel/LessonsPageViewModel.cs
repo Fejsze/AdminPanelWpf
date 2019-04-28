@@ -31,8 +31,7 @@ namespace LearningApp.ViewModel
                     string x = conn.LessonSelect(topic).Result;
                     LessonText = x;
                 }
-                else 
-                MessageBox.Show("Hiba!");
+                else MessageBox.Show("Hiba!");
             }
             catch (Exception ex)
             {

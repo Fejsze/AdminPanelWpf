@@ -13,15 +13,23 @@
 
     <Grid HorizontalAlignment="Center" VerticalAlignment="Bottom">
         <StackPanel Margin="3 50 3 3" HorizontalAlignment="Center" VerticalAlignment="Center" MinWidth="450">
-            <Label HorizontalAlignment="Center" Content="Bejelentkezés" />
+            <Label Height="auto" FontSize="40" FontWeight="SemiBold" HorizontalAlignment="Center" Content="Bejelentkezés" />
             <Label Content="Felhasználónév" />
             <TextBox Name="TextBoxUserName" Text="{Binding UserName}" />
             <Label Content="Jelszó" />
             <PasswordBox x:Name="PasswordBox" PasswordChar="*"/>
             <Separator Margin="5 5 5 5"/>
-            <Button x:Name="Login" Content="Bejelentkezés" Command="{Binding LoginButtonCommand}" CommandParameter="{Binding ElementName=This}"/>
-            <Separator Margin="5 5 5 5"/>
-            <Button Command="{Binding RegistrationButtonCommand}" Content="Regisztráció" />
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" Grid.Row="0" Margin="0 0 1 0" Command="{Binding RegistrationButtonCommand}" Content="Regisztráció" />
+                <Button Grid.Column="1" Grid.Row="0" Margin="1 0 0 0" x:Name="Login" Content="Bejelentkezés" Command="{Binding LoginButtonCommand}" CommandParameter="{Binding ElementName=This}"/>
+            </Grid>
         </StackPanel>
     </Grid>
 </Page>

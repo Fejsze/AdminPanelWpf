@@ -239,6 +239,11 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Resource\Csharp_Logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\32px-C_Sharp_wordmark.svg.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

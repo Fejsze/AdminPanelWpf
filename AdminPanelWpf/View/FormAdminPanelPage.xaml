@@ -45,6 +45,6 @@
             <Button Command="{Binding TestCommand2}" Content="Pairing" />
             <Button Command="{Binding TestCommand3}" Content="Multiple" />
         </DockPanel>
-            <Frame Grid.Row="1" Grid.Column="2" Content="{Binding DisplayPage, Mode=OneWay}" VerticalAlignment="Stretch" HorizontalAlignment="Center" />
+            <Frame Margin="1 20 1 100" MinWidth="1150" MinHeight="640" BorderBrush="Red" BorderThickness="2" Grid.Row="1" Grid.Column="2" Content="{Binding DisplayPage, Mode=OneWay}" VerticalAlignment="Stretch" HorizontalAlignment="Center" />
     </Grid>
 </Page>

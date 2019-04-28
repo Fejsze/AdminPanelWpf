@@ -5,7 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LearningApp.View.Task"
         mc:Ignorable="d"
-        Title="MainTaskWindow" Height="450" Width="800">
+        ResizeMode="NoResize"
+        Title="C#-ot C#-ul.Feladat" 
+        Height="450" Width="800" 
+        Icon="/LearningApp;component/Resource/32px-C_Sharp_wordmark.svg.png">
     <Grid>
         <Frame Name="frame" Content="{Binding Path=DisplayPage, Mode=TwoWay}" NavigationUIVisibility="Hidden"/>
     </Grid>
