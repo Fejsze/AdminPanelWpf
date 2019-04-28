@@ -18,12 +18,12 @@ namespace LearningApp.View.Task
     /// <summary>
     /// Interaction logic for Multiple_choiceWindow.xaml
     /// </summary>
-    public partial class Multiple_choiceWindow : Window
+    public partial class Multiple_choicePage : Page
     {
-        public Multiple_choiceWindow(string topic, string lessons)
+        public Multiple_choicePage(string topic, string lessons)
         {
             InitializeComponent();
-            this.DataContext = new Multiple_choiceWindowViewModel(topic, lessons);
+            this.DataContext = new Multiple_choicePageViewModel(topic, lessons);
         }
     }
 }

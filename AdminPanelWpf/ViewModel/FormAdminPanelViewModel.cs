@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
@@ -24,24 +25,22 @@ namespace LearningApp.ViewModel
             }
         }
 
-        public ICommand ExitCommand { get; set; }
+        #region CommandRegion
         public ICommand ChangePasswordCommand { get; set; }
+        public ICommand LessonCommand { get; set; }
+        public ICommand ExitCommand { get; set; }
         //Completion
         public ICommand TestCommand { get; set; }
         //Pairing
         public ICommand TestCommand2 { get; set; }
         public ICommand TestCommand3 { get; set; }
-        public ICommand LessonCommand { get; set; }
+        #endregion
 
         public FormAdminPanelViewModel()
         {
-            ChangePasswordCommand = new RelayCommand(o => ChangePasswordClick(o));
-            ExitCommand = new RelayCommand(o => ExitClick(o));
-            TestCommand = new RelayCommand(o => TestClick1(o));
-            TestCommand2 = new RelayCommand(o => TestClick2(o));
-            TestCommand3 = new RelayCommand(o => TestClick3(o));
-            LessonCommand = new RelayCommand(o => LessonClick(o));
+            CommandInstantiation();
         }
+
 
         private void ChangePasswordClick(object sender)
         {
@@ -49,21 +48,18 @@ namespace LearningApp.ViewModel
         }
         private void TestClick1(object sender)
         {
-            //Completion completionWindow = new Completion("asd#fdsa#asd");
-            //completionWindow.Show();
-
             Test test = new Test();
             test.Show();
         }
         private void TestClick2(object sender)
         {
-            PairingWindow pairingWindow = new PairingWindow(new Dictionary<string, string>() { { "kerdes1", "v1" }, { "kerdes2", "v2" }, { "kerdes3", "v3" } }, new List<string>() { "v1", "v2", "v3", "v4", "v5" });
-            pairingWindow.Show();
+            MainTaskWindow mainTaskWindow = new MainTaskWindow();
+            mainTaskWindow.Show();
         }
         private void TestClick3(object sender)
         {
-            Multiple_choiceWindow multiple_ChoiceWindow = new Multiple_choiceWindow("asd", "asd"); 
-            multiple_ChoiceWindow.Show();
+            MainTaskWindow mainTaskWindow = new MainTaskWindow();
+            mainTaskWindow.Show();
         }
         private void LessonClick(object sender)
         {
@@ -74,6 +70,15 @@ namespace LearningApp.ViewModel
         {
             if (onEventRaised != null)
                 onEventRaised(this, null);
+        }
+        private void CommandInstantiation()
+        {
+            ChangePasswordCommand = new RelayCommand(o => ChangePasswordClick(o));
+            ExitCommand = new RelayCommand(o => ExitClick(o));
+            TestCommand = new RelayCommand(o => TestClick1(o));
+            TestCommand2 = new RelayCommand(o => TestClick2(o));
+            TestCommand3 = new RelayCommand(o => TestClick3(o));
+            LessonCommand = new RelayCommand(o => LessonClick(o));
         }
     }
 }

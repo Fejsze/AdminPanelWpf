@@ -17,18 +17,20 @@ namespace LearningApp.View.Task
     /// <summary>
     /// Interaction logic for PairingWindow.xaml
     /// </summary>
-    public partial class PairingWindow : Window
+    public partial class PairingPage : Page
     {
-        public PairingWindow(Dictionary<string, string> iKerdesek, List<string> iValaszok)
+        public PairingPage(Dictionary<string, string> iKerdesek, List<string> iValaszok)
         {
             InitializeComponent();
 
-            Grid DynamicGrid = new Grid();
-            DynamicGrid.Width = 400;
-            DynamicGrid.HorizontalAlignment = HorizontalAlignment.Center;
-            DynamicGrid.VerticalAlignment = VerticalAlignment.Center;
-            DynamicGrid.ShowGridLines = true;
-            DynamicGrid.Background = new SolidColorBrush(Colors.BlanchedAlmond);
+            Grid DynamicGrid = new Grid
+            {
+                Width = 400,
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Center,
+                ShowGridLines = true,
+                Background = new SolidColorBrush(Colors.BlanchedAlmond)
+            };
 
             ColumnDefinition gridCol1 = new ColumnDefinition();
             ColumnDefinition gridCol2 = new ColumnDefinition();

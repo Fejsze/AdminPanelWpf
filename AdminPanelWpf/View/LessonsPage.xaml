@@ -8,6 +8,6 @@
       Title="LessonsPage">
 
     <Grid >
-        <TextBox MaxWidth="800" TextOptions.TextFormattingMode="Display" IsReadOnly="True" TextWrapping="Wrap" Text="{Binding LessonText}"/>
+        <TextBox TextOptions.TextFormattingMode="Display" IsReadOnly="True" TextWrapping="Wrap" Text="{Binding LessonText}"/>
     </Grid>
 </Page>

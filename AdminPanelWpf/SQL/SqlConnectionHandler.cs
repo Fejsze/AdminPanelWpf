@@ -49,7 +49,7 @@ namespace LearningApp
             UsersModel um = null;
             try
             {
-                MySqlCommand comm = new MySqlCommand("SELECT * FROM login WHERE username = @username", connection);
+                MySqlCommand comm = new MySqlCommand("SELECT * FROM login inner join user_data on login.user_data_id = user_data.id WHERE username = @username", connection);
                 comm.Parameters.AddWithValue("username", userName);
                 using (MySqlDataReader reader = comm.ExecuteReader())
                 {
@@ -60,8 +60,6 @@ namespace LearningApp
                             um.Created = reader.GetDateTime(reader.GetOrdinal("Created"));
                         if (!reader.IsDBNull(reader.GetOrdinal("Email")))
                             um.Email = reader.GetString(reader.GetOrdinal("Email"));
-                        if (!reader.IsDBNull(reader.GetOrdinal("ID")))
-                            um.ID = reader.GetString(reader.GetOrdinal("ID"));
                         if (!reader.IsDBNull(reader.GetOrdinal("username")))
                             um.Username = reader.GetString(reader.GetOrdinal("username"));
                         if (!reader.IsDBNull(reader.GetOrdinal("generatedid")))
@@ -70,6 +68,12 @@ namespace LearningApp
                             um.Password = StringCipher.Decrypt(reader.GetString(reader.GetOrdinal("Password")), "Fejsze");
                         if (!reader.IsDBNull(reader.GetOrdinal("Reminder")))
                             um.Reminder = reader.GetString(reader.GetOrdinal("Reminder"));
+                        if (!reader.IsDBNull(reader.GetOrdinal("Money")))
+                            um.Money = reader.GetInt32(reader.GetOrdinal("Money"));
+                        if (!reader.IsDBNull(reader.GetOrdinal("Level")))
+                            um.Level = reader.GetInt32(reader.GetOrdinal("Level"));
+                        if (!reader.IsDBNull(reader.GetOrdinal("NickName")))
+                            um.NickName = reader.GetString(reader.GetOrdinal("NickName"));
                     }
                 }
                 return um;
@@ -78,14 +82,13 @@ namespace LearningApp
             {
                 return um;
             }
-
         }
 
-        public void UpdatePassword(string ID, string newPassoword)
+        public void UpdatePassword(string GeneratedId, string newPassoword)
         {
-            MySqlCommand comm = new MySqlCommand("UPDATE login SET password = @password WHERE id = @id", connection);
+            MySqlCommand comm = new MySqlCommand("UPDATE login SET password = @password WHERE generatedid = @generatedid", connection);
             comm.Parameters.AddWithValue("password", StringCipher.Encrypt(newPassoword, "Fejsze"));
-            comm.Parameters.AddWithValue("id", ID);
+            comm.Parameters.AddWithValue("generatedid", GeneratedId);
             comm.ExecuteNonQuery();
         }
 
@@ -132,21 +135,27 @@ namespace LearningApp
             MySqlCommand comm;
             if (topic != "")
             {
-                //comm = new MySqlCommand($"Select * From lessons Where topic={topic};");
-                comm = new MySqlCommand($"Select text From lessons Where topic=@topic;", connection);
+                comm = new MySqlCommand($"Select text, requirement From lessons Where topic=@topic;", connection);
                 comm.Parameters.AddWithValue("topic", topic);
                 System.Data.Common.DbDataReader reader = await comm.ExecuteReaderAsync();
                 using (reader)
                 {
+                    string selectedValue;
                     reader.Read();
-                    string selectValue = reader["text"].ToString();
-                    connection.Close();
-                    return selectValue;
+                    if (int.Parse(reader["requirement"].ToString()) == Globals.ActualUser.Level || int.Parse(reader["requirement"].ToString()) < Globals.ActualUser.Level)
+                    {
+                        selectedValue = reader["text"].ToString();
+                    }
+                    else
+                    {
+                        selectedValue = "Még nem érted el a megfelelő szintet. Kérlek sorba haladj a tananyaggal!";
+                    }
+                    return selectedValue;
                 }
             }
             return null;
         }
 
-        private string IDGenerator => Guid.NewGuid().ToString("N");
+        private string IDGenerator => Guid.NewGuid().ToString("F");
     }
 }

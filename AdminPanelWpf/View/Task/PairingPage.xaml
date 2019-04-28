@@ -1,12 +1,12 @@
-﻿<Window x:Class="LearningApp.View.Task.Completion"
+﻿<Page x:Class="LearningApp.View.Task.PairingPage"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LearningApp.View.Task"
         mc:Ignorable="d"
-        Title="Pairing" Height="450" Width="800">
-    <Grid Name="sp">
-        
+        Title="PairingWindow" Height="450" Width="800">
+    <Grid Name="ng">
+
     </Grid>
-</Window>
+</Page>

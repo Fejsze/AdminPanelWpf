@@ -8,13 +8,14 @@ namespace LearningApp.Model
 {
     public class UsersModel
     {
-        public string ID { get; set; }
         public string GeneratedID { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
         public DateTime? Created { get; set; }
         public string Email { get; set; }
         public string Reminder { get; set; }
-
+        public int Money { get; set; }
+        public int Level { get; set; }
+        public string NickName { get; set; }
     }
 }

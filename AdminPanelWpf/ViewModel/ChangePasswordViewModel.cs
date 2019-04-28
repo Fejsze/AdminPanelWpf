@@ -55,7 +55,7 @@ namespace LearningApp.ViewModel
                 {
                     SqlConnectionHandler conn = new SqlConnectionHandler();
                     conn.Open();
-                    conn.UpdatePassword(Globals.ActualUser.ID, this.NewPassword);
+                    conn.UpdatePassword(Globals.ActualUser.GeneratedID, this.NewPassword);
                 }
                 else
                     System.Windows.MessageBox.Show("Nem egyezik a jelszó");

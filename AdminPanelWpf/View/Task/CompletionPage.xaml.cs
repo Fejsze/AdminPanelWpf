@@ -17,10 +17,10 @@ namespace LearningApp.View.Task
     /// <summary>
     /// Interaction logic for Completion.xaml
     /// </summary>
-    public partial class Completion : Window
+    public partial class CompletionPage : Page
     {
         DockPanel dpNew = new DockPanel();
-        public Completion(string text)
+        public CompletionPage(string text)
         {
             InitializeComponent();
             Task(text);

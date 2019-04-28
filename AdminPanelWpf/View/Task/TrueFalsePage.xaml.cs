@@ -18,11 +18,11 @@ namespace LearningApp.View.Task
     /// <summary>
     /// Interaction logic for TrueFalseWindow.xaml
     /// </summary>
-    public partial class TrueFalseWindow : Window
+    public partial class TrueFalseWindow : Page
     {
         public TrueFalseWindow(string topic, string lesson)
         {
-            this.DataContext = new TrueFalseWindowViewModel(topic, lesson);
+            this.DataContext = new TrueFalsePageViewModel(topic, lesson);
             InitializeComponent();
         }
     }

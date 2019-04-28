@@ -102,6 +102,7 @@
     <Compile Include="ViewModel\LoginPageViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\RegistrationPageViewModel.cs" />
+    <Compile Include="ViewModel\Task\MainTaskViewModel.cs" />
     <Compile Include="ViewModel\Task\Multiple_choiceWindowViewModel.cs" />
     <Compile Include="ViewModel\Task\TrueFalseWindowViewModel.cs" />
     <Compile Include="View\ChangePasswordPage.xaml.cs">
@@ -122,20 +123,23 @@
     <Compile Include="View\RegistrationPage.xaml.cs">
       <DependentUpon>RegistrationPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Task\Completion.xaml.cs">
-      <DependentUpon>Completion.xaml</DependentUpon>
+    <Compile Include="View\Task\CompletionPage.xaml.cs">
+      <DependentUpon>CompletionPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Task\Multiple_choiceWindow.xaml.cs">
-      <DependentUpon>Multiple_choiceWindow.xaml</DependentUpon>
+    <Compile Include="View\Task\MainTaskWindow.xaml.cs">
+      <DependentUpon>MainTaskWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Task\PairingWindow.xaml.cs">
-      <DependentUpon>PairingWindow.xaml</DependentUpon>
+    <Compile Include="View\Task\Multiple_choicePage.xaml.cs">
+      <DependentUpon>Multiple_choicePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Task\PairingPage.xaml.cs">
+      <DependentUpon>PairingPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Task\Test.xaml.cs">
       <DependentUpon>Test.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Task\TrueFalseWindow.xaml.cs">
-      <DependentUpon>TrueFalseWindow.xaml</DependentUpon>
+    <Compile Include="View\Task\TrueFalsePage.xaml.cs">
+      <DependentUpon>TrueFalsePage.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -173,15 +177,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Task\Completion.xaml">
+    <Page Include="View\Task\CompletionPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Task\Multiple_choiceWindow.xaml">
+    <Page Include="View\Task\MainTaskWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Task\PairingWindow.xaml">
+    <Page Include="View\Task\Multiple_choicePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Task\PairingPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -189,7 +197,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Task\TrueFalseWindow.xaml">
+    <Page Include="View\Task\TrueFalsePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

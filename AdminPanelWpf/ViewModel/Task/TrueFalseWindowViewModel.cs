@@ -8,12 +8,12 @@ using System.Windows.Input;
 
 namespace LearningApp.ViewModel.Task
 {
-    class TrueFalseWindowViewModel : BaseViewModel
+    class TrueFalsePageViewModel : BaseViewModel
     {
         TrueFalseModel trueFalseM;
         private string question;
 
-        public TrueFalseWindowViewModel(string topic, string lesson)
+        public TrueFalsePageViewModel(string topic, string lesson)
         {
              trueFalseM = new TrueFalseModel("Az int szoveges valtozo?", "igen");
             question = trueFalseM.Question;

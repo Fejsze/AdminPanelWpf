@@ -8,12 +8,12 @@ using System.Windows.Input;
 
 namespace LearningApp.ViewModel.Task
 {
-    class Multiple_choiceWindowViewModel
+    class Multiple_choicePageViewModel
     {
         Multiple_choice multiple_choiceM;
         Random random = new Random();
 
-        public Multiple_choiceWindowViewModel(string topic, string lesson)
+        public Multiple_choicePageViewModel(string topic, string lesson)
         {
             multiple_choiceM = new Multiple_choice("Az int szoveges valtozo?", "igen", new List<string> {"asd", "Asd", "dsa"});
             Question = multiple_choiceM.Question;

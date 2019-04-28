@@ -26,9 +26,11 @@
                 <Separator/>
                 <MenuItem Header="_Jelszóváltoztatás" Command="{Binding ChangePasswordCommand}"/>
                 <MenuItem Header="_Tananyagok">
-                    <MenuItem Header="Bevezetés" Command="{Binding LessonCommand}" CommandParameter="Bevezetés"/>
-                    <MenuItem Header="Változók I." Command="{Binding LessonCommand}" CommandParameter="Változók I"/>
-                    <MenuItem Header="Változók II." Command="{Binding LessonCommand}" CommandParameter="Változók II"/>
+                    <MenuItem Header="_Alapok I.">
+                        <MenuItem Header="_Bevezetés" Command="{Binding LessonCommand}" CommandParameter="Bevezetés"/>
+                        <MenuItem Header="_Változók I." Command="{Binding LessonCommand}" CommandParameter="Változók I"/>
+                        <MenuItem Header="_Változók II." Command="{Binding LessonCommand}" CommandParameter="Változók II"/>
+                    </MenuItem>
                 </MenuItem>
                 <Separator/>
                 <MenuItem Header="_Kijelentkezés" Command="{Binding ExitCommand}"/>
@@ -43,8 +45,6 @@
             <Button Command="{Binding TestCommand2}" Content="Pairing" />
             <Button Command="{Binding TestCommand3}" Content="Multiple" />
         </DockPanel>
-        <ScrollViewer VerticalAlignment="Stretch"  Grid.Row="1" Grid.Column="2">
-            <Frame Content="{Binding DisplayPage, Mode=OneWay}" VerticalAlignment="Stretch" HorizontalAlignment="Center" />
-        </ScrollViewer>
+            <Frame Grid.Row="1" Grid.Column="2" Content="{Binding DisplayPage, Mode=OneWay}" VerticalAlignment="Stretch" HorizontalAlignment="Center" />
     </Grid>
 </Page>
