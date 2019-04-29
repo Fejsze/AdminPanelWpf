@@ -163,7 +163,7 @@ namespace LearningApp
             MySqlCommand comm = new MySqlCommand($"Select Max(`id`) From `user_data`;", connection);
             using (MySqlDataReader reader = comm.ExecuteReader())
             {
-                int result = reader.GetOrdinal("id");
+                int result = GetInt32(reader.GetOrdinal("id");
                 return result;
             }
         }
