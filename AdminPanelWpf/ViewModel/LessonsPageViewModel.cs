@@ -1,15 +1,20 @@
-﻿using System;
+﻿using LearningApp.Model;
+using LearningApp.View.Task;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
 
 namespace LearningApp.ViewModel
 {
     class LessonsPageViewModel : BaseViewModel
     {
+        private bool isVisisbleButton;
         private string lessonText;
+        public ICommand TestCommand { get; set; }
 
         public string LessonText
         {
@@ -21,15 +26,39 @@ namespace LearningApp.ViewModel
             }
         }
 
+        public bool IsVisisbleButton
+        {
+            get => isVisisbleButton;
+            set
+            {
+                isVisisbleButton = value;
+                NotifyPropertyChanged("IsVisisbleButton");
+            }
+        }
+
         public LessonsPageViewModel(string topic)
         {
+            TestCommand = new RelayCommand(o => TestCommandClick(o));
+            SetUp(topic);
+        }
+
+        private void TestCommandClick(object o)
+        {
+            MainTaskWindow mainTaskWindow = new MainTaskWindow();
+            mainTaskWindow.Show();
+        }
+
+        private void SetUp(string topic)
+        {
+            IsVisisbleButton = false;
             SqlConnectionHandler conn = new SqlConnectionHandler();
             try
             {
                 if (conn.Open())
                 {
-                    string x = conn.LessonSelect(topic).Result;
-                    LessonText = x;
+                    Lesson x = conn.LessonSelect(topic);
+                    LessonText = x.Text;
+                    IsVisisbleButton = x.TopicEnd;
                 }
                 else MessageBox.Show("Hiba!");
             }
@@ -38,6 +67,5 @@ namespace LearningApp.ViewModel
                 MessageBox.Show(ex.ToString());
             }
         }
-
     }
 }

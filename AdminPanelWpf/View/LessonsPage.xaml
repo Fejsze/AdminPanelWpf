@@ -6,9 +6,16 @@
       xmlns:local="clr-namespace:LearningApp.View"
       mc:Ignorable="d" 
       Title="LessonsPage">
+    <Page.Resources>
+        <ResourceDictionary>
+            <BooleanToVisibilityConverter x:Key="boolToVis" />
+        </ResourceDictionary>
+    </Page.Resources>
 
-    <Grid >
+    <StackPanel>
         <TextBox TextOptions.TextFormattingMode="Display" IsReadOnly="True" TextWrapping="Wrap" Text="{Binding LessonText}"/>
-        
-    </Grid>
+        <Separator/>
+        <Button Content="Vizsga kezdése" Command="{Binding TestCommand}" Visibility="{Binding IsVisisbleButton, Converter={StaticResource boolToVis}}"/>
+    </StackPanel>
+
 </Page>

@@ -40,8 +40,8 @@ namespace LearningApp
         {
             MySqlCommand command = new MySqlCommand("SELECT password FROM login WHERE username = @username", connection);
             command.Parameters.AddWithValue("username", userName);
-            var loginChek = command.ExecuteScalar();
-            return loginChek == null ? false : StringCipher.Decrypt(loginChek.ToString(), "Fejsze").ToString() == password;
+            var loginCheck = command.ExecuteScalar();
+            return loginCheck == null ? false : StringCipher.Decrypt(loginCheck.ToString(), "Fejsze").ToString() == password;
         }
 
         public UsersModel GetUserData(string userName)
@@ -132,25 +132,27 @@ namespace LearningApp
                 return selectValue;
             }
         }
-        public async Task<string> LessonSelect(string topic)
+        public Lesson LessonSelect(string topic)
         {
             MySqlCommand comm;
             if (topic != "")
             {
-                comm = new MySqlCommand($"Select text, requirement From lessons Where topic=@topic;", connection);
+                comm = new MySqlCommand($"Select text, requirement, topicend From lessons Where topic=@topic;", connection);
                 comm.Parameters.AddWithValue("topic", topic);
-                System.Data.Common.DbDataReader reader = await comm.ExecuteReaderAsync();
-                using (reader)
+                using (MySqlDataReader reader = comm.ExecuteReader())
                 {
-                    string selectedValue;
+                    Lesson selectedValue = new Lesson();
                     reader.Read();
                     if (int.Parse(reader["requirement"].ToString()) == Globals.ActualUser.Level || int.Parse(reader["requirement"].ToString()) < Globals.ActualUser.Level)
                     {
-                        selectedValue = reader["text"].ToString();
+                        selectedValue.Text = reader["text"].ToString();
+                        selectedValue.TopicEnd = bool.Parse(reader["topicend"].ToString());
+                        return selectedValue;
                     }
                     else
                     {
-                        selectedValue = "Még nem érted el a megfelelő szintet. Kérlek sorba haladj a tananyaggal!";
+                        selectedValue.Text = "Még nem érted el a megfelelő szintet. Kérlek sorba haladj a tananyaggal!";
+                        selectedValue.TopicEnd = false;
                     }
                     return selectedValue;
                 }

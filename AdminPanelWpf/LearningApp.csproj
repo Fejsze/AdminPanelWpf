@@ -88,6 +88,7 @@
     <Compile Include="BaseViewModel.cs" />
     <Compile Include="Globals.cs" />
     <Compile Include="IHavePassword.cs" />
+    <Compile Include="Model\Lesson.cs" />
     <Compile Include="Model\MainModel.cs" />
     <Compile Include="Model\Task\Multiple_choice.cs" />
     <Compile Include="Model\Task\TrueFalseModel.cs" />
