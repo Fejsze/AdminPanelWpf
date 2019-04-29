@@ -120,9 +120,10 @@ namespace LearningApp.ViewModel
                             if (conn.InsertUser(userName, nickName, password, email, Reminder)) MessageBox.Show("Sikeres regisztráció!");
                             else MessageBox.Show("Sikertelen regisztráció!");
                         }
-                        catch (Exception)
+                        catch (Exception ex)
                         {
-                            MessageBox.Show("Hiba, kérem próbálja újra!");
+                            //MessageBox.Show("Hiba, kérem próbálja újra!");
+                            MessageBox.Show(ex.ToString());
                         }
                     }
                     else MessageBox.Show("Hiba, az email címek nem egyeznek! Kérem próbálja újra!");

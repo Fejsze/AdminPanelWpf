@@ -16,7 +16,7 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="100" />
+            <ColumnDefinition Width="110" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
@@ -31,6 +31,7 @@
                         <MenuItem Header="_Változók I." Command="{Binding LessonCommand}" CommandParameter="Változók I"/>
                         <MenuItem Header="_Változók II." Command="{Binding LessonCommand}" CommandParameter="Változók II"/>
                     </MenuItem>
+                        <MenuItem Header="_Console Application" Command="{Binding LessonCommand}" CommandParameter="Console Application"/>
                 </MenuItem>
                 <Separator/>
                 <MenuItem Header="_Kijelentkezés" Command="{Binding ExitCommand}"/>

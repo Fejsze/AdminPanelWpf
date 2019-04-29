@@ -98,17 +98,19 @@ namespace LearningApp
             if (um == null)
             {
                 //User data beszúrása
-                MySqlCommand commUD = new MySqlCommand("INSERT INTO `user_data` (`level`, `nickname`) VALUES ( 0, @nickname );", connection);
+                MySqlCommand commUD = new MySqlCommand("INSERT INTO `user_data` (`level`, `nickname`,`money`) VALUES ( 0, @nickname, @money );", connection);
                     commUD.Parameters.AddWithValue("nickname", nickname);
+                    commUD.Parameters.AddWithValue("money", 1000);
                     commUD.ExecuteNonQuery();
                 //Login beszúrása
-                MySqlCommand commL = new MySqlCommand("INSERT INTO login (`generatedid`, `username`, `password`, `created`, `email`, `Reminder`) VALUES (@generatedid, @username, @password, @created, @email, @Reminder);", connection);
+                MySqlCommand commL = new MySqlCommand("INSERT INTO login (`generatedid`, `username`, `password`, `created`, `email`, `Reminder`, `user_data_id`) VALUES (@generatedid, @username, @password, @created, @email, @Reminder, @user_data_id);", connection);
                     commL.Parameters.AddWithValue("generatedid", IDGenerator);
                     commL.Parameters.AddWithValue("username", username);
                     commL.Parameters.AddWithValue("password", StringCipher.Encrypt(password, "Fejsze"));
                     commL.Parameters.AddWithValue("created", DateTime.UtcNow);
                     commL.Parameters.AddWithValue("email", email);
                     commL.Parameters.AddWithValue("Reminder", reminder);
+                    commL.Parameters.AddWithValue("user_data_id", LastInsertIDUserData());
                     commL.ExecuteNonQuery();
                 return true;
             }
@@ -156,6 +158,16 @@ namespace LearningApp
             return null;
         }
 
-        private string IDGenerator => Guid.NewGuid().ToString("F");
+        private int LastInsertIDUserData()
+        {
+            MySqlCommand comm = new MySqlCommand($"Select Max(`id`) From `user_data`;", connection);
+            using (MySqlDataReader reader = comm.ExecuteReader())
+            {
+                int result = int.Parse(reader.GetString("id"));
+                return result;
+            }
+        }
+
+        private string IDGenerator => Guid.NewGuid().ToString("N");
     }
 }
