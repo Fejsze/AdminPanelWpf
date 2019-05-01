@@ -10,6 +10,10 @@ namespace LearningApp.ViewModel
 {
     class RegistrationPageViewModel : BaseViewModel
     {
+        public ICommand ExitCommand { get; set; }
+        public event EventHandler onEventRaised;
+
+
         private string userName;
         private string nickName;
         private string email;
@@ -95,6 +99,7 @@ namespace LearningApp.ViewModel
         public RegistrationPageViewModel()
         {
             RegistrationCommand = new RelayCommand(RegistrationCommandClick);
+            ExitCommand = new RelayCommand(o => ExitClick(o));
         }
 
         private void RegistrationCommandClick(object parameter)
@@ -131,6 +136,12 @@ namespace LearningApp.ViewModel
                 else MessageBox.Show("Hiba, a jelszavak nem egyeznek! Kérem próbálja újra!");
             }
             else MessageBox.Show("Kérem fogadja el az adatvédelmi nyilatkozatot!");
+        }
+
+        private void ExitClick(object sender)
+        {
+            if (onEventRaised != null)
+                onEventRaised(this, null);
         }
     }
 }

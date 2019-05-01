@@ -1,4 +1,5 @@
-﻿using LearningApp.ViewModel.Task;
+﻿using LearningApp.Model.Task;
+using LearningApp.ViewModel.Task;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,10 +21,10 @@ namespace LearningApp.View.Task
     /// </summary>
     public partial class Multiple_choicePage : Page
     {
-        public Multiple_choicePage(string topic, string lessons)
+        public Multiple_choicePage(string Question, string GoodAnswer, string[] Answers, int Point)
         {
             InitializeComponent();
-            this.DataContext = new Multiple_choicePageViewModel(topic, lessons);
+            this.DataContext = new Multiple_choicePageViewModel(new Multiple_choice(Question, GoodAnswer, Answers, Point));
         }
     }
 }

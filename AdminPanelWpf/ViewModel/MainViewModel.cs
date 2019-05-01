@@ -50,11 +50,13 @@ namespace LearningApp.ViewModel
         {
             this.DisplayPage = new LoginPage();
             (this.DisplayPage.DataContext as LoginPageViewModel).OnEventRaisedLog += MainViewModel_OnEventRaised;
+            (this.DisplayPage.DataContext as LoginPageViewModel).OnEventRaisedReg += MainViewModel_onEventRaised2;
         }
 
         private void MainViewModel_onEventRaised2(object sender, EventArgs e)
         {
             this.DisplayPage = new RegistrationPage();
+            (this.DisplayPage.DataContext as RegistrationPageViewModel).onEventRaised += MainViewModel_onEventRaised;
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using LearningApp.View.Task;
+﻿using LearningApp.SQL;
+using LearningApp.View.Task;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,32 +32,10 @@ namespace LearningApp.ViewModel.Task
         }
         public MainTaskViewModel()
         {
+            LessonsSQLSelects lessonsSQLSelects = new LessonsSQLSelects();
             Globals.ActualPionts = 0;
-            if (Globals.ActualTasks != null)
-            {
-                if (Globals.ActualTasks.Count() != 0)
-                {
-                    Globals.ActualTasks = new List<Page>();
-                }
-            }
-            this.DisplayPage = PageSelector("Párosítós");
-        }
-
-        private Page PageSelector(string type)
-        {
-            switch (type)
-            {
-                case "Felelet választós":
-                    return pairingPage();
-                case "Párosítós":
-                    return pairingPage();
-                case "Igaz-hamis":
-                    return pairingPage();
-                case "Kiegészítős":
-                    return pairingPage();
-                default:
-                    return null;
-            }
+            Globals.ActualTasks = lessonsSQLSelects.Multiple_choiceTask("alapok I");
+            this.DisplayPage = Globals.ActualTasks[0];
         }
 
         private static Page pairingPage()

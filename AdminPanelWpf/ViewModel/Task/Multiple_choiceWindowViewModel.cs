@@ -13,9 +13,9 @@ namespace LearningApp.ViewModel.Task
         Multiple_choice multiple_choiceM;
         Random random = new Random();
 
-        public Multiple_choicePageViewModel(string topic, string lesson)
+        public Multiple_choicePageViewModel(Multiple_choice mc)
         {
-            multiple_choiceM = new Multiple_choice("Az int szoveges valtozo?", "igen", new List<string> {"asd", "Asd", "dsa"});
+            multiple_choiceM = mc;
             Question = multiple_choiceM.Question;
             int r = random.Next(1, 5);
             if (r == 1)
@@ -47,18 +47,24 @@ namespace LearningApp.ViewModel.Task
                 A3 = multiple_choiceM.Answers[2];
             }
 
-            AnswerCommand = new RelayCommand(o => AnswerClick(o));
+            BadAnswerCommand = new RelayCommand(o => BadAnswerClick(o));
+            GoodAnswerCommand = new RelayCommand(o => GoodAnswerClick(o));
         }
 
         public string Question { get; set; }
-        public ICommand AnswerCommand { get; set; }
+        public ICommand BadAnswerCommand { get; set; }
+        public ICommand GoodAnswerCommand { get; set; }
 
         public string A1 { get; set; }
         public string A2 { get; set; }
         public string A3 { get; set; }
         public string A4 { get; set; }
 
-        private void AnswerClick(object sender)
+        private void BadAnswerClick(object sender)
+        {
+
+        }
+        private void GoodAnswerClick(object sender)
         {
             
         }

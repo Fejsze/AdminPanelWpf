@@ -14,7 +14,7 @@ namespace LearningApp.ViewModel
     {
         private bool isVisisbleButton;
         private string lessonText;
-        public ICommand TestCommand { get; set; }
+        public ICommand TaskCommand { get; set; }
 
         public string LessonText
         {
@@ -38,11 +38,11 @@ namespace LearningApp.ViewModel
 
         public LessonsPageViewModel(string topic)
         {
-            TestCommand = new RelayCommand(o => TestCommandClick(o));
+            TaskCommand = new RelayCommand(o => TaskCommandClick(o));
             SetUp(topic);
         }
 
-        private void TestCommandClick(object o)
+        private void TaskCommandClick(object o)
         {
             MainTaskWindow mainTaskWindow = new MainTaskWindow();
             mainTaskWindow.Show();

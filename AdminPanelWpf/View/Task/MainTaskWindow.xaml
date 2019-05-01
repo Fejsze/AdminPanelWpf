@@ -7,9 +7,9 @@
         mc:Ignorable="d"
         ResizeMode="NoResize"
         Title="C#-ot C#-ul.Feladat" 
-        Height="450" Width="800" 
+        WindowState="Maximized" 
         Icon="/LearningApp;component/Resource/32px-C_Sharp_wordmark.svg.png">
     <Grid>
-        <Frame Name="frame" Content="{Binding Path=DisplayPage, Mode=TwoWay}" NavigationUIVisibility="Hidden"/>
+        <Frame Name="frame" Width="auto" Content="{Binding Path=DisplayPage, Mode=TwoWay}" NavigationUIVisibility="Hidden"/>
     </Grid>
 </Window>

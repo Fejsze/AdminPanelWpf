@@ -44,6 +44,16 @@
             <CheckBox Margin="5 7 0 5" IsChecked="{Binding IsSelected}"/>
             <Label Content="Kijelentem, hogy az adatvédelmi nyilatkozatot elolvastam és tudomásul vettem. (A szövegre kattintva elérhető.)"/>
         </DockPanel>
-        <Button Content="Regisztráció" Command="{Binding RegistrationCommand}" CommandParameter="{Binding ElementName=This}" MaxWidth="80" Margin="0,2,0,0"/>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" Margin="100 0 1 0" Content="Mégse" Command="{Binding ExitCommand}"/>
+            <Button Grid.Column="1" Margin="1 0 100 0" Content="Regisztráció" Command="{Binding RegistrationCommand}" CommandParameter="{Binding ElementName=This}" />
+        </Grid>
     </StackPanel>
 </Page>

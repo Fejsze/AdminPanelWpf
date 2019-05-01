@@ -13,6 +13,7 @@ namespace LearningApp
     class SqlConnectionHandler
     {
         MySqlConnection connection;
+        public MySqlConnection Connection { get => connection;}
 
         public SqlConnectionHandler()
         {
@@ -172,5 +173,6 @@ namespace LearningApp
         }
 
         private string IDGenerator => Guid.NewGuid().ToString("N");
+
     }
 }
