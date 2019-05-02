@@ -119,6 +119,9 @@
     <Compile Include="View\FormAdminPanelPage.xaml.cs">
       <DependentUpon>FormAdminPanelPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\MarketPage.xaml.cs">
+      <DependentUpon>MarketPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\NewFormPage.xaml.cs">
       <DependentUpon>NewFormPage.xaml</DependentUpon>
     </Compile>
@@ -136,9 +139,6 @@
     </Compile>
     <Compile Include="View\Task\PairingPage.xaml.cs">
       <DependentUpon>PairingPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\Task\Test.xaml.cs">
-      <DependentUpon>Test.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Task\TrueFalsePage.xaml.cs">
       <DependentUpon>TrueFalsePage.xaml</DependentUpon>
@@ -171,6 +171,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\MarketPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\NewFormPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -192,10 +196,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Task\PairingPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\Task\Test.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

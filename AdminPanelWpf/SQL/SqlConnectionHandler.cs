@@ -118,21 +118,6 @@ namespace LearningApp
             return false;
         }
 
-        public string DefaultSelect(string columnNames, string tableName, string where)
-        {
-            MySqlCommand comm;
-            if (where!="") comm = new MySqlCommand($"Select {columnNames} From {tableName} Where {where}", connection);
-            else comm = new MySqlCommand($"Select {columnNames} From {tableName}");
-            using (MySqlDataReader reader = comm.ExecuteReader())
-            {
-                string selectValue = "";
-                foreach (var item in reader)
-                {
-                    selectValue += item;
-                }
-                return selectValue;
-            }
-        }
         public Lesson LessonSelect(string topic)
         {
             MySqlCommand comm;

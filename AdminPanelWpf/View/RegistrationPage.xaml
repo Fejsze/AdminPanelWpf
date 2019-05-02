@@ -13,39 +13,39 @@
     <Grid VerticalAlignment="Center" HorizontalAlignment="Center" Margin="1 150 1 1">
         <StackPanel Background="Gray" VerticalAlignment="Center" HorizontalAlignment="Center" MaxWidth="620"  RenderTransformOrigin="0.5,0.5" Margin="0,0,10,0">
             <Label Height="auto" FontSize="40" FontWeight="SemiBold" HorizontalAlignment="Center" Content="Regisztráció" />
-            <DockPanel>
+            <DockPanel Margin="0 0 5 0">
                 <Label MinWidth="100" HorizontalAlignment="Center" Content="Felhasználónév"/>
                 <TextBox Name="TextBoxUserName" MaxHeight="20" Text="{Binding UserName}"/>
             </DockPanel>
-            <DockPanel>
+            <DockPanel Margin="0 0 5 0">
                 <Label MinWidth="100" HorizontalAlignment="Center" Content="Becenév" />
                 <TextBox Name="TextBoxNickName" MaxHeight="20" Text="{Binding NickName}"/>
             </DockPanel>
-            <DockPanel>
+            <DockPanel Margin="0 0 5 0">
                 <Label MinWidth="100" HorizontalAlignment="Center" Content="Email" />
                 <TextBox Name="TextBoxEmail" MaxHeight="20" Text="{Binding Email}"/>
             </DockPanel>
-            <DockPanel>
+            <DockPanel Margin="0 0 5 0">
                 <Label MinWidth="100" HorizontalAlignment="Center" Content="Email újra" />
                 <TextBox Name="TextBoxEmailAgain" MaxHeight="20" Text="{Binding EmailAgain}"/>
             </DockPanel>
-            <DockPanel>
+            <DockPanel Margin="0 0 5 0">
                 <Label MinWidth="100" HorizontalAlignment="Center" Content="Jelszó" />
                 <PasswordBox Name="PasswordBox" MaxHeight="20"/>
             </DockPanel>
-            <DockPanel>
+            <DockPanel Margin="0 0 5 0">
                 <Label MinWidth="100" HorizontalAlignment="Center" Content="Jelszó újra" />
                 <PasswordBox Name="PasswordBoxAgain" MaxHeight="20"/>
             </DockPanel>
-            <DockPanel>
+            <DockPanel Margin="0 0 5 0">
                 <Label MinWidth="100" HorizontalAlignment="Center" Content="Emlékeztető" />
                 <TextBox Name="ReminderBox" MaxHeight="20" Text="{Binding Reminder}" />
             </DockPanel>
-            <DockPanel>
+            <DockPanel Margin="0 0 5 0">
                 <CheckBox Margin="5 7 0 5" IsChecked="{Binding IsSelected}"/>
                 <Label Content="Kijelentem, hogy az adatvédelmi nyilatkozatot elolvastam és tudomásul vettem. (A szövegre kattintva elérhető.)"/>
             </DockPanel>
-            <Grid>
+            <Grid Margin="0 0 0 3">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>

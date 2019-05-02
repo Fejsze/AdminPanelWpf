@@ -24,15 +24,16 @@
             <Menu Background="Gray" Foreground="White" DockPanel.Dock="Left" Margin="2 2 2 2">
                 <MenuItem Header="_Kezdőlap"/>
                 <Separator/>
-                <MenuItem Header="_Jelszóváltoztatás" Command="{Binding ChangePasswordCommand}"/>
-                <MenuItem Header="_Tananyagok">
-                    <MenuItem Header="_Alapok I.">
-                        <MenuItem Header="_Bevezetés" Command="{Binding LessonCommand}" CommandParameter="Bevezetés"/>
-                        <MenuItem Header="_Változók I." Command="{Binding LessonCommand}" CommandParameter="Változók I"/>
-                        <MenuItem Header="_Változók II." Command="{Binding LessonCommand}" CommandParameter="Változók II"/>
+                <MenuItem Background="Gray" Header="_Tananyagok">
+                    <MenuItem Background="Gray" Header="_Alapok I.">
+                        <MenuItem Background="Gray" Header="_Bevezetés" Command="{Binding LessonCommand}" CommandParameter="Bevezetés"/>
+                        <MenuItem Background="Gray" Header="_Változók I." Command="{Binding LessonCommand}" CommandParameter="Változók I"/>
+                        <MenuItem Background="Gray" Header="_Változók II." Command="{Binding LessonCommand}" CommandParameter="Változók II"/>
                     </MenuItem>
-                        <MenuItem Header="_Console Application" Command="{Binding LessonCommand}" CommandParameter="Console Application"/>
+                    <MenuItem Background="Gray" Header="_Console Application" Command="{Binding LessonCommand}" CommandParameter="Console Application"/>
                 </MenuItem>
+                <MenuItem Background="Gray" Header="_Áruház" Command="{Binding MarketCommand}"/>
+                <MenuItem Header="_Jelszóváltoztatás" Command="{Binding ChangePasswordCommand}"/>
                 <Separator/>
                 <MenuItem Header="_Kijelentkezés" Command="{Binding ExitCommand}"/>
             </Menu>
@@ -40,12 +41,15 @@
         <DockPanel
             Grid.Row="0"
             Grid.Column="1"
-            HorizontalAlignment="Left"
-            FlowDirection="LeftToRight">
-            <Button Command="{Binding TestCommand}" Content="Grid/Completino" />
-            <Button Command="{Binding TestCommand2}" Content="Pairing" />
-            <Button Command="{Binding TestCommand3}" Content="Multiple" />
+            HorizontalAlignment="Stretch"
+            FlowDirection="LeftToRight"
+            Background="Gray">
+            <Button Command="{Binding TestCommand3}" Content="MainTaskWindow" />
+            <Label Content="{Binding MoneyText}"/>
         </DockPanel>
-            <Frame Margin="1 20 1 100" MinWidth="1150" MinHeight="640" BorderBrush="Red" BorderThickness="2" Grid.Row="1" Grid.Column="2" Content="{Binding DisplayPage, Mode=OneWay}" VerticalAlignment="Stretch" HorizontalAlignment="Center" />
+            <Frame Margin="1 20 1 100" MinWidth="1150" MinHeight="640" 
+                   Grid.Row="1" Grid.Column="2" 
+                   Content="{Binding DisplayPage, Mode=OneWay}" 
+                   VerticalAlignment="Stretch" HorizontalAlignment="Center" />
     </Grid>
 </Page>

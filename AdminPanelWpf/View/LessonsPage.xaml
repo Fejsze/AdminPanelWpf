@@ -12,10 +12,9 @@
         </ResourceDictionary>
     </Page.Resources>
 
-    <StackPanel>
-        <TextBox TextOptions.TextFormattingMode="Display" IsReadOnly="True" TextWrapping="Wrap" Text="{Binding LessonText}"/>
-        <Separator/>
-        <Button Content="Vizsga kezdése" Command="{Binding TestCommand}" Visibility="{Binding IsVisisbleButton, Converter={StaticResource boolToVis}}"/>
+    <StackPanel Margin="0 100 0 0" Width="1000" HorizontalAlignment="Center">
+        <TextBox Background="LightGray" Padding="5" TextOptions.TextFormattingMode="Display" IsReadOnly="True" TextWrapping="Wrap" Text="{Binding LessonText}"/>
+        <Button Margin="1" Width="150" Content="Vizsga kezdése" Command="{Binding TestCommand}" Visibility="{Binding IsVisisbleButton, Converter={StaticResource boolToVis}}"/>
     </StackPanel>
 
 </Page>

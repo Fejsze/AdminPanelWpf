@@ -66,7 +66,6 @@ namespace LearningApp.View.Task
                 Grid.SetRow(cb, s);
                 Grid.SetColumn(cb, 1);
                 DynamicGrid.Children.Add(cb);
-
                 s++;
             }
             // Display grid into a Window
