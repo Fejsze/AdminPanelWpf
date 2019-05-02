@@ -21,7 +21,7 @@
         </Grid.ColumnDefinitions>
 
         <DockPanel Grid.Column="0" Grid.Row="0" Grid.RowSpan="2">
-            <Menu DockPanel.Dock="Left" Margin="2 2 2 2">
+            <Menu Background="Gray" Foreground="White" DockPanel.Dock="Left" Margin="2 2 2 2">
                 <MenuItem Header="_Kezdőlap"/>
                 <Separator/>
                 <MenuItem Header="_Jelszóváltoztatás" Command="{Binding ChangePasswordCommand}"/>

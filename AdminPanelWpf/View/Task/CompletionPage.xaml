@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:LearningApp.View.Task"
         mc:Ignorable="d"
         Title="Pairing">
-    <Grid Name="sp">
+    <DockPanel Name="sp">
         
-    </Grid>
+    </DockPanel>
 </Page>

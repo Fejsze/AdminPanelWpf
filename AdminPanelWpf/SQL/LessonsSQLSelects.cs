@@ -20,7 +20,7 @@ namespace LearningApp.SQL
 
         public List<Page> Multiple_choiceTask(string TaskName)
         {
-            List<Page> p = null;
+            List<Page> p = new List<Page>();
             try
             {
                 MySqlCommand command = new MySqlCommand("SELECT point, description, tasktext, type FROM `taskname` inner JOIN `task_description` on task_description_id = `task_description`.id WHere `taskname`.`Name` = @taskname;", connection.Connection);
@@ -41,7 +41,13 @@ namespace LearningApp.SQL
                                 var textTF = reader.GetString(reader.GetOrdinal("tasktext"));
                                 var pointTF = reader.GetInt32(reader.GetOrdinal("point"));
                                 p = TrueFalseCaseReturn(textTF, pointTF);
-                                return p; 
+                                return p;
+
+                                case "kiegészítős":
+                                var textComp = reader.GetString(reader.GetOrdinal("tasktext"));
+                                var pointComp = reader.GetInt32(reader.GetOrdinal("point"));
+                                p.Add(new CompletionPage(textComp, pointComp));
+                                return p;
 
                             default: return p;
                         }
@@ -80,6 +86,6 @@ namespace LearningApp.SQL
                 pages.Add(new TrueFalsePage(question, goodAnswer, point));
             }
             return pages;
-        }
+        }        
     }
 }

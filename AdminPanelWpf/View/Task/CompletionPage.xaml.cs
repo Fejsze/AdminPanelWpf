@@ -19,10 +19,12 @@ namespace LearningApp.View.Task
     /// </summary>
     public partial class CompletionPage : Page
     {
+        int Point { get; set; }
         DockPanel dpNew = new DockPanel();
-        public CompletionPage(string text)
+        public CompletionPage(string text, int point)
         {
             InitializeComponent();
+            this.Point = point;
             Task(text);
             sp.Children.Add(dpNew);
         }
@@ -60,7 +62,9 @@ namespace LearningApp.View.Task
 
                         TextBox tb = new TextBox
                         {
-                            Tag = text.Substring(firstIndex + 1, nextIndex - firstIndex - 1)
+                            Tag = text.Substring(firstIndex + 1, nextIndex - firstIndex - 1),
+                            MinWidth = 62,
+                            MaxHeight = 25
                         };
                         text = text.Substring(nextIndex + 1);
                         dpNew.Children.Add(tb);
