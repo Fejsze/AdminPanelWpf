@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -16,6 +17,7 @@ namespace LearningApp.ViewModel
         public event EventHandler onEventRaised;
         private Page displayPage;
         private int money;
+        private Thread moneySync;
 
         public Page DisplayPage
         {
@@ -28,9 +30,9 @@ namespace LearningApp.ViewModel
         }
         public int Money
         {
-            get => Money; set
+            get => money; set
             {
-                Money = value;
+                money = value;
                 NotifyPropertyChanged("Money");
             }
         }
@@ -38,7 +40,20 @@ namespace LearningApp.ViewModel
         public FormAdminPanelViewModel()
         {
             CommandInstantiation();
-            money = Globals.ActualUser.Money;
+            Money = Globals.ActualUser.Money;
+            moneySync = new Thread(MoneySync());
+            moneySync.IsBackground = true;
+            moneySync.Start();
+        }
+
+        private ThreadStart MoneySync()
+        {
+            while (true)
+            {
+                Thread.Sleep(5000);
+                Money = Globals.ActualUser.Money;
+                MessageBox.Show("Pénz frissítve.");
+            }
         }
 
         #region CommandRegion
