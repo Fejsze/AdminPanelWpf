@@ -41,11 +41,11 @@
         <DockPanel
             Grid.Row="0"
             Grid.Column="1"
-            HorizontalAlignment="Stretch"
+            HorizontalAlignment="Right"
             FlowDirection="LeftToRight"
             Background="Gray">
-            <Button Command="{Binding TestCommand3}" Content="MainTaskWindow" />
-            <Label Content="{Binding MoneyText}"/>
+            <Button MinWidth="200" Command="{Binding TestCommand3}" Content="MainTaskWindow" />
+            <Label MinWidth="50" MaxWidth="200" Background="Gold" Foreground="DeepPink" FontSize="15" Content="{Binding Money}"/>
         </DockPanel>
             <Frame Margin="1 20 1 100" MinWidth="1150" MinHeight="640" 
                    Grid.Row="1" Grid.Column="2" 

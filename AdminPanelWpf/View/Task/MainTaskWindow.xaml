@@ -10,6 +10,9 @@
         WindowState="Maximized" 
         Icon="/LearningApp;component/Resource/32px-C_Sharp_wordmark.svg.png">
     <Grid>
+        <StackPanel>
         <Frame Name="frame" Width="auto" Content="{Binding Path=DisplayPage, Mode=TwoWay}" NavigationUIVisibility="Hidden"/>
+        <Button Content="Válasz megerősítése"/>
+        </StackPanel>
     </Grid>
 </Window>
