@@ -34,8 +34,9 @@ namespace LearningApp.ViewModel.Task
         {
             LessonsSQLSelects lessonsSQLSelects = new LessonsSQLSelects();
             Globals.ActualPionts = 0;
-            Globals.ActualTasks = lessonsSQLSelects.Multiple_choiceTask("alapok I");
-            this.DisplayPage = Globals.ActualTasks[0];
+            //Globals.ActualTasks = lessonsSQLSelects.Multiple_choiceTask("alapok I");
+            Globals.ActualTasks = lessonsSQLSelects.Multiple_choiceTask("alapok II");
+            this.DisplayPage = Globals.ActualTasks[1];
         }
 
         private static Page pairingPage()

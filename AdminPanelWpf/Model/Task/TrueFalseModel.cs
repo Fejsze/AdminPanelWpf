@@ -8,15 +8,15 @@ namespace LearningApp.Model.Task
 {
     public class TrueFalseModel
     {
-        public TrueFalseModel(string Question, string GoodAnswer/*, List<string> Answers*/)
+        public TrueFalseModel(string Question, string GoodAnswer, int Poit)
         {
             this.Question = Question;
             this.GoodAnswer = GoodAnswer;
-            //this.Answers = Answers;
+            this.Point = Point;
         }
 
         public string Question { get; set; }
         public string GoodAnswer { get; set; }
-        //public List<string> Answers { get; set; }
+        public int Point { get; set; }
     }
 }

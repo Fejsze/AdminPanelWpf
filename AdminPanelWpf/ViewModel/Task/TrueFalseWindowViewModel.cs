@@ -13,9 +13,9 @@ namespace LearningApp.ViewModel.Task
         TrueFalseModel trueFalseM;
         private string question;
 
-        public TrueFalsePageViewModel(string topic, string lesson)
+        public TrueFalsePageViewModel(TrueFalseModel trueFalseModel)
         {
-             trueFalseM = new TrueFalseModel("Az int szoveges valtozo?", "igen");
+             trueFalseM = trueFalseModel;
             question = trueFalseM.Question;
 
             TrueCommand = new RelayCommand(o => TrueClick(o));

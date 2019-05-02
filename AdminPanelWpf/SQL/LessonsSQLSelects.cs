@@ -29,13 +29,20 @@ namespace LearningApp.SQL
                 {
                     while (reader.Read())
                     {
-                        switch (reader.GetString(reader.GetOrdinal("type")))
+                        switch (reader.GetString(reader.GetOrdinal("type")).ToLower())
                         {
-                            case "Felelet választós":
-                                var text = reader.GetString(reader.GetOrdinal("tasktext"));
-                                var point = reader.GetInt32(reader.GetOrdinal("point"));
-                                p = Multiple_choiceCaseReturn(text, point);
+                            case "felelet választós":
+                                var textMC = reader.GetString(reader.GetOrdinal("tasktext"));
+                                var pointMC = reader.GetInt32(reader.GetOrdinal("point"));
+                                p = Multiple_choiceCaseReturn(textMC, pointMC);
                                 return p; 
+                            
+                                case "igaz-hamis":
+                                var textTF = reader.GetString(reader.GetOrdinal("tasktext"));
+                                var pointTF = reader.GetInt32(reader.GetOrdinal("point"));
+                                p = TrueFalseCaseReturn(textTF, pointTF);
+                                return p; 
+
                             default: return p;
                         }
                     }
@@ -51,7 +58,6 @@ namespace LearningApp.SQL
         private List<Page> Multiple_choiceCaseReturn(string text, int point)
         {
             List<Page> pages = new List<Page>();
-            List<Multiple_choice> pageData = new List<Multiple_choice>();
             string[] tasks = text.Split('$');
             for (int i = 0; i < tasks.Length-1; i++)
             {
@@ -59,6 +65,19 @@ namespace LearningApp.SQL
                 string[] Answers = tasks[i].Split('#')[1].Split(',');
                 var goodAnswer = Answers[Answers.Length - 1];
                 pages.Add(new Multiple_choicePage(question, goodAnswer, Answers, point));
+            }
+            return pages;
+        }
+
+        private List<Page> TrueFalseCaseReturn(string text, int point)
+        {
+            List<Page> pages = new List<Page>();
+            string[] tasks = text.Split('$');
+            for (int i = 0; i < tasks.Length - 1; i++)
+            {
+                var question = tasks[i].Split('#')[0];
+                string goodAnswer = tasks[i].Split('#')[1];
+                pages.Add(new TrueFalsePage(question, goodAnswer, point));
             }
             return pages;
         }
