@@ -28,7 +28,7 @@ namespace LearningApp.View.Task
                 Width = 400,
                 HorizontalAlignment = HorizontalAlignment.Center,
                 VerticalAlignment = VerticalAlignment.Center,
-                ShowGridLines = true,
+                //ShowGridLines = true,
                 Background = new SolidColorBrush(Colors.BlanchedAlmond)
             };
 

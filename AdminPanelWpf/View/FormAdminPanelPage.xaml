@@ -21,18 +21,18 @@
         </Grid.ColumnDefinitions>
 
         <DockPanel Grid.Column="0" Grid.Row="0" Grid.RowSpan="2">
-            <Menu Background="Gray" Foreground="White" DockPanel.Dock="Left" Margin="2 2 2 2">
+            <Menu Background="#b2beb5" Foreground="White" DockPanel.Dock="Left" Margin="2 2 2 2">
                 <MenuItem Header="_Kezdőlap"/>
                 <Separator/>
-                <MenuItem Background="Gray" Header="_Tananyagok">
-                    <MenuItem Background="Gray" Header="_Alapok I.">
-                        <MenuItem Background="Gray" Header="_Bevezetés" Command="{Binding LessonCommand}" CommandParameter="Bevezetés"/>
-                        <MenuItem Background="Gray" Header="_Változók I." Command="{Binding LessonCommand}" CommandParameter="Változók I"/>
-                        <MenuItem Background="Gray" Header="_Változók II." Command="{Binding LessonCommand}" CommandParameter="Változók II"/>
+                <MenuItem Background="#b2beb5" Header="_Tananyagok">
+                    <MenuItem Background="#b2beb5" Header="_Alapok I.">
+                        <MenuItem Background="#b2beb5" Header="_Bevezetés" Command="{Binding LessonCommand}" CommandParameter="Bevezetés"/>
+                        <MenuItem Background="#b2beb5" Header="_Változók I." Command="{Binding LessonCommand}" CommandParameter="Változók I"/>
+                        <MenuItem Background="#b2beb5" Header="_Változók II." Command="{Binding LessonCommand}" CommandParameter="Változók II"/>
                     </MenuItem>
-                    <MenuItem Background="Gray" Header="_Console Application" Command="{Binding LessonCommand}" CommandParameter="Console Application"/>
+                    <MenuItem Background="#b2beb5" Header="_Console Application" Command="{Binding LessonCommand}" CommandParameter="Console Application"/>
                 </MenuItem>
-                <MenuItem Background="Gray" Header="_Áruház" Command="{Binding MarketCommand}"/>
+                <MenuItem Background="#b2beb5" Header="_Áruház" Command="{Binding MarketCommand}"/>
                 <MenuItem Header="_Jelszóváltoztatás" Command="{Binding ChangePasswordCommand}"/>
                 <Separator/>
                 <MenuItem Header="_Kijelentkezés" Command="{Binding ExitCommand}"/>
@@ -43,7 +43,7 @@
             Grid.Column="1"
             HorizontalAlignment="Stretch"
             FlowDirection="LeftToRight"
-            Background="Gray">
+            Background="#b2beb5">
             <Button Command="{Binding TestCommand3}" Content="MainTaskWindow" />
             <Label Content="{Binding MoneyText}"/>
         </DockPanel>
