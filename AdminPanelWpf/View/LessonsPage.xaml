@@ -13,7 +13,7 @@
     </Page.Resources>
 
     <StackPanel Margin="0 100 0 0" Width="1000" HorizontalAlignment="Center">
-        <TextBox Background="LightGray" Padding="5" TextOptions.TextFormattingMode="Display" IsReadOnly="True" TextWrapping="Wrap" Text="{Binding LessonText}"/>
+        <TextBox Background="DarkGray" Foreground="Black" Padding="5" TextOptions.TextFormattingMode="Display" IsReadOnly="True" TextWrapping="Wrap" Text="{Binding LessonText}"/>
         <Button Margin="1" Width="150" Content="Vizsga kezdése" Command="{Binding TestCommand}" Visibility="{Binding IsVisisbleButton, Converter={StaticResource boolToVis}}"/>
     </StackPanel>
 

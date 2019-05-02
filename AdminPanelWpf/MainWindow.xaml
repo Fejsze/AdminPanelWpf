@@ -9,8 +9,15 @@
     WindowState="Maximized"
     VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
     ResizeMode="NoResize"
-    Background="#008AFF"
     mc:Ignorable="d" Icon="Resource/32px-C_Sharp_wordmark.svg.png">
+
+    <Window.Background>
+        <LinearGradientBrush>
+            <GradientStop Color="#c3cec3" Offset="0.6"/>
+            <GradientStop Color="#f6ffeb" Offset="2"/>
+        </LinearGradientBrush>
+    </Window.Background>
+    
     <StackPanel Margin="0,0,-0.4,0">
         <Frame Name="frame" Content="{Binding Path=DisplayPage, Mode=TwoWay}" NavigationUIVisibility="Hidden"/>
     </StackPanel>

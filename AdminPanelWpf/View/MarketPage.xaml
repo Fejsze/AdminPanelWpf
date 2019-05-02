@@ -8,7 +8,24 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Market">
 
+    <Border BorderBrush="Black" BorderThickness="2">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="60"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.Background>
+                <LinearGradientBrush EndPoint="0.504,1.5" StartPoint="0.504,0.03">
+                    <GradientStop Color="Gray" Offset="0"/>
+                    <GradientStop Color="#FFFFFFFF" Offset="0.55"/>
+                </LinearGradientBrush>
+        </Grid.Background>
+        <Button Content="Random háttérszín" FontSize="20" Command="{Binding RandomBCCommand}"/>
     </Grid>
+    </Border>
 </Page>
