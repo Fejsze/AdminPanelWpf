@@ -41,19 +41,15 @@ namespace LearningApp.ViewModel
         {
             CommandInstantiation();
             Money = Globals.ActualUser.Money;
-            moneySync = new Thread(MoneySync());
-            moneySync.IsBackground = true;
-            moneySync.Start();
-        }
-
-        private ThreadStart MoneySync()
-        {
-            while (true)
+            new Thread(() =>
             {
-                Thread.Sleep(5000);
-                Money = Globals.ActualUser.Money;
-                MessageBox.Show("Pénz frissítve.");
-            }
+                Thread.CurrentThread.IsBackground = true;
+                while (true)
+                {
+                    Money = Globals.ActualUser.Money;
+                    Thread.Sleep(60000);
+                }
+            }).Start();
         }
 
         #region CommandRegion
