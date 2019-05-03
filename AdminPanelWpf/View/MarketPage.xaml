@@ -25,7 +25,7 @@
                     <GradientStop Color="#FFFFFFFF" Offset="0.55"/>
                 </LinearGradientBrush>
         </Grid.Background>
-        <Button Grid.Column="0" Grid.Row="0" Margin="5" Content="Random háttérszín" FontSize="20" Command="{Binding RandomBCCommand}"/>
+        <Button Grid.Column="0" Grid.Row="0" Margin="5" Content="Véletlen háttérszín" FontSize="20" Command="{Binding RandomBCCommand}"/>
         <Button Grid.Column="1" Grid.Row="0" Margin="5" Content="Választható háttérszín" FontSize="20" Command="{Binding ChoiceBCCommand}"/>
         <Button Grid.Column="2" Grid.Row="0" Margin="5" Content="Alap háttérszín" FontSize="20" Command="{Binding DefaultBCCommand}"/>
     </Grid>
