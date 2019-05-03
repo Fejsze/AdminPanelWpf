@@ -9,10 +9,16 @@
         Title="C#-ot C#-ul.Feladat" 
         WindowState="Maximized" 
         Icon="/LearningApp;component/Resource/32px-C_Sharp_wordmark.svg.png">
-    <Grid>
+    <Window.Background>
+        <LinearGradientBrush>
+            <GradientStop Color="#c3cec3" Offset="0.6"/>
+            <GradientStop Color="#f6ffeb" Offset="2"/>
+        </LinearGradientBrush>
+    </Window.Background>
+    <Grid Margin="5 100 5 5">
         <StackPanel>
         <Frame Name="frame" Width="auto" Content="{Binding Path=DisplayPage, Mode=TwoWay}" NavigationUIVisibility="Hidden"/>
-        <Button Content="Válasz megerősítése"/>
+            <Button MaxWidth="150" Content="Válasz megerősítése" Command="{Binding SubmitAnswerCommand}"/>
         </StackPanel>
     </Grid>
 </Window>

@@ -22,8 +22,12 @@ namespace LearningApp.View.Task
     {
         public MainTaskWindow()
         {
-            DataContext = new MainTaskViewModel();
             InitializeComponent();
+
+            var vm = new MainTaskViewModel();
+            this.DataContext = vm;
+            if (vm.CloseAction == null)
+                vm.CloseAction = new Action(this.Close);
         }
     }
 }

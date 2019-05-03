@@ -6,11 +6,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace LearningApp.ViewModel.Task
 {
     class MainTaskViewModel : BaseViewModel
     {
+        public ICommand SubmitAnswerCommand { get; set; }
+        public Action CloseAction { get; set; }
+
         private Page _displayPage;
         public Page DisplayPage
         {
@@ -32,12 +36,24 @@ namespace LearningApp.ViewModel.Task
         }
         public MainTaskViewModel()
         {
+            SubmitAnswerCommand = new RelayCommand(o => SubmitAnswerClick(o));
             LessonsSQLSelects lessonsSQLSelects = new LessonsSQLSelects();
             Globals.ActualPoints = 0;
             //Globals.ActualTasks = lessonsSQLSelects.Multiple_choiceTask("alapok I");
-            //Globals.ActualTasks = lessonsSQLSelects.Multiple_choiceTask("alapok II");
-            Globals.ActualTasks = lessonsSQLSelects.Multiple_choiceTask("ConsoleApp I");
-            this.DisplayPage = Globals.ActualTasks[0];
+            Globals.ActualTasks = lessonsSQLSelects.Multiple_choiceTask("alapok II");
+            //Globals.ActualTasks = lessonsSQLSelects.Multiple_choiceTask("ConsoleApp I");
+            Globals.ActualTasksDefault = Globals.ActualTasks;
+            this.DisplayPage = Globals.NextTask();
+        }
+
+        private void SubmitAnswerClick(object o)
+        {
+            Page next = Globals.NextTask();
+            if (next != null)
+            {
+                this.DisplayPage = next;
+            }
+            else CloseAction();
         }
 
         private static Page pairingPage()

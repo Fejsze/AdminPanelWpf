@@ -45,7 +45,7 @@
             FlowDirection="LeftToRight"
             Background="#b2beb5">
             <Button MinWidth="200" Command="{Binding TestCommand3}" Content="MainTaskWindow" />
-            <Label MinWidth="50" MaxWidth="200" Background="Gold" Foreground="DeepPink" FontSize="15" Content="{Binding Money}"/>
+            <Label MinWidth="50" MaxWidth="200" Background="Gold" Foreground="DeepPink" FontSize="15" Content="{Binding Money, Mode=TwoWay}"/>
         </DockPanel>
             <Frame Margin="1 20 1 100" MinWidth="1150" MinHeight="640" 
                    Grid.Row="1" Grid.Column="2" 

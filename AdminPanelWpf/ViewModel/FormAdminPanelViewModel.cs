@@ -45,7 +45,7 @@ namespace LearningApp.ViewModel
                 while (true)
                 {
                     Money = Globals.ActualUser.Money.ToString();
-                    Thread.Sleep(60000);
+                    Thread.Sleep(6000);
                 }
             }).Start();
         }
