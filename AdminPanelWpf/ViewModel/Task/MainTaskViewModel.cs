@@ -33,7 +33,7 @@ namespace LearningApp.ViewModel.Task
         public MainTaskViewModel()
         {
             LessonsSQLSelects lessonsSQLSelects = new LessonsSQLSelects();
-            Globals.ActualPionts = 0;
+            Globals.ActualPoints = 0;
             //Globals.ActualTasks = lessonsSQLSelects.Multiple_choiceTask("alapok I");
             //Globals.ActualTasks = lessonsSQLSelects.Multiple_choiceTask("alapok II");
             Globals.ActualTasks = lessonsSQLSelects.Multiple_choiceTask("ConsoleApp I");

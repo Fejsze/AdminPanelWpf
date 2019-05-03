@@ -16,8 +16,7 @@ namespace LearningApp.ViewModel
     {
         public event EventHandler onEventRaised;
         private Page displayPage;
-        private int money;
-        private Thread moneySync;
+        private string money;
 
         public Page DisplayPage
         {
@@ -28,11 +27,11 @@ namespace LearningApp.ViewModel
                 NotifyPropertyChanged("DisplayPage");
             }
         }
-        public int Money
+        public string Money
         {
             get => money; set
             {
-                money = value;
+                money = "Egyenleg: " + value;
                 NotifyPropertyChanged("Money");
             }
         }
@@ -40,13 +39,12 @@ namespace LearningApp.ViewModel
         public FormAdminPanelViewModel()
         {
             CommandInstantiation();
-            Money = Globals.ActualUser.Money;
-            new Thread(() =>
+            new Thread(() =>                                           //Aktuális pénz egyenleg megjelenítésének a frissítése
             {
                 Thread.CurrentThread.IsBackground = true;
                 while (true)
                 {
-                    Money = Globals.ActualUser.Money;
+                    Money = Globals.ActualUser.Money.ToString();
                     Thread.Sleep(60000);
                 }
             }).Start();

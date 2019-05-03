@@ -11,7 +11,8 @@ namespace LearningApp
     public static class Globals
     {
         public static UsersModel ActualUser;
-        public static int ActualPionts;
-        public static List<Page> ActualTasks; 
+        public static int ActualPoints;
+        public static List<Page> ActualTasks;
+        public static List<Page> ActualTasksDefault;
     }
 }

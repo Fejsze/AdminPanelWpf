@@ -29,9 +29,18 @@ namespace LearningApp.ViewModel.Task
 
         private void TrueClick(object sender)
         {
+            if (trueFalseM.GoodAnswer == "true")
+            {
+                Globals.ActualPoints++;
+                if (Globals.ActualTasks.Count != 0)
+                {
+                    //Globals.ActualTasks[0]
+                }
+            }
         }
         private void FalseClick(object sender)
         {
+
         }
     }
 }
