@@ -17,6 +17,7 @@ namespace LearningApp.ViewModel
         public event EventHandler onEventRaised;
         private Page displayPage;
         private string money;
+        private Thread moneySyncThread;
 
         public Page DisplayPage
         {
@@ -39,7 +40,7 @@ namespace LearningApp.ViewModel
         public FormAdminPanelViewModel()
         {
             CommandInstantiation();
-            new Thread(() =>                                           //Aktuális pénz egyenleg megjelenítésének a frissítése
+            moneySyncThread = new Thread(() =>                                           //Aktuális pénz egyenleg megjelenítésének a frissítése
             {
                 Thread.CurrentThread.IsBackground = true;
                 while (true)
@@ -81,7 +82,10 @@ namespace LearningApp.ViewModel
         private void ExitClick(object sender)
         {
             if (onEventRaised != null)
+            {
+                moneySyncThread.Abort();
                 onEventRaised(this, null);
+            }
         }
         #endregion
 
