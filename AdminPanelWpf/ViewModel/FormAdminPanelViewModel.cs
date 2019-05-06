@@ -48,7 +48,8 @@ namespace LearningApp.ViewModel
                     Money = Globals.ActualUser.Money.ToString();
                     Thread.Sleep(6000);
                 }
-            }).Start();
+            });
+            moneySyncThread.Start();
         }
 
         #region CommandRegion
