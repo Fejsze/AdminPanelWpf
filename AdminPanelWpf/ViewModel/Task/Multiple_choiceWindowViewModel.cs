@@ -8,18 +8,22 @@ using System.Windows.Input;
 
 namespace LearningApp.ViewModel.Task
 {
-    class Multiple_choicePageViewModel
+    class Multiple_choicePageViewModel : BaseViewModel
     {
         Multiple_choice multiple_choiceM;
         Random random = new Random();
+        private bool ansButtonSVis = true;
 
         public Multiple_choicePageViewModel(Multiple_choice mc)
         {
+
             multiple_choiceM = mc;
             Question = multiple_choiceM.Question;
             int r = random.Next(1, 5);
+            AnswerCommand1 = AnswerCommand2 = AnswerCommand3 = AnswerCommand4 = new RelayCommand(o => GoodAnswerClick(o));
             if (r == 1)
             {
+                AnswerCommand1 = new RelayCommand(o => BadAnswerClick(o));
                 A1 = multiple_choiceM.GoodAnswer;
                 A2 = multiple_choiceM.Answers[0];
                 A3 = multiple_choiceM.Answers[1];
@@ -27,6 +31,7 @@ namespace LearningApp.ViewModel.Task
             }
             else if (r == 2)
             {
+                AnswerCommand2 = new RelayCommand(o => BadAnswerClick(o));
                 A2 = multiple_choiceM.GoodAnswer;
                 A1 = multiple_choiceM.Answers[0];
                 A3 = multiple_choiceM.Answers[1];
@@ -34,6 +39,7 @@ namespace LearningApp.ViewModel.Task
             }
             else if (r == 3)
             {
+                AnswerCommand3 = new RelayCommand(o => BadAnswerClick(o));
                 A3 = multiple_choiceM.GoodAnswer;
                 A1 = multiple_choiceM.Answers[0];
                 A2 = multiple_choiceM.Answers[1];
@@ -41,33 +47,41 @@ namespace LearningApp.ViewModel.Task
             }
             else
             {
+                AnswerCommand4 = new RelayCommand(o => BadAnswerClick(o));
                 A4 = multiple_choiceM.GoodAnswer;
                 A1 = multiple_choiceM.Answers[0];
                 A2 = multiple_choiceM.Answers[1];
                 A3 = multiple_choiceM.Answers[2];
             }
-
-            BadAnswerCommand = new RelayCommand(o => BadAnswerClick(o));
-            GoodAnswerCommand = new RelayCommand(o => GoodAnswerClick(o));
         }
 
         public string Question { get; set; }
-        public ICommand BadAnswerCommand { get; set; }
-        public ICommand GoodAnswerCommand { get; set; }
+        public ICommand AnswerCommand1 { get; set; }
+        public ICommand AnswerCommand2 { get; set; }
+        public ICommand AnswerCommand3 { get; set; }
+        public ICommand AnswerCommand4 { get; set; }
 
         public string A1 { get; set; }
         public string A2 { get; set; }
         public string A3 { get; set; }
         public string A4 { get; set; }
+        public bool AnsButtonSVis
+        {
+            get => ansButtonSVis; set
+            {
+                ansButtonSVis = value;
+                NotifyPropertyChanged("AnsButtonSVis");
+            }
+        }
 
         private void BadAnswerClick(object sender)
         {
-
+            AnsButtonSVis = false;
         }
         private void GoodAnswerClick(object sender)
         {
-            
+            Globals.ActualPoints++;
+            AnsButtonSVis = false;
         }
-
     }
 }

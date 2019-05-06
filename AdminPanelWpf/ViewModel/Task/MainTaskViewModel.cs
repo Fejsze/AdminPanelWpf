@@ -39,8 +39,8 @@ namespace LearningApp.ViewModel.Task
             SubmitAnswerCommand = new RelayCommand(o => SubmitAnswerClick(o));
             LessonsSQLSelects lessonsSQLSelects = new LessonsSQLSelects();
             Globals.ActualPoints = 0;
-            //Globals.ActualTasks = lessonsSQLSelects.Multiple_choiceTask("alapok I");
-            Globals.ActualTasks = lessonsSQLSelects.Multiple_choiceTask("alapok II");
+            Globals.ActualTasks = lessonsSQLSelects.Multiple_choiceTask("alapok I");
+            //Globals.ActualTasks = lessonsSQLSelects.Multiple_choiceTask("alapok II");
             //Globals.ActualTasks = lessonsSQLSelects.Multiple_choiceTask("ConsoleApp I");
             Globals.ActualTasksDefault = Globals.ActualTasks;
             this.DisplayPage = Globals.NextTask();

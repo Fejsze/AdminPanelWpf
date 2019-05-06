@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:LearningApp.View.Task"
         mc:Ignorable="d"
         Title="PairingWindow" Height="450" Width="800">
-    <Grid Name="ng">
-
-    </Grid>
+    <StackPanel>
+        <Grid Name="ng"/>
+        <Button Content="Ellenőrzés" Click="CheckClick" MaxWidth="250" Height="50" FontSize="30"/>
+    </StackPanel>
 </Page>

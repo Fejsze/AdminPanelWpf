@@ -22,7 +22,7 @@
 
         <DockPanel Grid.Column="0" Grid.Row="0" Grid.RowSpan="2">
             <Menu Background="#b2beb5" Foreground="White" DockPanel.Dock="Left" Margin="2 2 2 2">
-                <MenuItem Header="_Kezdőlap"/>
+                <MenuItem Header="_Kezdőlap" Command="{Binding HomeCommand}"/>
                 <Separator/>
                 <MenuItem Background="#b2beb5" Header="_Tananyagok">
                     <MenuItem Background="#b2beb5" Header="_Alapok I.">

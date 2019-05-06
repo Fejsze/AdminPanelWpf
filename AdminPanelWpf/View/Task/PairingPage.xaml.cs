@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LearningApp.ViewModel.Task;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,7 @@ namespace LearningApp.View.Task
         public PairingPage(Dictionary<string, string> iKerdesek, List<string> iValaszok)
         {
             InitializeComponent();
+            DataContext = new PairingPageViewModel();
 
             Grid DynamicGrid = new Grid
             {
@@ -62,7 +64,9 @@ namespace LearningApp.View.Task
                     ItemsSource = new List<string>(iValaszok),
                     MaxHeight = 20,
                     Width = 100,
+                    Tag = x.Value
                 };
+
                 Grid.SetRow(cb, s);
                 Grid.SetColumn(cb, 1);
                 DynamicGrid.Children.Add(cb);
@@ -70,6 +74,24 @@ namespace LearningApp.View.Task
             }
             // Display grid into a Window
             ng.Children.Add(DynamicGrid);
+        }
+
+        private void CheckClick(object sender, RoutedEventArgs e)
+        {
+            bool l = true;
+            foreach (var children in ng.Children)
+            {
+                if (children.GetType() == typeof(TextBox))
+                {
+                    var x = (children as TextBox);
+                    if (x.Text != x.Tag.ToString())
+                        l = false;
+                }
+            }
+            if (!l)
+                MessageBox.Show("Nem");
+            else
+                MessageBox.Show("Igen");
         }
     }
 }

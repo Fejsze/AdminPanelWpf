@@ -100,15 +100,20 @@
     <Compile Include="Utilities.cs" />
     <Compile Include="ViewModel\ChangePasswordViewModel.cs" />
     <Compile Include="ViewModel\FormAdminPanelViewModel.cs" />
+    <Compile Include="ViewModel\HomePageViewModel.cs" />
     <Compile Include="ViewModel\LessonsPageViewModel.cs" />
     <Compile Include="ViewModel\LoginPageViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\RegistrationPageViewModel.cs" />
     <Compile Include="ViewModel\Task\MainTaskViewModel.cs" />
     <Compile Include="ViewModel\Task\Multiple_choiceWindowViewModel.cs" />
+    <Compile Include="ViewModel\Task\PairingPageViewModel.cs" />
     <Compile Include="ViewModel\Task\TrueFalseWindowViewModel.cs" />
     <Compile Include="View\ChangePasswordPage.xaml.cs">
       <DependentUpon>ChangePasswordPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\HomePage.xaml.cs">
+      <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\LessonsPage.xaml.cs">
       <DependentUpon>LessonsPage.xaml</DependentUpon>
@@ -156,6 +161,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="View\ChangePasswordPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\HomePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

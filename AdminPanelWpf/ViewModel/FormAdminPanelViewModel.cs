@@ -40,6 +40,7 @@ namespace LearningApp.ViewModel
         public FormAdminPanelViewModel()
         {
             CommandInstantiation();
+            DisplayPage = new HomePage();
             moneySyncThread = new Thread(() =>                                           //Aktuális pénz egyenleg megjelenítésének a frissítése
             {
                 Thread.CurrentThread.IsBackground = true;
@@ -57,6 +58,7 @@ namespace LearningApp.ViewModel
         public ICommand LessonCommand { get; set; }
         public ICommand MarketCommand { get; set; }
         public ICommand ExitCommand { get; set; }
+        public ICommand HomeCommand { get; set; }
         public ICommand TestCommand3 { get; set; }
         #endregion
 
@@ -80,6 +82,11 @@ namespace LearningApp.ViewModel
             MarketPage marketPage = new MarketPage();
             DisplayPage = marketPage;
         }
+        private void HomeClick(object sender)
+        {
+            HomePage homePage = new HomePage();
+            DisplayPage = homePage;
+        }
         private void ExitClick(object sender)
         {
             if (onEventRaised != null)
@@ -97,6 +104,7 @@ namespace LearningApp.ViewModel
             MarketCommand = new RelayCommand(o => MarketClick(o));
             TestCommand3 = new RelayCommand(o => TestClick3(o));
             LessonCommand = new RelayCommand(o => LessonClick(o));
+            HomeCommand = new RelayCommand(o => HomeClick(o));
         }
     }
 }

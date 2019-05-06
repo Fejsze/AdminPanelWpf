@@ -7,6 +7,13 @@
         mc:Ignorable="d"
         Title="TrueFalseWindow" Height="450" Width="800"
         Background="AntiqueWhite">
+
+    <Page.Resources>
+        <ResourceDictionary>
+            <BooleanToVisibilityConverter x:Key="boolToVis"/>
+        </ResourceDictionary>
+    </Page.Resources>
+
     <Grid Name="ng">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" MinWidth="100" />
@@ -18,7 +25,7 @@
         </Grid.RowDefinitions>
 
         <Label Grid.ColumnSpan="2" VerticalAlignment="Center" Background="AntiqueWhite" HorizontalAlignment="Center" FontSize="60" Grid.Column="0" Grid.Row="0" Content="{Binding Question}"/>
-        <Button Grid.Column="0" Grid.Row="1"  Content="Igen" Background="Blue" FontSize="50" Command="{Binding TrueCommand}"/>
-        <Button Grid.Column="1" Grid.Row="1" Content="Nem" Background="Red" FontSize="50" Command="{Binding FalseCommand}"/>
+        <Button Grid.Column="0" Grid.Row="1"  Content="Igaz" Background="Blue" FontSize="50" Command="{Binding TrueCommand}" Visibility="{Binding IsVisibleTrueButton, Converter={StaticResource boolToVis}, Mode=TwoWay}"/>
+        <Button Grid.Column="1" Grid.Row="1" Content="Hamis" Background="Red" FontSize="50" Command="{Binding FalseCommand}" Visibility="{Binding IsVisibleFalseButton, Converter={StaticResource boolToVis}, Mode=TwoWay}"/>
     </Grid>
 </Page>
