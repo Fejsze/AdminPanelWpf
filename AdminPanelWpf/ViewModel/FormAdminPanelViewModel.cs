@@ -12,8 +12,27 @@ using System.Windows.Input;
 
 namespace LearningApp.ViewModel
 {
-    class FormAdminPanelViewModel : BaseViewModel
+    class MainContentViewModel : BaseViewModel
     {
+        /// <summary>
+        /// MainContentViewModel konstruktora
+        /// </summary>
+        public MainContentViewModel()
+        {
+            CommandInstantiation();
+            DisplayPage = new HomePage();
+            moneySyncThread = new Thread(() =>                                           //Aktuális pénz egyenleg megjelenítésének a frissítése
+            {
+                Thread.CurrentThread.IsBackground = true;
+                while (true)
+                {
+                    Money = Globals.ActualUser.Money.ToString();
+                    Thread.Sleep(6000);
+                }
+            });
+            moneySyncThread.Start();
+        }
+
         public event EventHandler onEventRaised;
         private Page displayPage;
         private string money;
@@ -35,22 +54,6 @@ namespace LearningApp.ViewModel
                 money = "Egyenleg: " + value;
                 NotifyPropertyChanged("Money");
             }
-        }
-
-        public FormAdminPanelViewModel()
-        {
-            CommandInstantiation();
-            DisplayPage = new HomePage();
-            moneySyncThread = new Thread(() =>                                           //Aktuális pénz egyenleg megjelenítésének a frissítése
-            {
-                Thread.CurrentThread.IsBackground = true;
-                while (true)
-                {
-                    Money = Globals.ActualUser.Money.ToString();
-                    Thread.Sleep(6000);
-                }
-            });
-            moneySyncThread.Start();
         }
 
         #region CommandRegion
@@ -97,6 +100,9 @@ namespace LearningApp.ViewModel
         }
         #endregion
 
+        /// <summary>
+        /// Klikk események meghívása.
+        /// </summary>
         private void CommandInstantiation()
         {
             ChangePasswordCommand = new RelayCommand(o => ChangePasswordClick(o));

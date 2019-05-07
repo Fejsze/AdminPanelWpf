@@ -8,7 +8,7 @@ namespace LearningApp.ViewModel
 {
     class HomePageViewModel : BaseViewModel
     {
-        private string mainText = "Kezdőlap";
+        private string mainText = $"Legyen szép napod {Globals.ActualUser.NickName}!";
 
         public string MainText
         {

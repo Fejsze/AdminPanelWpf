@@ -19,11 +19,11 @@ namespace LearningApp.View
     /// <summary>
     /// Interaction logic for Page2.xaml
     /// </summary>
-    public partial class FormAdminPanelPage : Page
+    public partial class MainContentPage : Page
     {
-        public FormAdminPanelPage()
+        public MainContentPage()
         {
-            this.DataContext = new FormAdminPanelViewModel();
+            this.DataContext = new MainContentViewModel();
             InitializeComponent();
         }
     }

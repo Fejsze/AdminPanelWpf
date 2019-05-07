@@ -10,10 +10,19 @@ namespace LearningApp.ViewModel
 {
     class RegistrationPageViewModel : BaseViewModel
     {
-        public ICommand ExitCommand { get; set; }
+        public RegistrationPageViewModel()
+        {
+            RegistrationCommand = new RelayCommand(RegistrationCommandClick);
+            PrivacyStatementCommand = new RelayCommand(PrivacyStatementCommandClick);
+            ExitCommand = new RelayCommand(o => ExitClick(o));
+        }
+
         public event EventHandler onEventRaised;
+        public ICommand ExitCommand { get; set; }
+        public ICommand RegistrationCommand { get; set; }
+        public ICommand PrivacyStatementCommand { get; set; }
 
-
+        #region Variables
         private string userName;
         private string nickName;
         private string email;
@@ -22,7 +31,9 @@ namespace LearningApp.ViewModel
         private string passwordAgain;
         private string reminder;
         private bool isSelected;
+        #endregion
 
+        #region Properties
         public string UserName
         {
             get => userName;
@@ -93,15 +104,18 @@ namespace LearningApp.ViewModel
                 NotifyPropertyChanged("IsSelected");
             }
         }
+        #endregion
 
-        public ICommand RegistrationCommand { get; set; }
-
-        public RegistrationPageViewModel()
+        private void PrivacyStatementCommandClick(object o)
         {
-            RegistrationCommand = new RelayCommand(RegistrationCommandClick);
-            ExitCommand = new RelayCommand(o => ExitClick(o));
+            SqlConnectionHandler sqlConnection = new SqlConnectionHandler();
+            sqlConnection.Open();
+            MessageBox.Show(sqlConnection.SelectPrivacyStatement());
         }
 
+        /// <summary>
+        ///     Regisztrációs gomb eseménye. Adatok ellenőrzése, adatbázisra kiírás meghívása.
+        /// </summary>
         private void RegistrationCommandClick(object parameter)
         {
             var passwordContainer = parameter as IHavePassword;
@@ -125,10 +139,9 @@ namespace LearningApp.ViewModel
                             if (conn.InsertUser(userName, nickName, password, email, Reminder)) MessageBox.Show("Sikeres regisztráció!");
                             else MessageBox.Show("Sikertelen regisztráció!");
                         }
-                        catch (Exception ex)
+                        catch (Exception )
                         {
-                            //MessageBox.Show("Hiba, kérem próbálja újra!");
-                            MessageBox.Show(ex.ToString());
+                            MessageBox.Show("Hiba, kérem próbálja újra!");
                         }
                     }
                     else MessageBox.Show("Hiba, az email címek nem egyeznek! Kérem próbálja újra!");

@@ -11,19 +11,25 @@ namespace LearningApp.ViewModel.Task
 {
     class TrueFalsePageViewModel : BaseViewModel
     {
-        TrueFalseModel trueFalseM;
-        private string question;
-        private bool isVisibleTrueButton = true;
-        private bool isVisibleFalseButton = true;
-
+        /// <summary>
+        ///     TrueFalsePageViewModel konstruktora.
+        /// </summary>
+        /// <param name="trueFalseModel">TrueFalseModel típúst kér be.</param>
         public TrueFalsePageViewModel(TrueFalseModel trueFalseModel)
         {
             trueFalseM = trueFalseModel;
+            Point = trueFalseM.Point;
             question = trueFalseM.Question;
 
             TrueCommand = new RelayCommand(o => TrueClick(o));
             FalseCommand = new RelayCommand(o => FalseClick(o));
         }
+
+        TrueFalseModel trueFalseM;
+        public int Point;
+        private string question;
+        private bool isVisibleTrueButton = true;
+        private bool isVisibleFalseButton = true;
 
         public string Question
         {
@@ -64,7 +70,7 @@ namespace LearningApp.ViewModel.Task
         {
             if (trueFalseM.GoodAnswer == "hamis")
             {
-                Globals.ActualPoints++;
+                Globals.ActualPoints += Point;
                 ButtonVisibility();
             } else ButtonVisibility();
         }

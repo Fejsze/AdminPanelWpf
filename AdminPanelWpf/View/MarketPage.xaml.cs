@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LearningApp.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,7 @@ namespace LearningApp.View
         public MarketPage()
         {
             InitializeComponent();
+            DataContext = new MarketPageViewModel();
         }
     }
 }

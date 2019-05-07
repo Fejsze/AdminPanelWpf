@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace LearningApp.Model
 {
+    /// <summary>
+    /// Felhasználói adatok
+    /// </summary>
     public class UsersModel
     {
         public string GeneratedID { get; set; }

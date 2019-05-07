@@ -42,8 +42,8 @@ namespace LearningApp.ViewModel
 
         private void MainViewModel_OnEventRaised(object sender, EventArgs e)
         {
-            this.DisplayPage = new FormAdminPanelPage();
-            (this.DisplayPage.DataContext as FormAdminPanelViewModel).onEventRaised += MainViewModel_onEventRaised;
+            this.DisplayPage = new MainContentPage();
+            (this.DisplayPage.DataContext as MainContentViewModel).onEventRaised += MainViewModel_onEventRaised;
         }
 
         private void MainViewModel_onEventRaised(object sender, EventArgs e)

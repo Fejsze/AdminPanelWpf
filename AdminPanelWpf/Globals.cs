@@ -8,12 +8,34 @@ using System.Windows.Controls;
 
 namespace LearningApp
 {
+    /// <summary>
+    /// Globális adatok tárolása
+    /// </summary>
     public static class Globals
     {
         public static UsersModel ActualUser;
         public static int ActualPoints;
+        public static int MaxPoints;
         public static List<Page> ActualTasks;
         public static List<Page> ActualTasksDefault;
+
+        public static int LvLUp()
+        {
+            if (ActualPoints > MaxPoints/2-1)
+            {
+                ActualUser.Level++;
+                SqlConnectionHandler sqlConnection = new SqlConnectionHandler();
+                if (sqlConnection.Open())
+                    sqlConnection.UserLvLUp();
+                else
+                {
+                    ActualUser.Level--;
+                    return 2;
+                }
+                return 1;
+            }
+            return 0;
+        }
 
         public static Page NextTask()
         {

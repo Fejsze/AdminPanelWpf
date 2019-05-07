@@ -10,15 +10,24 @@ using System.Windows.Controls;
 
 namespace LearningApp.SQL
 {
-    class LessonsSQLSelects
+    /// <summary>
+    /// Feladatok lekérése az adatbázisról.
+    /// </summary>
+    class TasksSQLSelects
     {
-        SqlConnectionHandler connection = new SqlConnectionHandler();
-        public LessonsSQLSelects()
+        public TasksSQLSelects()
         {
             connection.Open();
         }
 
-        public List<Page> Multiple_choiceTask(string TaskName)
+        SqlConnectionHandler connection = new SqlConnectionHandler();
+
+        /// <summary>
+        /// Feladat lekérdezése.
+        /// </summary>
+        /// <param name="TaskName">Feladat neve</param>
+        /// <returns>Az adott feladat Page-ével tér vissza.</returns>
+        public List<Page> SelectTask(string TaskName)
         {
             List<Page> p = new List<Page>();
             try

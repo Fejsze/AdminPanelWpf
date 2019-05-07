@@ -20,10 +20,13 @@ namespace LearningApp.View.Task
     /// </summary>
     public partial class PairingPage : Page
     {
-        public PairingPage(Dictionary<string, string> iKerdesek, List<string> iValaszok)
+        public int Point;
+        public PairingPage(Dictionary<string, string> iKerdesek, List<string> iValaszok, int Point)
         {
             InitializeComponent();
             DataContext = new PairingPageViewModel();
+
+            this.Point = Point;
 
             Grid DynamicGrid = new Grid
             {
@@ -81,17 +84,20 @@ namespace LearningApp.View.Task
             bool l = true;
             foreach (var children in ng.Children)
             {
-                if (children.GetType() == typeof(TextBox))
+                if (children.GetType() == typeof(ComboBox))
                 {
-                    var x = (children as TextBox);
-                    if (x.Text != x.Tag.ToString())
+                    var x = (children as ComboBox);
+                    if (x.SelectedValue.ToString() != x.Tag.ToString())
                         l = false;
                 }
             }
             if (!l)
-                MessageBox.Show("Nem");
+                Button.Visibility = Visibility.Hidden;
             else
-                MessageBox.Show("Igen");
+            {
+                Button.Visibility = Visibility.Hidden;
+                Globals.ActualPoints += Point;
+            }
         }
     }
 }

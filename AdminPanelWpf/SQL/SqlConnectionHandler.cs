@@ -15,6 +15,9 @@ namespace LearningApp
         MySqlConnection connection;
         public MySqlConnection Connection { get => connection;}
 
+        /// <summary>
+        ///     Konstruktor
+        /// </summary>
         public SqlConnectionHandler()
         {
             string connectionString = ConfigurationManager.ConnectionStrings["mySqlConnectionString"].ConnectionString;
@@ -23,6 +26,10 @@ namespace LearningApp
 
         public bool IsOpen { get; private set; } = false;
 
+        /// <summary>
+        ///     Létrehozza az adatbázis kapcsolatot.
+        /// </summary>
+        /// <returns>Igaz/Hamis értékkel tér vissza</returns>
         public bool Open()
         {
             try
@@ -37,6 +44,12 @@ namespace LearningApp
             return IsOpen;
         }
 
+        /// <summary>
+        /// Vizsgálja a felhasználó eredetiségét.
+        /// </summary>
+        /// <param name="userName">Felhasználónév</param>
+        /// <param name="password">Jelszó (string)</param>
+        /// <returns></returns>
         public bool IsUserValid(string userName, string password)
         {
             MySqlCommand command = new MySqlCommand("SELECT password FROM login WHERE username = @username", connection);
@@ -45,6 +58,11 @@ namespace LearningApp
             return loginCheck == null ? false : StringCipher.Decrypt(loginCheck.ToString(), "Fejsze").ToString() == password;
         }
 
+        /// <summary>
+        ///     Aktuális felhasználó adatainak lekérdezése.
+        /// </summary>
+        /// <param name="userName">Felhasználónév. string típus.</param>
+        /// <returns>UsersModel-t ad vissza.</returns>
         public UsersModel GetUserData(string userName)
         {
             UsersModel um = null;
@@ -85,6 +103,11 @@ namespace LearningApp
             }
         }
 
+        /// <summary>
+        ///     Jelszó átírása az adatbázisban.
+        /// </summary>
+        /// <param name="GeneratedId">Az aktuális felhasználó Generált ID-ja. (string)</param>
+        /// <param name="newPassoword">A felhasználó által beírt új jelszó. (string)</param>
         public void UpdatePassword(string GeneratedId, string newPassoword)
         {
             MySqlCommand comm = new MySqlCommand("UPDATE login SET password = @password WHERE generatedid = @generatedid", connection);
@@ -93,19 +116,30 @@ namespace LearningApp
             comm.ExecuteNonQuery();
         }
 
+        /// <summary>
+        ///     Felhasználó felvitele az adatbézisra! 
+        /// </summary>
+        /// <param name="username">Felhasználónév</param>
+        /// <param name="nickname">Becenév</param>
+        /// <param name="password">Jelszó</param>
+        /// <param name="email">Email</param>
+        /// <param name="reminder">Emlékeztető</param>
+        /// <returns>Igaz/Hamis értékkel tér vissza.</returns>
         public bool InsertUser(string username, string nickname, string password, string email, string reminder)
         {
             UsersModel um = GetUserData(username);
+            string generatedid = IDGenerator;
             if (um == null)
             {
                 //User data beszúrása
-                MySqlCommand commUD = new MySqlCommand("INSERT INTO `user_data` (`level`, `nickname`,`money`) VALUES ( 0, @nickname, @money );", connection);
+                MySqlCommand commUD = new MySqlCommand("INSERT INTO `user_data` (`generatedid`, `level`, `nickname`,`money`) VALUES (@generatedid, 0, @nickname, @money );", connection);
+                    commUD.Parameters.AddWithValue("generatedid", generatedid);
                     commUD.Parameters.AddWithValue("nickname", nickname);
                     commUD.Parameters.AddWithValue("money", 1000);
                     commUD.ExecuteNonQuery();
                 //Login beszúrása
                 MySqlCommand commL = new MySqlCommand("INSERT INTO login (`generatedid`, `username`, `password`, `created`, `email`, `Reminder`, `user_data_id`) VALUES (@generatedid, @username, @password, @created, @email, @Reminder, @user_data_id);", connection);
-                    commL.Parameters.AddWithValue("generatedid", IDGenerator);
+                    commL.Parameters.AddWithValue("generatedid", generatedid);
                     commL.Parameters.AddWithValue("username", username);
                     commL.Parameters.AddWithValue("password", StringCipher.Encrypt(password, "Fejsze"));
                     commL.Parameters.AddWithValue("created", DateTime.UtcNow);
@@ -118,6 +152,11 @@ namespace LearningApp
             return false;
         }
 
+        /// <summary>
+        ///     Lekéri az adatbázisról a tananyagot.
+        /// </summary>
+        /// <param name="topic">Tananyag neve (string)</param>
+        /// <returns>Lesson típusban vissza adja az adatokat. (Text, TopicEnd)</returns>
         public Lesson LessonSelect(string topic)
         {
             MySqlCommand comm;
@@ -146,6 +185,46 @@ namespace LearningApp
             return null;
         }
 
+        /// <summary>
+        ///      Adatbázis szinten átírja a felhasználó szintjét.
+        /// </summary>
+        public void UserLvLUp()
+        {
+            MySqlCommand comm = new MySqlCommand($"UPDATE `user_data` SET `level` = '{Globals.ActualUser.Level}' WHERE `user_data`.`generatedid` = {Globals.ActualUser.GeneratedID};", connection);
+            comm.ExecuteNonQuery();
+        }
+
+        /// <summary>
+        ///     Adatbázis szinten átírja a becenevét és a pénzét.
+        /// </summary>
+        public void UpdateNickName()
+        {
+            MySqlCommand comm = new MySqlCommand($"UPDATE `user_data` SET `nickname` = '{Globals.ActualUser.NickName}' WHERE `user_data`.`generatedid` = {Globals.ActualUser.GeneratedID};", connection);
+            comm.ExecuteNonQuery();
+            MySqlCommand comm2 = new MySqlCommand($"UPDATE `user_data` SET `money = '{Globals.ActualUser.Money}' WHERE `user_data`.`generatedid` = {Globals.ActualUser.GeneratedID};", connection);
+            comm2.ExecuteNonQuery();
+        }
+
+        /// <summary>
+        ///     Az Adatkezelési Nyilatkozatot kérdezi le adatbázisról.
+        /// </summary>
+        /// <returns>
+        ///     Az adatkezelési nyilatkozat szövegét adja vissza string-ben.
+        /// </returns>
+        public string SelectPrivacyStatement()
+        {
+            MySqlCommand comm = new MySqlCommand($"SELECT PrivacyStatementText FROM `privacystatement` where `id` = 1;", connection);
+            using (MySqlDataReader reader = comm.ExecuteReader())
+            {
+                string result = null;
+                while (reader.Read())
+                {
+                    result = reader["PrivacyStatementText"].ToString();
+                }
+                return result;
+            }
+        }
+
         private int LastInsertIDUserData()
         {
             MySqlCommand comm = new MySqlCommand($"Select Max(`id`) From `user_data`;", connection);
@@ -157,7 +236,9 @@ namespace LearningApp
             }
         }
 
+        /// <summary>
+        ///     Egy karakter láncot ad vissza. Adatbázis szinten egyedi értéke van, azonosítható vele az felhasználó.
+        /// </summary>
         private string IDGenerator => Guid.NewGuid().ToString("N");
-
     }
 }

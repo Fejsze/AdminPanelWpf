@@ -44,6 +44,6 @@
     </Page.Resources>
 
     <Grid VerticalAlignment="Top">
-        <TextBox Background="White" Foreground="#b2beb5" Text="{Binding MainText}" IsEnabled="False" IsReadOnly="True" BorderBrush="Black" BorderThickness="0.7" FontSize="30" FontFamily="sans-serif" TextAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" MaxWidth="150" MaxHeight="50" Style="{DynamicResource TextBoxStyle1}"/>
+        <TextBox Background="White" Foreground="#b2beb5" Text="{Binding MainText}" IsEnabled="False" IsReadOnly="True" BorderBrush="Black" BorderThickness="0.7" FontSize="30" FontFamily="sans-serif" TextAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" MaxWidth="450" Style="{DynamicResource TextBoxStyle1}"/>
     </Grid>
 </Page>

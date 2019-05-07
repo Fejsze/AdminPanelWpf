@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:LearningApp.View.Task"
         mc:Ignorable="d"
         Title="Pairing">
-    <DockPanel Name="sp">
-        
-    </DockPanel>
+    <StackPanel>
+        <DockPanel Name="sp"/>
+        <Button Click="Button_Click" Width="100" Content="Válasz rögzítése" Name="Button"/>
+    </StackPanel>
 </Page>

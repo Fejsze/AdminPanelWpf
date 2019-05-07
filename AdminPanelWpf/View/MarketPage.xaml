@@ -25,9 +25,22 @@
                     <GradientStop Color="#FFFFFFFF" Offset="0.55"/>
                 </LinearGradientBrush>
         </Grid.Background>
-        <Button Grid.Column="0" Grid.Row="0" Margin="5" Content="Véletlen háttérszín" FontSize="20" Command="{Binding RandomBCCommand}"/>
-        <Button Grid.Column="1" Grid.Row="0" Margin="5" Content="Választható háttérszín" FontSize="20" Command="{Binding ChoiceBCCommand}"/>
-        <Button Grid.Column="2" Grid.Row="0" Margin="5" Content="Alap háttérszín" FontSize="20" Command="{Binding DefaultBCCommand}"/>
-    </Grid>
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="0" Grid.Row="0">
+                <Label Content="Ár: 5000"/>
+                <Button  Margin="5" Content="Becenév megváltoztatása" FontSize="20" MinWidth="250" Command="{Binding NickNameChangeCommand}"/>
+            </StackPanel>
+            <!--<StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="0" Grid.Row="0">
+                <Label Content="Ár: 5000"/>
+                <Button  Margin="5" Content="Véletlen háttérszín" FontSize="20" MinWidth="250" Command="{Binding RandomBCCommand}"/>
+            </StackPanel>
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="0">
+                <Label Content="Ár: 15000"/>
+                <Button  Margin="5" Content="Választható háttérszín" FontSize="20" MinWidth="250" Command="{Binding ChoiceBCCommand}"/>
+            </StackPanel>
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="2" Grid.Row="0">
+                <Label Content="Ár: Ingyenes"/>
+                <Button  Margin="5" Content="Alap háttérszín" FontSize="20" MinWidth="250" Command="{Binding DefaultBCCommand}"/>
+            </StackPanel>-->
+        </Grid>
     </Border>
 </Page>

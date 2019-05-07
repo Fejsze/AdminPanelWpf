@@ -8,6 +8,6 @@
         Title="PairingWindow" Height="450" Width="800">
     <StackPanel>
         <Grid Name="ng"/>
-        <Button Content="Ellenőrzés" Click="CheckClick" MaxWidth="250" Height="50" FontSize="30"/>
+        <Button Content="Ellenőrzés" Name="Button" Click="CheckClick" MaxWidth="250" Height="50" FontSize="30"/>
     </StackPanel>
 </Page>

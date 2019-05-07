@@ -11,7 +11,7 @@
       VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
 
     <Grid VerticalAlignment="Center" HorizontalAlignment="Center" Margin="1 150 1 1">
-        <StackPanel Background="Gray" VerticalAlignment="Center" HorizontalAlignment="Center" MaxWidth="620"  RenderTransformOrigin="0.5,0.5" Margin="0,0,10,0">
+        <StackPanel Background="Gray" VerticalAlignment="Center" HorizontalAlignment="Center" MaxWidth="630"  RenderTransformOrigin="0.5,0.5" Margin="0,0,10,0">
             <Label Height="auto" FontSize="40" FontWeight="SemiBold" HorizontalAlignment="Center" Content="Regisztráció" />
             <DockPanel Margin="0 0 5 0">
                 <Label MinWidth="100" HorizontalAlignment="Center" Content="Felhasználónév"/>
@@ -43,7 +43,11 @@
             </DockPanel>
             <DockPanel Margin="0 0 5 0">
                 <CheckBox Margin="5 7 0 5" IsChecked="{Binding IsSelected}"/>
-                <Label Content="Kijelentem, hogy az adatvédelmi nyilatkozatot elolvastam és tudomásul vettem. (A szövegre kattintva elérhető.)"/>
+                <Label Content="Kijelentem, hogy az adatvédelmi nyilatkozatot elolvastam és tudomásul vettem. (A szövegre kattintva elérhető.)">
+                    <Label.InputBindings>
+                        <MouseBinding Command="{Binding PrivacyStatementCommand}" MouseAction="LeftClick"/>
+                    </Label.InputBindings>
+                </Label>
             </DockPanel>
             <Grid Margin="0 0 0 3">
                 <Grid.RowDefinitions>

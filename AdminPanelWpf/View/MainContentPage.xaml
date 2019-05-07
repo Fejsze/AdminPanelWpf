@@ -1,5 +1,5 @@
 ﻿<Page
-    x:Class="LearningApp.View.FormAdminPanelPage"
+    x:Class="LearningApp.View.MainContentPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -21,7 +21,7 @@
         </Grid.ColumnDefinitions>
 
         <DockPanel Grid.Column="0" Grid.Row="0" Grid.RowSpan="2">
-            <Menu Background="#b2beb5" Foreground="White" DockPanel.Dock="Left" Margin="2 2 2 2">
+            <Menu BorderBrush="Black" BorderThickness="1.5" Background="#b2beb5" Foreground="White" DockPanel.Dock="Left" Margin="2 2 2 2">
                 <MenuItem Header="_Kezdőlap" Command="{Binding HomeCommand}"/>
                 <Separator/>
                 <MenuItem Background="#b2beb5" Header="_Tananyagok">

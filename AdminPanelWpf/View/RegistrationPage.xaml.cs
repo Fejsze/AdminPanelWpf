@@ -17,9 +17,6 @@ using System.Windows.Shapes;
 
 namespace LearningApp.View
 {
-    /// <summary>
-    /// Interaction logic for RegistrationPage.xaml
-    /// </summary>
     public partial class RegistrationPage : Page, IHavePassword
     {
         public RegistrationPage()

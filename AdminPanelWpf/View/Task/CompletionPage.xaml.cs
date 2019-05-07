@@ -33,16 +33,6 @@ namespace LearningApp.View.Task
         {
             if (text.Contains("#"))
             {
-
-                Button button = new Button()
-                {
-                    Height = 25
-                    ,Content = "Ellenőrzés",
-                };
-                dpNew.Children.Add(button);
-
-                button.Click += Button_Click;
-
                 int firstIndex = 0;
                 int nextIndex = 0;
                 while (firstIndex != -1)
@@ -85,9 +75,12 @@ namespace LearningApp.View.Task
                 }
             }
             if (!l)
-                MessageBox.Show("Nem");
+                Button.Visibility = Visibility.Hidden;
             else
-                MessageBox.Show("Igen");
+            {
+                Button.Visibility = Visibility.Hidden;
+                Globals.ActualPoints += Point;
+            }
         }
     }
 }

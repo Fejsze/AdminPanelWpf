@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace LearningApp.Model
 {
+    /// <summary>
+    /// Tananyagok modelle
+    /// </summary>
     class Lesson
     {
         public string Text { get;  set;}
