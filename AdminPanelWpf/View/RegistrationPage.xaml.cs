@@ -30,16 +30,13 @@ namespace LearningApp.View
         {
             get
             {
-                return PasswordBox.SecurePassword;
+                if (Utilities.ConvertToUnsecureString(PasswordBox.SecurePassword) == Utilities.ConvertToUnsecureString(PasswordBoxAgain.SecurePassword))
+                {
+                    return PasswordBox.SecurePassword;
+                }
+                MessageBox.Show(Utilities.ConvertToUnsecureString(PasswordBox.SecurePassword) + "     " + Utilities.ConvertToUnsecureString(PasswordBoxAgain.SecurePassword));
+                return null;
             }
         }
-        public SecureString PasswordAgain
-        {
-            get
-            {
-                return PasswordBoxAgain.SecurePassword;
-            }
-        }
-
     }
 }

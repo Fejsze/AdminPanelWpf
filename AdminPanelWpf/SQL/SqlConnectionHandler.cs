@@ -190,7 +190,7 @@ namespace LearningApp
         /// </summary>
         public void UserLvLUp()
         {
-            MySqlCommand comm = new MySqlCommand($"UPDATE `user_data` SET `level` = '{Globals.ActualUser.Level}' WHERE `user_data`.`generatedid` = {Globals.ActualUser.GeneratedID};", connection);
+            MySqlCommand comm = new MySqlCommand($"UPDATE `user_data` SET `level` = '{Globals.ActualUser.Level}' WHERE `user_data`.`generatedid` = \"{Globals.ActualUser.GeneratedID}\";", connection);
             comm.ExecuteNonQuery();
         }
 
@@ -199,9 +199,9 @@ namespace LearningApp
         /// </summary>
         public void UpdateNickName()
         {
-            MySqlCommand comm = new MySqlCommand($"UPDATE `user_data` SET `nickname` = '{Globals.ActualUser.NickName}' WHERE `user_data`.`generatedid` = {Globals.ActualUser.GeneratedID};", connection);
+            MySqlCommand comm = new MySqlCommand($"UPDATE `user_data` SET `nickname` = '{Globals.ActualUser.NickName}' WHERE `user_data`.`generatedid` = \"{Globals.ActualUser.GeneratedID}\";", connection);
             comm.ExecuteNonQuery();
-            MySqlCommand comm2 = new MySqlCommand($"UPDATE `user_data` SET `money = '{Globals.ActualUser.Money}' WHERE `user_data`.`generatedid` = {Globals.ActualUser.GeneratedID};", connection);
+            MySqlCommand comm2 = new MySqlCommand($"UPDATE `user_data` SET `money` = '{Globals.ActualUser.Money}' WHERE `user_data`.`generatedid` = \"{Globals.ActualUser.GeneratedID}\";", connection);
             comm2.ExecuteNonQuery();
         }
 
