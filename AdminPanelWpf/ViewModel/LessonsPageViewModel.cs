@@ -14,6 +14,7 @@ namespace LearningApp.ViewModel
     {
         private bool isVisisbleButton;
         private string lessonText;
+        private string LessonTopic;
         public ICommand TaskCommand { get; set; }
 
         public string LessonText
@@ -50,6 +51,7 @@ namespace LearningApp.ViewModel
 
         private void SetUp(string topic)
         {
+            MessageBox.Show(topic);
             IsVisisbleButton = false;
             SqlConnectionHandler conn = new SqlConnectionHandler();
             try

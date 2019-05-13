@@ -52,12 +52,10 @@ namespace LearningApp.ViewModel
         public ICommand LoginButtonCommand { get; set; }
         public ICommand RegistrationButtonCommand { get; set; }
 
-
         public LoginPageViewModel()
         {
             LoginButtonCommand = new RelayCommand(SubmitButtonClick);
             RegistrationButtonCommand = new RelayCommand(o => RegistrationButtonClick(o));
-
         }
 
         private void SubmitButtonClick(object parameter)

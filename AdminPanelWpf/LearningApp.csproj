@@ -93,7 +93,6 @@
     <Compile Include="Globals.cs" />
     <Compile Include="IHavePassword.cs" />
     <Compile Include="Model\Lesson.cs" />
-    <Compile Include="Model\MainModel.cs" />
     <Compile Include="Model\Task\Multiple_choice.cs" />
     <Compile Include="Model\Task\TrueFalseModel.cs" />
     <Compile Include="Model\UsersModel.cs" />
@@ -256,10 +255,12 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resource\Csharp_Logo.png" />
+    <Resource Include="Resource\32px-C_Sharp_wordmark.svg.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resource\32px-C_Sharp_wordmark.svg.png" />
+    <Resource Include="Resource\banknote.png" />
+    <Resource Include="Resource\dollar-coin-stack.png" />
+    <Resource Include="Resource\money-bag.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions />

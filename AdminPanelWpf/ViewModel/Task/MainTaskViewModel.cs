@@ -13,11 +13,11 @@ namespace LearningApp.ViewModel.Task
 {
     class MainTaskViewModel : BaseViewModel
     {
-        public MainTaskViewModel()
+        public MainTaskViewModel(/*string topic*/)
         {
             SubmitAnswerCommand = new RelayCommand(o => SubmitAnswerClick(o));
             TasksSQLSelects lessonsSQLSelects = new TasksSQLSelects();
-            Globals.ActualTasks = lessonsSQLSelects.SelectTask("ConsoleApp I");
+            Globals.ActualTasks = lessonsSQLSelects.SelectTask("Console Application");
             Globals.ActualTasksDefault = Globals.ActualTasks;
             this.DisplayPage = Globals.NextTask();
         }

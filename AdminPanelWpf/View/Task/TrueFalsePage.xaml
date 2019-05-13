@@ -25,7 +25,7 @@
         </Grid.RowDefinitions>
 
         <Label Grid.ColumnSpan="2" VerticalAlignment="Center" Background="AntiqueWhite" HorizontalAlignment="Center" FontSize="60" Grid.Column="0" Grid.Row="0" Content="{Binding Question}"/>
-        <Button Grid.Column="0" Grid.Row="1"  Content="Igaz" Background="Blue" FontSize="50" Command="{Binding TrueCommand}" Visibility="{Binding IsVisibleTrueButton, Converter={StaticResource boolToVis}, Mode=TwoWay}"/>
-        <Button Grid.Column="1" Grid.Row="1" Content="Hamis" Background="Red" FontSize="50" Command="{Binding FalseCommand}" Visibility="{Binding IsVisibleFalseButton, Converter={StaticResource boolToVis}, Mode=TwoWay}"/>
+        <Button Grid.Column="0" Grid.Row="1"  Content="Igaz" Background="Green" FontSize="50" Command="{Binding TrueCommand}" Visibility="{Binding IsVisibleTrueButton, Converter={StaticResource boolToVis}, Mode=TwoWay}"/>
+        <Button Grid.Column="1" Grid.Row="1" Content="Hamis" Background="#ff2323" FontSize="50" Command="{Binding FalseCommand}" Visibility="{Binding IsVisibleFalseButton, Converter={StaticResource boolToVis}, Mode=TwoWay}"/>
     </Grid>
 </Page>

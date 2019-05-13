@@ -37,7 +37,7 @@ namespace LearningApp
                 connection.Open();
                 IsOpen = true;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 throw;
             }
@@ -93,6 +93,8 @@ namespace LearningApp
                             um.Level = reader.GetInt32(reader.GetOrdinal("Level"));
                         if (!reader.IsDBNull(reader.GetOrdinal("NickName")))
                             um.NickName = reader.GetString(reader.GetOrdinal("NickName"));
+                        if (!reader.IsDBNull(reader.GetOrdinal("moneyicon")))
+                            um.MoneyIcon = reader.GetString(reader.GetOrdinal("moneyicon"));
                     }
                 }
                 return um;
@@ -114,6 +116,23 @@ namespace LearningApp
             comm.Parameters.AddWithValue("password", StringCipher.Encrypt(newPassoword, "Fejsze"));
             comm.Parameters.AddWithValue("generatedid", GeneratedId);
             comm.ExecuteNonQuery();
+        }
+
+        /// <summary>
+        ///     A pénz ikon átírása az adatbázisban.
+        /// </summary>
+        /// <param name="GeneratedId"></param>
+        /// <param name="moneyicon"></param>
+        public void UpdateMoneyIcon(string GeneratedId, string moneyicon, int money)
+        {
+            MySqlCommand comm = new MySqlCommand("UPDATE user_data SET moneyicon = @moneyicon WHERE generatedid = @generatedid", connection);
+            comm.Parameters.AddWithValue("moneyicon", moneyicon);
+            comm.Parameters.AddWithValue("generatedid", GeneratedId);
+            comm.ExecuteNonQuery();
+            MySqlCommand comm2 = new MySqlCommand("UPDATE user_data SET money = @money WHERE generatedid = @generatedid", connection);
+            comm2.Parameters.AddWithValue("money", money);
+            comm2.Parameters.AddWithValue("generatedid", GeneratedId);
+            comm2.ExecuteNonQuery();
         }
 
         /// <summary>
@@ -188,9 +207,11 @@ namespace LearningApp
         /// <summary>
         ///      Adatbázis szinten átírja a felhasználó szintjét.
         /// </summary>
-        public void UserLvLUp()
+        public void UserLvLUp(string generatedid, int level)
         {
-            MySqlCommand comm = new MySqlCommand($"UPDATE `user_data` SET `level` = '{Globals.ActualUser.Level}' WHERE `user_data`.`generatedid` = \"{Globals.ActualUser.GeneratedID}\";", connection);
+            MySqlCommand comm = new MySqlCommand($"UPDATE `user_data` SET `level` = @level WHERE `user_data`.`generatedid` = @generatedid;", connection);
+            comm.Parameters.AddWithValue("level", level);
+            comm.Parameters.AddWithValue("generatedid", generatedid);
             comm.ExecuteNonQuery();
         }
 
@@ -223,6 +244,34 @@ namespace LearningApp
                 }
                 return result;
             }
+        }
+
+        /// <summary>
+        ///     Frissíti a felhasználó egyenlegét és ikonját.
+        /// </summary>
+        /// <param name="generatedid">Az aktuális felhasználó generált id-ja</param>
+        /// <returns></returns>
+        public bool SelectMoneyData(string generatedid)
+        {
+            try
+            {
+                MySqlCommand comm = new MySqlCommand($"SELECT money, moneyicon FROM `user_data` where `generatedid` = @generatedid;", connection);
+                comm.Parameters.AddWithValue("generatedid", generatedid);
+                using (MySqlDataReader reader = comm.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        Globals.ActualUser.Money = int.Parse(reader["money"].ToString());
+                        Globals.ActualUser.MoneyIcon = reader["moneyicon"].ToString();
+                    }
+                    return true;
+                }
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            
         }
 
         private int LastInsertIDUserData()

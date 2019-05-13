@@ -49,19 +49,24 @@ namespace LearningApp.ViewModel
 
         private void SubmitButtonClick(object sender)
         {
-            if(OldPassword == Globals.ActualUser.Password)
+            if (newPassword != "" && NewPasswordAgain != "")
             {
-                if(this.NewPassword == this.NewPasswordAgain)
+                if(OldPassword == Globals.ActualUser.Password)
                 {
-                    SqlConnectionHandler conn = new SqlConnectionHandler();
-                    conn.Open();
-                    conn.UpdatePassword(Globals.ActualUser.GeneratedID, this.NewPassword);
+                    if(this.NewPassword == this.NewPasswordAgain)
+                    {
+                        SqlConnectionHandler conn = new SqlConnectionHandler();
+                        conn.Open();
+                        conn.UpdatePassword(Globals.ActualUser.GeneratedID, this.NewPassword);
+                    }
+                    else
+                        System.Windows.MessageBox.Show("Nem egyezik a jelszó");
                 }
                 else
-                    System.Windows.MessageBox.Show("Nem egyezik a jelszó");
+                    System.Windows.MessageBox.Show("Nem jó az eddigi jelszó");
             }
             else
-                System.Windows.MessageBox.Show("Nem jó az eddigi jelszó");
+                System.Windows.MessageBox.Show("Az új jelszó nem lehet üres!");
         }
     }
 }

@@ -20,5 +20,6 @@ namespace LearningApp.Model
         public int Money { get; set; }
         public int Level { get; set; }
         public string NickName { get; set; }
+        public string MoneyIcon { get; set; }
     }
 }

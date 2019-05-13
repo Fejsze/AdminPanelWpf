@@ -23,19 +23,32 @@ namespace LearningApp.ViewModel
             DisplayPage = new HomePage();
             moneySyncThread = new Thread(() =>                                           //Aktuális pénz egyenleg megjelenítésének a frissítése
             {
-                Thread.CurrentThread.IsBackground = true;
-                while (true)
-                {
-                    Money = Globals.ActualUser.Money.ToString();
-                    Thread.Sleep(6000);
-                }
+                Thread();
             });
             moneySyncThread.Start();
+        }
+
+        private void Thread()
+        {
+            System.Threading.Thread.CurrentThread.IsBackground = true;
+            SqlConnectionHandler sqlConnection = new SqlConnectionHandler();
+            while (true)
+            {
+                if (sqlConnection.Open())
+                {
+                    sqlConnection.SelectMoneyData(Globals.ActualUser.GeneratedID);
+                }
+                sqlConnection.Connection.Close();
+                Money = Globals.ActualUser.Money.ToString();
+                MoneyIcon = Globals.ActualUser.MoneyIcon;
+                System.Threading.Thread.Sleep(6000);
+            }
         }
 
         public event EventHandler onEventRaised;
         private Page displayPage;
         private string money;
+        private string moneyIcon;
         private Thread moneySyncThread;
 
         public Page DisplayPage
@@ -51,8 +64,16 @@ namespace LearningApp.ViewModel
         {
             get => money; set
             {
-                money = "Egyenleg: " + value;
+                money = value + " Fabatka";
                 NotifyPropertyChanged("Money");
+            }
+        }
+        public string MoneyIcon
+        {
+            get => moneyIcon; set
+            {
+                moneyIcon = "/LearningApp;component/Resource/" + value;
+                NotifyPropertyChanged("MoneyIcon");
             }
         }
 
@@ -63,6 +84,7 @@ namespace LearningApp.ViewModel
         public ICommand ExitCommand { get; set; }
         public ICommand HomeCommand { get; set; }
         public ICommand TestCommand3 { get; set; }
+        public ICommand KeyBindingCommand { get; set; }
         #endregion
 
         #region ClickRegion
@@ -89,6 +111,9 @@ namespace LearningApp.ViewModel
         {
             HomePage homePage = new HomePage();
             DisplayPage = homePage;
+            SqlConnectionHandler sqlConnection = new SqlConnectionHandler();
+            sqlConnection.Open();
+            sqlConnection.SelectMoneyData(Globals.ActualUser.GeneratedID);
         }
         private void ExitClick(object sender)
         {
@@ -97,6 +122,11 @@ namespace LearningApp.ViewModel
                 moneySyncThread.Abort();
                 onEventRaised(this, null);
             }
+        }
+        private void KeyBindingClick(object sender)
+        {
+            MainTaskWindow mainTaskWindow = new MainTaskWindow();
+            mainTaskWindow.Show();
         }
         #endregion
 
@@ -111,6 +141,7 @@ namespace LearningApp.ViewModel
             TestCommand3 = new RelayCommand(o => TestClick3(o));
             LessonCommand = new RelayCommand(o => LessonClick(o));
             HomeCommand = new RelayCommand(o => HomeClick(o));
+            KeyBindingCommand = new RelayCommand(o => KeyBindingClick(o));
         }
     }
 }

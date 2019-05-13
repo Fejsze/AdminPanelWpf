@@ -13,11 +13,11 @@
 
     <Grid HorizontalAlignment="Center" VerticalAlignment="Bottom">
         <StackPanel Background="Gray" Margin="10 200 10 10" Width="250"  HorizontalAlignment="Center" VerticalAlignment="Center" MinWidth="450">
-                <Label Margin="10 1 10 1" Height="auto" FontSize="40" FontWeight="SemiBold" HorizontalAlignment="Center" Content="Bejelentkezés" />
+            <Label Margin="10 1 10 1" Height="auto" FontSize="40" FontWeight="SemiBold" HorizontalAlignment="Center" Content="Bejelentkezés" />
             <Label Margin="10 1 10 1" Content="Felhasználónév" />
             <TextBox Margin="10 1 10 1" Name="TextBoxUserName" Text="{Binding UserName}" />
             <Label Margin="10 1 10 1" Content="Jelszó" />
-            <PasswordBox Margin="10 1 10 1" x:Name="PasswordBox" PasswordChar="*"/>
+            <PasswordBox Margin="10 1 10 1" x:Name="PasswordBox" PasswordChar="*" />
             <Separator Margin="5 5 5 5"/>
             <Grid Margin="10 10 10 10">
                 <Grid.RowDefinitions>

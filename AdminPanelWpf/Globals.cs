@@ -26,7 +26,7 @@ namespace LearningApp
                 ActualUser.Level++;
                 SqlConnectionHandler sqlConnection = new SqlConnectionHandler();
                 if (sqlConnection.Open())
-                    sqlConnection.UserLvLUp();
+                    sqlConnection.UserLvLUp(Globals.ActualUser.GeneratedID, Globals.ActualUser.Level);
                 else
                 {
                     ActualUser.Level--;

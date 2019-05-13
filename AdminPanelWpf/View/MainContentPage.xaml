@@ -9,6 +9,11 @@
     d:DesignHeight="450"
     d:DesignWidth="800"
     mc:Ignorable="d">
+
+    <Page.InputBindings>
+        <KeyBinding Command="{Binding KeyBindingCommand}" Key="F10" Modifiers="Ctrl"/>
+    </Page.InputBindings>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -38,16 +43,20 @@
                 <MenuItem Header="_Kijelentkezés" Command="{Binding ExitCommand}"/>
             </Menu>
         </DockPanel>
-        <DockPanel
+        <Border
             Grid.Row="0"
             Grid.Column="1"
             HorizontalAlignment="Right"
             FlowDirection="LeftToRight"
-            Background="#b2beb5">
-            <Button MinWidth="200" Command="{Binding TestCommand3}" Content="MainTaskWindow" />
-            <Label MinWidth="50" MaxWidth="200" Background="Gold" Foreground="DeepPink" FontSize="15" Content="{Binding Money, Mode=TwoWay}"/>
+            BorderBrush="Black"  BorderThickness="2">
+        <DockPanel>
+            <!--<Button MinWidth="200" Command="{Binding TestCommand3}" Content="MainTaskWindow" />-->
+            
+            <Image Source="{Binding MoneyIcon}" Height="30"/>
+            <Label MinWidth="50" MaxWidth="200" Height="30"  Foreground="Black" FontSize="15" Content="{Binding Money, Mode=TwoWay}"/>
         </DockPanel>
-            <Frame Margin="1 20 1 100" MinWidth="1150" MinHeight="640" 
+        </Border>
+        <Frame Margin="1 20 1 100" MinWidth="1150" MinHeight="640" 
                    Grid.Row="1" Grid.Column="2" 
                    Content="{Binding DisplayPage, Mode=OneWay}" 
                    VerticalAlignment="Stretch" HorizontalAlignment="Center" />

@@ -9,25 +9,58 @@
       Title="Market">
 
     <Border BorderBrush="Black" BorderThickness="2">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="60"/>
-            <RowDefinition Height="60"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <Grid.Background>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="60"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.Background>
                 <LinearGradientBrush EndPoint="0.504,1.5" StartPoint="0.504,0.03">
                     <GradientStop Color="Gray" Offset="0"/>
                     <GradientStop Color="#FFFFFFFF" Offset="0.55"/>
                 </LinearGradientBrush>
-        </Grid.Background>
+            </Grid.Background>
             <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="0" Grid.Row="0">
                 <Label Content="Ár: 5000"/>
-                <Button  Margin="5" Content="Becenév megváltoztatása" FontSize="20" MinWidth="250" Command="{Binding NickNameChangeCommand}"/>
+                <Button  Margin="5" Content="Becenév megváltoztatása" FontSize="18" Height="35" Width="260" Command="{Binding NickNameChangeCommand}"/>
+            </StackPanel>
+            <StackPanel Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <Label Content="Ár: 10000"/>
+                <Button Margin="5" FontSize="16" Height="35" Width="260" Command="{Binding MoneyIconChangedCommand}" CommandParameter="money-bag.png">
+                    <Button.Content>
+                        <DockPanel>
+                            <Image MaxHeight="20" Source="/LearningApp;component/Resource/money-bag.png"/>
+                            <Label Content="Egyenleg ikon megváltoztatása"/>
+                        </DockPanel>
+                    </Button.Content>
+                </Button>
+            </StackPanel>
+            <StackPanel Grid.Column="2" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <Label Content="Ár: 10000"/>
+                <Button Margin="5" FontSize="16" Height="35" Width="260" Command="{Binding MoneyIconChangedCommand}" CommandParameter="banknote.png">
+                    <Button.Content>
+                        <DockPanel>
+                            <Image MaxHeight="20" Source="/LearningApp;component/Resource/banknote.png"/>
+                            <Label Content="Egyenleg ikon megváltoztatása"/>
+                        </DockPanel>
+                    </Button.Content>
+                </Button>
+            </StackPanel>
+            <StackPanel Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <Label Content="Ár: 10000"/>
+                <Button Margin="5" FontSize="16" Height="35" Width="260" Command="{Binding MoneyIconChangedCommand}" CommandParameter="dollar-coin-stack.png">
+                    <Button.Content>
+                        <DockPanel>
+                            <Image MaxHeight="20" Source="/LearningApp;component/Resource/dollar-coin-stack.png"/>
+                            <Label Content="Egyenleg ikon megváltoztatása"/>
+                        </DockPanel>
+                    </Button.Content>
+                </Button>
             </StackPanel>
             <!--<StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="0" Grid.Row="0">
                 <Label Content="Ár: 5000"/>
