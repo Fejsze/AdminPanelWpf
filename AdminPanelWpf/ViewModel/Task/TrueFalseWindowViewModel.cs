@@ -20,7 +20,7 @@ namespace LearningApp.ViewModel.Task
             trueFalseM = trueFalseModel;
             Point = trueFalseM.Point;
             question = trueFalseM.Question;
-
+            Globals.MaxPoints += Point;
             TrueCommand = new RelayCommand(o => TrueClick(o));
             FalseCommand = new RelayCommand(o => FalseClick(o));
         }
@@ -61,9 +61,10 @@ namespace LearningApp.ViewModel.Task
         {
             if (trueFalseM.GoodAnswer == "igaz")
             {
-                Globals.ActualPoints++;
+                Globals.ActualPoints += Point;
                 ButtonVisibility();
-            } else ButtonVisibility();
+            }
+            else ButtonVisibility();
         }
 
         private void FalseClick(object sender)
@@ -72,7 +73,8 @@ namespace LearningApp.ViewModel.Task
             {
                 Globals.ActualPoints += Point;
                 ButtonVisibility();
-            } else ButtonVisibility();
+            }
+            else ButtonVisibility();
         }
 
         private void ButtonVisibility()

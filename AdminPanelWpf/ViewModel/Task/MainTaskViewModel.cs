@@ -13,15 +13,15 @@ namespace LearningApp.ViewModel.Task
 {
     class MainTaskViewModel : BaseViewModel
     {
-        public MainTaskViewModel(/*string topic*/)
+        public MainTaskViewModel(string topic)
         {
+            this.topic = topic;
             SubmitAnswerCommand = new RelayCommand(o => SubmitAnswerClick(o));
-            TasksSQLSelects lessonsSQLSelects = new TasksSQLSelects();
-            Globals.ActualTasks = lessonsSQLSelects.SelectTask("Console Application");
-            Globals.ActualTasksDefault = Globals.ActualTasks;
+            GlobalsSetup(new TasksSQLSelects());
             this.DisplayPage = Globals.NextTask();
         }
 
+        private string topic;
         public ICommand SubmitAnswerCommand { get; set; }
         public Action CloseAction { get; set; }
 
@@ -45,14 +45,37 @@ namespace LearningApp.ViewModel.Task
             }
         }
 
-        private static void GlobalsSetup(TasksSQLSelects lessonsSQLSelects)
+        private void GlobalsSetup(TasksSQLSelects lessonsSQLSelects)
         {
             Globals.ActualPoints = 0;
-            Globals.ActualTasks = lessonsSQLSelects.SelectTask("alapok I");
-            List<Page> lessons = lessonsSQLSelects.SelectTask("alapok II");
-            for (int i = 0; i < lessons.Count; i++)
+            Globals.ActualTasks = TasksSetup(topic);
+            Globals.ActualTasksDefault = Globals.ActualTasks;
+        }
+
+        private List<Page> TasksSetup(string topic)
+        {
+            List<Page> Pages = new List<Page>();
+            switch (topic)
             {
-                Globals.ActualTasks.Add(lessons[i]);
+                case "Hotkeys":
+                    Pages.Add(pairingPage());
+                    return Pages;
+                case "Változók II":
+                    List<Page> p;
+                    p = new TasksSQLSelects().SelectTask("alapok I");
+                    foreach (var item in p)
+                    {
+                        Pages.Add(item);
+                    }
+                    p = null;
+                    p = new TasksSQLSelects().SelectTask("alapok II");
+                    foreach (var item in p)
+                    {
+                        Pages.Add(item);
+                    }
+                    return Pages;
+                default:
+                    return Pages;
             }
         }
 

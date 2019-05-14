@@ -83,7 +83,6 @@ namespace LearningApp.ViewModel
         public ICommand MarketCommand { get; set; }
         public ICommand ExitCommand { get; set; }
         public ICommand HomeCommand { get; set; }
-        public ICommand TestCommand3 { get; set; }
         public ICommand KeyBindingCommand { get; set; }
         #endregion
 
@@ -91,11 +90,6 @@ namespace LearningApp.ViewModel
         private void ChangePasswordClick(object sender)
         {
             this.DisplayPage = new ChangePasswordPage();
-        }
-        private void TestClick3(object sender)
-        {
-            MainTaskWindow mainTaskWindow = new MainTaskWindow();
-            mainTaskWindow.Show();
         }
         private void LessonClick(object sender)
         {
@@ -125,7 +119,7 @@ namespace LearningApp.ViewModel
         }
         private void KeyBindingClick(object sender)
         {
-            MainTaskWindow mainTaskWindow = new MainTaskWindow();
+            MainTaskWindow mainTaskWindow = new MainTaskWindow("Hotkeys");
             mainTaskWindow.Show();
         }
         #endregion
@@ -138,7 +132,6 @@ namespace LearningApp.ViewModel
             ChangePasswordCommand = new RelayCommand(o => ChangePasswordClick(o));
             ExitCommand = new RelayCommand(o => ExitClick(o));
             MarketCommand = new RelayCommand(o => MarketClick(o));
-            TestCommand3 = new RelayCommand(o => TestClick3(o));
             LessonCommand = new RelayCommand(o => LessonClick(o));
             HomeCommand = new RelayCommand(o => HomeClick(o));
             KeyBindingCommand = new RelayCommand(o => KeyBindingClick(o));

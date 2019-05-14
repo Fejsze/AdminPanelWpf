@@ -14,7 +14,7 @@ namespace LearningApp.ViewModel
     {
         private bool isVisisbleButton;
         private string lessonText;
-        private string LessonTopic;
+        private string commandParameter;
         public ICommand TaskCommand { get; set; }
 
         public string LessonText
@@ -37,6 +37,15 @@ namespace LearningApp.ViewModel
             }
         }
 
+        public string CommandParameter
+        {
+            get => commandParameter; set
+            {
+                commandParameter = value;
+                NotifyPropertyChanged("CommandParameter");
+            }
+        }
+
         public LessonsPageViewModel(string topic)
         {
             TaskCommand = new RelayCommand(o => TaskCommandClick(o));
@@ -45,13 +54,13 @@ namespace LearningApp.ViewModel
 
         private void TaskCommandClick(object o)
         {
-            MainTaskWindow mainTaskWindow = new MainTaskWindow();
+            MainTaskWindow mainTaskWindow = new MainTaskWindow(o.ToString());
             mainTaskWindow.Show();
         }
 
         private void SetUp(string topic)
         {
-            MessageBox.Show(topic);
+            CommandParameter = topic;
             IsVisisbleButton = false;
             SqlConnectionHandler conn = new SqlConnectionHandler();
             try

@@ -20,11 +20,11 @@ namespace LearningApp.View.Task
     /// </summary>
     public partial class MainTaskWindow : Window
     {
-        public MainTaskWindow()
+        public MainTaskWindow(string topic)
         {
             InitializeComponent();
 
-            var vm = new MainTaskViewModel();
+            var vm = new MainTaskViewModel(topic);
             this.DataContext = vm;
             if (vm.CloseAction == null)
                 vm.CloseAction = new Action(this.Close);

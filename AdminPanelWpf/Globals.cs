@@ -21,7 +21,7 @@ namespace LearningApp
 
         public static int LvLUp()
         {
-            if ((int)ActualPoints > (int)MaxPoints/2-1)
+            if ((int)ActualPoints > (int)MaxPoints/2-1 && ActualPoints != 0 && MaxPoints != 0)
             {
                 ActualUser.Level++;
                 SqlConnectionHandler sqlConnection = new SqlConnectionHandler();

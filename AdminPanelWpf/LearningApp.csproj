@@ -111,7 +111,6 @@
     <Compile Include="ViewModel\RegistrationPageViewModel.cs" />
     <Compile Include="ViewModel\Task\MainTaskViewModel.cs" />
     <Compile Include="ViewModel\Task\Multiple_choiceWindowViewModel.cs" />
-    <Compile Include="ViewModel\Task\PairingPageViewModel.cs" />
     <Compile Include="ViewModel\Task\TrueFalseWindowViewModel.cs" />
     <Compile Include="View\ChangePasswordPage.xaml.cs">
       <DependentUpon>ChangePasswordPage.xaml</DependentUpon>

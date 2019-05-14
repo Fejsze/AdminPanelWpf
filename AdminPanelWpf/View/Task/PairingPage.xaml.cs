@@ -24,8 +24,6 @@ namespace LearningApp.View.Task
         public PairingPage(Dictionary<string, string> iKerdesek, List<string> iValaszok, int Point)
         {
             InitializeComponent();
-            DataContext = new PairingPageViewModel();
-
             this.Point = Point;
 
             Grid DynamicGrid = new Grid

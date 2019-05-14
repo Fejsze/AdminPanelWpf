@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace LearningApp.ViewModel.Task
@@ -20,6 +21,7 @@ namespace LearningApp.ViewModel.Task
             multiple_choiceM = mc;
             Point = multiple_choiceM.Point;
             Question = multiple_choiceM.Question;
+            Globals.MaxPoints += Point;
             Setup();
         }
 
@@ -95,6 +97,7 @@ namespace LearningApp.ViewModel.Task
         {
             Globals.ActualPoints += Point;
             AnsButtonSVis = false;
+            MessageBox.Show(Globals.ActualPoints.ToString());
         }
     }
 }
