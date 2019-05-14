@@ -17,7 +17,7 @@ namespace LearningApp.Model.Task
         /// <param name="Question">Kérdés (strin)</param>
         /// <param name="GoodAnswer">Jó válasz (string)</param>
         /// <param name="Poit">Feladatért járó pont</param>
-        public TrueFalseModel(string Question, string GoodAnswer, int Poit)
+        public TrueFalseModel(string Question, string GoodAnswer, int Point)
         {
             this.Question = Question;
             this.GoodAnswer = GoodAnswer;
